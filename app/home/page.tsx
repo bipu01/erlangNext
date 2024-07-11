@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
-
 // import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
-import CategorySegment from "./home/CategorySegment/index";
-import HeroSegment from "./home/HeroSegment/index";
+import CategorySegment from "./CategorySegment";
+import HeroSegment from "./HeroSegment";
 
 const Homepage = () => {
   useEffect(() => {
