@@ -1,4 +1,4 @@
-import { productClusterPropInterface } from "../../../../declare";
+import { productClusterPropInterface } from "../../../declare";
 
 export const footwearCluster1: productClusterPropInterface = {
     leftRow: {

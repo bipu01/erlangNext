@@ -1,5 +1,5 @@
-import { OptionsPanelBtn } from "../../../components/Buttons/Buttons";
-import { paddingForPage } from "../../../defineSize";
+import { OptionsPanelBtn } from "../../components/Buttons/Buttons";
+import { paddingForPage } from "../../defineSize";
 
 const SortByPanel = () => {
   return (

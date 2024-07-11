@@ -16,7 +16,7 @@ const Homepage = () => {
   return (
     <section className=" text-primaryBlue overflow-x-hidden bg-bodybg">
       <HeroSegment />
-      {/* <CategorySegment /> */}
+      <CategorySegment />
     </section>
   );
 };

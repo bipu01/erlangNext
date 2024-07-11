@@ -184,10 +184,7 @@ const PostProducts = () => {
             onClick={makeFailedDialougeBoxInvisible}
             className="  absolute w-100vw h-120vh top-0 left-0 bg-[rgba(0,0,0,0.3)]"
           >
-            <div
-              //   id="postFailedCard"
-              className=" fixed top-8vh left-25vw rounded-md text-center py-4 text-xl font-medium text-bodybg w-50vw  bg-red-950"
-            >
+            <div className=" fixed top-8vh left-25vw rounded-md text-center py-4 text-xl font-medium text-bodybg w-50vw  bg-red-950">
               Product post failed <br />
               <span className=" text-base font-base">
                 Fill the form completely
@@ -298,14 +295,6 @@ const PostProducts = () => {
         >
           Submit
         </button>
-        {/* <button
-          className="mt-12 bg-primaryBlue rounded-md p-4 w-95vw sm:w-35vw  text-white font-bold absolute right-0 top-80vh"
-          onClick={() => {
-            console.log(featured);
-          }}
-        >
-          status
-        </button> */}
       </div>
     </>
   );

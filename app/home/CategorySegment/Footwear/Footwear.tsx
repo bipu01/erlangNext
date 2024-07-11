@@ -1,19 +1,32 @@
-import { useSelector } from "react-redux";
-import { ProductCluster } from "../../../../components/ProductCard/ProductCluster";
-import { paddingForProductCard } from "../../../../defineSize";
-import { rootStore } from "../../../../store/type";
-import { productClusterProp } from "../../../../declare";
+import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
+import { paddingForProductCard } from "../../../defineSize";
+import { productClusterProp } from "../../../declare";
+import { product } from "@/app/store/type";
+import { useEffect, useState } from "react";
 
 const Footwear = () => {
-  const allFeaturedFootwear = useSelector(
-    (state: rootStore) => state.allFeaturedFootwear[0]
-  );
+  const [allFeaturedFootwear, setAllFeaturedFootwear] = useState<
+    Array<product>
+  >([]);
+
+  useEffect(() => {
+    const allFeaturedFootwearString = sessionStorage.getItem(
+      "allFeaturedFootwear"
+    );
+    if (allFeaturedFootwearString) {
+      try {
+        setAllFeaturedFootwear(JSON.parse(allFeaturedFootwearString));
+      } catch (e) {
+        console.error(
+          "Failed to parse allFeaturedJewellery from sessionStorage",
+          e
+        );
+      }
+    }
+  }, []);
 
   const printProductCluster = () => {
-    //It just consoles log the allFeaturedDress from GlobalState in redux toolkit
     if (allFeaturedFootwear) {
-      // console.log({ "allFeaturedFootwear": allFeaturedFootwear });
-
       for (let i = 0; i < allFeaturedFootwear.length; i += 2) {
         const pairs: productClusterProp = {
           leftRow: {
@@ -59,16 +72,13 @@ const Footwear = () => {
     <>
       <div className="relative mt-15vh">
         <img src="/assets/weavyArch.svg" alt="wave" className="w-100vw" />
-        {/* <div className="absolute z-10 top-60% ">
-          <SortByPanel />
-        </div> */}
       </div>
       <section
         id="dresses"
         className={` bg-bgLightBlue px-10vw py-5vh relative ${paddingForProductCard} mb-20vh`}
       >
         <p className=" text-primaryBlue text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-10vh leading-loose ">
-          STYLISH AND STRONG: OUR WOMEN'S BOOT COLLECTION
+          STYLISH AND STRONG: OUR WOMEN&apos;S BOOT COLLECTION
         </p>
         <div id="container" className="grid space-y-16">
           {printProductCluster()}

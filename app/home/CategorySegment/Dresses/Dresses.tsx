@@ -3,19 +3,32 @@ import PageBreakLine from "../../../components/PageBreakLine";
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
 import SortByPanel from "../../SortByPanel";
-import { rootStore } from "../../../store/type";
+import { product, rootStore } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
 
+import weavyArch from "../../../../public/assets/weavyArch.svg";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
 const Dresses = () => {
-  // const allFeaturedDress = useSelector(
-  //   (state: rootStore) => state.allFeaturedDress[0]
-  // );
+  const [allFeaturedDress, setAllFeaturedDress] = useState<Array<product>>([]);
+
+  useEffect(() => {
+    const allFeaturedDressString = sessionStorage.getItem("allFeaturedDress");
+    if (allFeaturedDressString) {
+      try {
+        setAllFeaturedDress(JSON.parse(allFeaturedDressString));
+      } catch (e) {
+        console.error(
+          "Failed to parse allFeaturedDress from sessionStorage",
+          e
+        );
+      }
+    }
+  }, []);
 
   const printProductCluster = () => {
-    //It just consoles log the allFeaturedDress from GlobalState in redux toolkit
     if (allFeaturedDress) {
-      // console.log({ "allFeaturedDress": allFeaturedDress });
-
       for (let i = 0; i < allFeaturedDress.length; i += 2) {
         const pairs: productClusterProp = {
           leftRow: {
@@ -61,7 +74,7 @@ const Dresses = () => {
   return (
     <>
       <div className="relative mt-7vh">
-        <img src="/assets/weavyArch.svg" alt="wave" className="w-100vw" />
+        <Image src={weavyArch} alt="wave" className="w-100vw" />
         <div className="absolute z-10 top-60% ">
           <SortByPanel />
         </div>
