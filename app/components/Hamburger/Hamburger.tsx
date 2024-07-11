@@ -13,8 +13,8 @@ export default function Hamburger() {
   const menuItems = [
     { link: "/", icon: "/icons/back.png", text: "" },
     { link: "/product", icon: "/icons/fav.png", text: "Favorites" },
-    { link: "/contactUs", icon: "/icons/email.png", text: "Contact us" },
-    { link: "/aboutUs", icon: "/icons/about2.png", text: "About us" },
+    { link: "/contact", icon: "/icons/email.png", text: "Contact us" },
+    { link: "/aboutus", icon: "/icons/about2.png", text: "About us" },
     { link: "/", icon: "/icons/profile.png", text: "Profile" },
     { link: "/cart", icon: "/icons/tick.png", text: "My orders" },
     { link: "/login", icon: "/icons/exit.png", text: "Logout" },
@@ -46,7 +46,7 @@ export default function Hamburger() {
               <Link href={item.link}>
                 <div className=" flex gap-3 pb-2 items-center">
                   {/* <img className=" h-5 w-5" src={item.icon} alt="" /> */}
-                  <Image className="h-5 w-5" src={item.icon} alt="" />
+                  <img className="h-5 w-5" src={item.icon} alt="" />
                   <p
                     className={`${
                       index === menuItems.length - 1 ? "text-red-600" : ""

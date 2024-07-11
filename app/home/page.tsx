@@ -1,3 +1,5 @@
+"use client";
+
 // import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import CategorySegment from "./CategorySegment";
@@ -12,7 +14,7 @@ const Homepage = () => {
   return (
     <section className=" text-primaryBlue overflow-x-hidden bg-bodybg">
       <HeroSegment />
-      <CategorySegment />
+      {/* <CategorySegment /> */}
     </section>
   );
 };

@@ -89,13 +89,15 @@ export interface testimonialsPropInterface {
     name: string;
 }
 export interface cartPropInterface {
-    image?:string,
+    img1?:string,
+    img2?:string,
+    img3?:string,
     quantity?:number,
     color?:string,
     name?:string,
     rating?:number,
-    orgPrice?:number,
-    disPrice?:number
+    priceOriginal?:number,
+    priceCurrent?:number
 }
 
 export interface productProp {

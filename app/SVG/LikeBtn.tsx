@@ -3,8 +3,8 @@ import { svgProp } from "../declare";
 export const LikeBtn = (prop: svgProp) => {
   return (
     <svg
-      width="17"
-      height="15"
+      width={prop.width || "17"}
+      height={prop.height || "15"}
       viewBox="0 0 17 15"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

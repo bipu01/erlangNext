@@ -1,5 +1,56 @@
-import { paddingForPage } from "../../../defineSize";
+import Image from "next/image";
+import { paddingForPage } from "../../defineSize";
+import image1 from "../../../public/assets/Dress/Co Fall 2019 Fashion Show.jpeg";
+import image2 from "../../../public/assets/image2.png";
+import image3 from "../../../public/assets/image3.png";
+import axios from "axios";
+import config from "../../config/config";
+import { useState } from "react";
+import { product } from "@/app/store/type";
+
+interface responseFromServer {
+  featuredDressCluster: Array<product>;
+  featuredJewelleryCluster: Array<product>;
+  featuredFootwearCluster: Array<product>;
+}
+
 export default function HeroSegment() {
+  const [featuredProduct, setFeaturedProduct] = useState<responseFromServer>();
+
+  const getAllFeaturedProducts = async () => {
+    const allFeaturedoProducts = await axios.get(
+      config.backendDevURL + "/getEveryFeatured"
+    );
+
+    //setting in state
+    setFeaturedProduct(allFeaturedoProducts.data);
+
+    // await allFeaturedoProducts.data.featuredDressCluster.forEach(
+    //   (data: object) => {
+    //     console.log(data);
+    //   }
+    // );
+
+    // console.log({
+    //   "featuredJewelleryCluster": await allFeaturedoProducts.data
+    //     .featuredJewelleryCluster,
+    // });
+
+    const dressCluster = await allFeaturedoProducts.data.featuredDressCluster;
+  };
+
+  getAllFeaturedProducts();
+
+  // sessionStorage.setItem(
+  //   "featuredDressCluster",
+  //   featuredProduct?.featuredDressCluster
+  // );
+
+  // sessionStorage.setItem(
+  //   "featuredJewelleryCluster",
+  //   await allFeaturedoProducts.data.featuredJewelleryCluster
+  // );
+
   // sideWhite Button Style
   const sideWhiteButtonStyle =
     "bg-bgLightBlue w-8 aspect-square rounded-full border-4 border-white sm:bg-bodybg sm:w-12 sm:h-10 sm:border-none";
@@ -10,9 +61,10 @@ export default function HeroSegment() {
       <div className=" grid sm:grid-cols-5  pt-8 pb-12">
         {/* left image */}
         <div className="col-span-4 sm:col-span-2 mt-5 sm:mt-0  max-h-40vh sm:max-h-95vh relative">
-          <img
+          <Image
             className=" w-full h-full object-cover object-top  "
-            src="./assets/Dress/Co Fall 2019 Fashion Show.jpeg"
+            // src="./assets/Dress/Co Fall 2019 Fashion Show.jpeg"
+            src={image1}
             alt=""
           />
           <div className=" absolute top-16 flex flex-col gap-44 sm:gap-64 xl:gap-96 -right-3 sm:-right-4">
@@ -33,25 +85,27 @@ export default function HeroSegment() {
             </div>
             <div className="">
               <p className="mt-6 sm:mt-auto xmd:text-xl xl:text-2xl text-primaryBlue opacity-70">
-                "Experience the ultimate in luxury and comfort with our
+                Experience the ultimate in luxury and comfort with our
                 handcrafted clothing, tailored to your unique measurements and
-                preferences."
+                preferences
               </p>
             </div>
             {/* <div className="sm:row-span-1 lg:hidden"></div> */}
           </div>
           <div className="sm:row-span-2 lg:row-span-1 grid grid-cols-2 gap-4 xmd:gap-6 mt-2 sm:mt-0 ">
             <div className=" ">
-              <img
+              <Image
                 className="h-full w-full object-cover"
-                src="./assets/image2.png"
+                // src="./assets/image2.png"
+                src={image2}
                 alt="Image"
               />
             </div>
             <div className="">
-              <img
+              <Image
                 className="h-full w-full object-cover"
-                src="./assets/image3.png"
+                // src="./assets/image3.png"
+                src={image3}
                 alt="Image"
               />
             </div>

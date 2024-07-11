@@ -1,15 +1,15 @@
-import { useSelector } from "react-redux";
-import PageBreakLine from "../../../../components/PageBreakLine";
-import { ProductCluster } from "../../../../components/ProductCard/ProductCluster";
-import { paddingForProductCard } from "../../../../defineSize";
+// import { useSelector } from "react-redux";
+import PageBreakLine from "../../../components/PageBreakLine";
+import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
+import { paddingForProductCard } from "../../../defineSize";
 import SortByPanel from "../../SortByPanel";
-import { rootStore } from "../../../../store/type";
-import { productClusterProp } from "../../../../declare";
+import { rootStore } from "../../../store/type";
+import { productClusterProp } from "../../../declare";
 
 const Dresses = () => {
-  const allFeaturedDress = useSelector(
-    (state: rootStore) => state.allFeaturedDress[0]
-  );
+  // const allFeaturedDress = useSelector(
+  //   (state: rootStore) => state.allFeaturedDress[0]
+  // );
 
   const printProductCluster = () => {
     //It just consoles log the allFeaturedDress from GlobalState in redux toolkit

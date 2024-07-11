@@ -1,8 +1,9 @@
-// import { Link } from "react-router-dom";
+"use client";
 import Link from "next/link";
 import Search from "../components/Search";
 import Hamburger from "../components/Hamburger";
 import Image from "next/image";
+import { LikeBtn } from "../SVG/LikeBtn";
 
 const Navbar = () => {
   return (
@@ -16,7 +17,7 @@ const Navbar = () => {
                 src="./assets/logo.svg"
                 alt=""
               /> */}
-              <Image
+              <img
                 className=" h-full w-full object-cover"
                 src="./assets/logo.svg"
                 alt=""
@@ -33,18 +34,15 @@ const Navbar = () => {
             <div className="">
               <Link href="/">Home</Link>
             </div>
-            <div className="">
-              <Link href="/contactUs">Contact us</Link>
-            </div>
-            <div className="">
-              <Link href="/aboutUs">About us</Link>
-            </div>
+            {/* <div className="">
+              <Link href="/contact">Contact us</Link>
+            </div> */}
             <div className="">
               <Link href="/cart">
                 <div className="flex gap-1 items-center">
                   <p>Cart</p>
                   <div className=" relative">
-                    <Image
+                    <img
                       className=" sm:h-4 xmd:h-6"
                       src="./assets/cart.svg"
                       alt=""
@@ -57,15 +55,28 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="">
-              {/* <Link to="/login">
-                <img
-                  className="h-7 aspect-square sm:h-9"
-                  src="./assets/userr.svg"
-                  alt=""
-                />
-              </Link> */}
+              <Link href="/favourates">
+                <div className="flex gap-1 items-center">
+                  <p> Fav</p>
+                  <div className=" relative">
+                    {/* <img
+                      className=" sm:h-4 xmd:h-6"
+                      src="./icons/fav.png"
+                      alt=""
+                    /> */}
+                    <LikeBtn
+                      borderThickness={1.5}
+                      width={23}
+                      height={20}
+                      fillColor="#1C244B"
+                    />
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="">
               <Link href="/postProducts">
-                <Image
+                <img
                   className="h-7 aspect-square sm:h-6 xmd:h-9"
                   src="./assets/userr.svg"
                   alt=""
@@ -77,7 +88,7 @@ const Navbar = () => {
           <div className=" pl-2">
             <Link href="/">
               <div className=" block sm:hidden">
-                <Image
+                <img
                   className="w-5 aspect-auto"
                   src="/icons/home1.svg"
                   alt=""
@@ -87,11 +98,7 @@ const Navbar = () => {
           </div>
           <div className="block sm:hidden relative">
             <Link href="/cart">
-              <Image
-                className="w-5 aspect-auto"
-                src="./assets/cart.svg"
-                alt=""
-              />
+              <img className="w-5 aspect-auto" src="./assets/cart.svg" alt="" />
               <span className="absolute bg-red-500 rounded-full h-3 aspect-square text-[10px]  flex items-center  justify-center -top-2  -right-2 sm:text-lg sm:h-5 sm:-top-3 sm:-right-3 ">
                 2
               </span>
@@ -99,7 +106,7 @@ const Navbar = () => {
           </div>
           <div className="block sm:hidden ">
             <Link href="/postProducts">
-              <Image
+              <img
                 className=" w-7 aspect-auto"
                 src="./assets/userr.svg"
                 alt=""

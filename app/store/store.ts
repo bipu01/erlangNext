@@ -18,3 +18,15 @@ const store = configureStore({
 })
 
 export default store
+
+// import create from "zustand"
+
+// const store = create((set)=>({
+//     allFeaturedDress: [],
+//     allFeaturedJewellery:[],
+//     allFeaturedShoes:[],
+
+//     addFeaturedDress:(dress)=>set(store)
+// }))
+
+// export default store
