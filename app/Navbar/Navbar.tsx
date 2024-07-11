@@ -75,7 +75,7 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="">
-              <Link href="/postProducts">
+              <Link href="/login">
                 <img
                   className="h-7 aspect-square sm:h-6 xmd:h-9"
                   src="./assets/userr.svg"
@@ -104,7 +104,7 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          <div className="block sm:hidden ">
+          {/* <div className="block sm:hidden ">
             <Link href="/postProducts">
               <img
                 className=" w-7 aspect-auto"
@@ -112,7 +112,7 @@ const Navbar = () => {
                 alt=""
               />
             </Link>
-          </div>
+          </div> */}
           <div className=" ">
             <Hamburger />
           </div>
