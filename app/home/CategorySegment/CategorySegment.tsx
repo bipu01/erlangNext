@@ -1,42 +1,31 @@
+"use client";
 import Dresses from "./Dresses";
 import Footwear from "./Footwear";
 import Jewellery from "./Jewellery";
 import axios from "axios";
 import config from "../../config/config";
-// import { useDispatch } from "react-redux";
-// import { addDress } from "../../store/dressFeaturedSlice";
-// import { addJewellery } from "../../store/jewelleryFeaturedSlice";
-// import { addFootwear } from "../../store/footwearFeaturedSlice";
 import { useEffect } from "react";
 
 const CategorySegment = () => {
-  // const dispatchDress = useDispatch();
-  // const dispatchJewellery = useDispatch();
-  // const dispatchFootwear = useDispatch();
-
   const getAllFeaturedProducts = async () => {
     const allFeaturedoProducts = await axios.get(
       config.backendDevURL + "/getEveryFeatured"
     );
-
-    console.log({ "allFeaturedlProducts": allFeaturedoProducts });
-
-    // dispatchDress(addDress(allFeaturedlProducts.data.featuredDressCluster));
-
-    // dispatchJewellery(
-    //   addJewellery(allFeaturedlProducts.data.featuredJewelleryCluster)
-    // );
-    // dispatchFootwear(
-    //   addFootwear(allFeaturedlProducts.data.featuredFootwearCluster)
-    // );
     // console.log({
-    //   "allFeaturedFootwear": allFeaturedlProducts.data.featuredFootwearCluster,
+    //   allFeaturedoProducts: allFeaturedoProducts.data.featuredDressCluster,
     // });
-    const allFeaturedProducts = [allFeaturedoProducts.data];
 
     sessionStorage.setItem(
-      "allFeaturedProducts",
-      JSON.stringify(allFeaturedProducts)
+      "allFeaturedDress",
+      JSON.stringify(allFeaturedoProducts.data.featuredDressCluster)
+    );
+    sessionStorage.setItem(
+      "allFeaturedFootwear",
+      JSON.stringify(allFeaturedoProducts.data.featuredFootwearCluster)
+    );
+    sessionStorage.setItem(
+      "allFeaturedJewellery",
+      JSON.stringify(allFeaturedoProducts.data.featuredJewelleryCluster)
     );
   };
 
@@ -54,6 +43,7 @@ const CategorySegment = () => {
         <Dresses />
         <Jewellery />
         <Footwear />
+        <div>Hello from category</div>
       </div>
     </>
   );

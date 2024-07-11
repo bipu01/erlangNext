@@ -42,7 +42,7 @@ export const ProductCardLeftImg = (prop: ProductCardProp) => {
           src={prop.img1}
           alt={prop.img1}
         /> */}
-        <Image
+        <img
           className="h-100% w-100% object-cover relative z-20 rounded-sm"
           src={prop.img1 || ""}
           alt={prop.img1 || ""}
@@ -79,7 +79,7 @@ export const ProductCardRightImg = (prop: ProductCardProp) => {
           src={prop.img1}
           alt={prop.img1}
         /> */}
-        <Image
+        <img
           className="h-100% sm:h-96%  w-100% object-cover relative z-20 rounded-sm "
           src={prop.img1 || ""}
           alt={prop.img1 || ""}
@@ -121,11 +121,11 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
           >
             <div id="stars" className="flex gap-2 items-baseline">
               <div id="stars" className="flex">
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 {/* <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
@@ -212,11 +212,11 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
           >
             <div className="flex gap-2 items-baseline">
               <div id="stars" className="flex">
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <Image src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
+                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 {/* <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />

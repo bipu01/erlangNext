@@ -1,19 +1,23 @@
-import { useSelector } from "react-redux";
-import { ProductCluster } from "../../../../components/ProductCard/ProductCluster";
-import { paddingForProductCard } from "../../../../defineSize";
-import { rootStore } from "../../../../store/type";
-import { productClusterProp } from "../../../../declare";
+import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
+import { paddingForProductCard } from "../../../defineSize";
+import { productClusterProp } from "../../../declare";
+import { product } from "@/app/store/type";
 
 const Footwear = () => {
-  const allFeaturedFootwear = useSelector(
-    (state: rootStore) => state.allFeaturedFootwear[0]
+  const allFeaturedFootwearString = sessionStorage.getItem(
+    "allFeaturedFootwear"
   );
+  console.log({ allfeaturedFootwearString: allFeaturedFootwearString });
+  let allFeaturedFootwear: Array<product>;
 
   const printProductCluster = () => {
-    //It just consoles log the allFeaturedDress from GlobalState in redux toolkit
-    if (allFeaturedFootwear) {
-      // console.log({ "allFeaturedFootwear": allFeaturedFootwear });
+    if (allFeaturedFootwearString) {
+      allFeaturedFootwear = JSON.parse(allFeaturedFootwearString);
 
+      console.log({ allFeaturedFootwear: allFeaturedFootwear });
+    }
+
+    if (allFeaturedFootwear) {
       for (let i = 0; i < allFeaturedFootwear.length; i += 2) {
         const pairs: productClusterProp = {
           leftRow: {
@@ -68,7 +72,7 @@ const Footwear = () => {
         className={` bg-bgLightBlue px-10vw py-5vh relative ${paddingForProductCard} mb-20vh`}
       >
         <p className=" text-primaryBlue text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-10vh leading-loose ">
-          STYLISH AND STRONG: OUR WOMEN'S BOOT COLLECTION
+          STYLISH AND STRONG: OUR WOMEN&apos;S BOOT COLLECTION
         </p>
         <div id="container" className="grid space-y-16">
           {printProductCluster()}

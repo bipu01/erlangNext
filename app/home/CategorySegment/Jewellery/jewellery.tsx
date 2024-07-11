@@ -1,44 +1,47 @@
-import { useSelector } from "react-redux";
-import PageBreakLine from "../../../../components/PageBreakLine";
-import { ProductCluster } from "../../../../components/ProductCard/ProductCluster";
-import { paddingForProductCard } from "../../../../defineSize";
-import { rootStore } from "../../../../store/type";
-import { productClusterProp } from "../../../../declare";
+import PageBreakLine from "../../../components/PageBreakLine";
+import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
+import { paddingForProductCard } from "../../../defineSize";
+import { product, rootStore } from "../../../store/type";
+import { productClusterProp } from "../../../declare";
 
 const jewellery = () => {
-  const allFeaturedDress = useSelector(
-    (state: rootStore) => state.allFeaturedJewellery[0]
+  const allFeaturedJewelleryString = sessionStorage.getItem(
+    "allFeaturedJewellery"
   );
-  const printProductCluster = () => {
-    //It just consoles log the allFeaturedDress from GlobalState in redux toolkit
-    if (allFeaturedDress) {
-      // console.log({ "allFeaturedDress": allFeaturedDress });
+  let allFeaturedJewellery: Array<product>;
 
-      for (let i = 0; i < allFeaturedDress.length; i += 2) {
+  if (allFeaturedJewelleryString) {
+    allFeaturedJewellery = JSON.parse(allFeaturedJewelleryString);
+    // console.log({ allFeaturedJewellery: allFeaturedJewellery });
+  }
+
+  const printProductCluster = () => {
+    if (allFeaturedJewellery) {
+      for (let i = 0; i < allFeaturedJewellery.length; i += 2) {
         const pairs: productClusterProp = {
           leftRow: {
-            _id: allFeaturedDress[i]._id,
-            name: allFeaturedDress[i].name,
-            desc: allFeaturedDress[i].desc,
-            ratingRate: allFeaturedDress[i].ratingRate,
-            ratingCount: allFeaturedDress[i].ratingCount,
-            priceOriginal: allFeaturedDress[i].priceOriginal,
-            priceCurrent: allFeaturedDress[i].priceCurrent,
-            img1: allFeaturedDress[i].img1,
-            img2: allFeaturedDress[i].img2,
-            img3: allFeaturedDress[i].img3,
+            _id: allFeaturedJewellery[i]._id,
+            name: allFeaturedJewellery[i].name,
+            desc: allFeaturedJewellery[i].desc,
+            ratingRate: allFeaturedJewellery[i].ratingRate,
+            ratingCount: allFeaturedJewellery[i].ratingCount,
+            priceOriginal: allFeaturedJewellery[i].priceOriginal,
+            priceCurrent: allFeaturedJewellery[i].priceCurrent,
+            img1: allFeaturedJewellery[i].img1,
+            img2: allFeaturedJewellery[i].img2,
+            img3: allFeaturedJewellery[i].img3,
           },
           rightRow: {
-            _id: allFeaturedDress[i + 1]._id,
-            name: allFeaturedDress[i + 1].name,
-            desc: allFeaturedDress[i + 1].desc,
-            ratingRate: allFeaturedDress[i + 1].ratingRate,
-            ratingCount: allFeaturedDress[i + 1].ratingCount,
-            priceOriginal: allFeaturedDress[i + 1].priceOriginal,
-            priceCurrent: allFeaturedDress[i + 1].priceCurrent,
-            img1: allFeaturedDress[i + 1].img1,
-            img2: allFeaturedDress[i + 1].img2,
-            img3: allFeaturedDress[i + 1].img3,
+            _id: allFeaturedJewellery[i + 1]._id,
+            name: allFeaturedJewellery[i + 1].name,
+            desc: allFeaturedJewellery[i + 1].desc,
+            ratingRate: allFeaturedJewellery[i + 1].ratingRate,
+            ratingCount: allFeaturedJewellery[i + 1].ratingCount,
+            priceOriginal: allFeaturedJewellery[i + 1].priceOriginal,
+            priceCurrent: allFeaturedJewellery[i + 1].priceCurrent,
+            img1: allFeaturedJewellery[i + 1].img1,
+            img2: allFeaturedJewellery[i + 1].img2,
+            img3: allFeaturedJewellery[i + 1].img3,
           },
         };
 

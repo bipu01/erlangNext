@@ -21,39 +21,14 @@ export default function HeroSegment() {
     const allFeaturedoProducts = await axios.get(
       config.backendDevURL + "/getEveryFeatured"
     );
-
-    //setting in state
-    setFeaturedProduct(allFeaturedoProducts.data);
-
-    // await allFeaturedoProducts.data.featuredDressCluster.forEach(
-    //   (data: object) => {
-    //     console.log(data);
-    //   }
-    // );
-
-    // console.log({
-    //   "featuredJewelleryCluster": await allFeaturedoProducts.data
-    //     .featuredJewelleryCluster,
-    // });
-
     const dressCluster = await allFeaturedoProducts.data.featuredDressCluster;
   };
 
   getAllFeaturedProducts();
 
-  // sessionStorage.setItem(
-  //   "featuredDressCluster",
-  //   featuredProduct?.featuredDressCluster
-  // );
-
-  // sessionStorage.setItem(
-  //   "featuredJewelleryCluster",
-  //   await allFeaturedoProducts.data.featuredJewelleryCluster
-  // );
-
   // sideWhite Button Style
   const sideWhiteButtonStyle =
-    "bg-bgLightBlue w-8 aspect-square rounded-full border-4 border-white sm:bg-bodybg sm:w-12 sm:h-10 sm:border-none";
+    "bg-bgLightBlue w-8 aspect-square rounded-full border-4 border-white sm:bg-bodybg sm:w-12 sm:h-10 sm:border-none ";
 
   return (
     <div className={`  bg-bodybg  ${paddingForPage} `}>
