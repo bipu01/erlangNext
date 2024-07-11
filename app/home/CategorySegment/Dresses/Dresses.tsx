@@ -8,15 +8,24 @@ import { productClusterProp } from "../../../declare";
 
 import weavyArch from "../../../../public/assets/weavyArch.svg";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const Dresses = () => {
-  const allFeaturedDressString = sessionStorage.getItem("allFeaturedDress");
-  let allFeaturedDress: Array<product>;
+  const [allFeaturedDress, setAllFeaturedDress] = useState<Array<product>>([]);
 
-  if (allFeaturedDressString) {
-    allFeaturedDress = JSON.parse(allFeaturedDressString);
-    console.log({ allFeaturedDress: allFeaturedDress });
-  }
+  useEffect(() => {
+    const allFeaturedDressString = sessionStorage.getItem("allFeaturedDress");
+    if (allFeaturedDressString) {
+      try {
+        setAllFeaturedDress(JSON.parse(allFeaturedDressString));
+      } catch (e) {
+        console.error(
+          "Failed to parse allFeaturedDress from sessionStorage",
+          e
+        );
+      }
+    }
+  }, []);
 
   const printProductCluster = () => {
     if (allFeaturedDress) {

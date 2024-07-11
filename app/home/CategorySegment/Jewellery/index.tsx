@@ -1,1 +1,1 @@
-export { default } from "./jewellery";
+export { default } from "./Jewellery";

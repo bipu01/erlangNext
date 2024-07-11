@@ -3,17 +3,28 @@ import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
 import { product, rootStore } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
+import { useEffect, useState } from "react";
 
-const jewellery = () => {
-  const allFeaturedJewelleryString = sessionStorage.getItem(
-    "allFeaturedJewellery"
-  );
-  let allFeaturedJewellery: Array<product>;
+const Jewellery = () => {
+  const [allFeaturedJewellery, setAllFeaturedJewellery] = useState<
+    Array<product>
+  >([]);
 
-  if (allFeaturedJewelleryString) {
-    allFeaturedJewellery = JSON.parse(allFeaturedJewelleryString);
-    // console.log({ allFeaturedJewellery: allFeaturedJewellery });
-  }
+  useEffect(() => {
+    const allFeaturedJewelleryString = sessionStorage.getItem(
+      "allFeaturedJewellery"
+    );
+    if (allFeaturedJewelleryString) {
+      try {
+        setAllFeaturedJewellery(JSON.parse(allFeaturedJewelleryString));
+      } catch (e) {
+        console.error(
+          "Failed to parse allFeaturedJewellery from sessionStorage",
+          e
+        );
+      }
+    }
+  }, []);
 
   const printProductCluster = () => {
     if (allFeaturedJewellery) {
@@ -62,9 +73,6 @@ const jewellery = () => {
     <>
       <div className="relative mt-15vh">
         <img src="/assets/weavyArchPink.svg" alt="wave" className="w-100vw" />
-        {/* <div className="absolute z-10 top-60% ">
-          <SortByPanel />
-        </div> */}
       </div>
       <section
         id="dresses"
@@ -82,4 +90,4 @@ const jewellery = () => {
   );
 };
 
-export default jewellery;
+export default Jewellery;
