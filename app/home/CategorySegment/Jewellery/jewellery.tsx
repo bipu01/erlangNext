@@ -1,4 +1,4 @@
-import PageBreakLine from "../../../components/PageBreakLine";
+import PageBreakLine from "../../../components/PageBreakLine/PageBreakLine";
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
 import { product } from "../../../store/type";

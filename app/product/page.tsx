@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ScrollToTop from "../Functions/ScrollToTop";
+import ScrollToTop from "../Functions/ScrollToTop/ScrollToTop";
 import { LikeBtn } from "../SVG/LikeBtn";
 import Star from "../SVG/Star";
 import { AddToCartButton, BuyNowBtn } from "../components/Buttons/Buttons";

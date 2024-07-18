@@ -1,8 +1,8 @@
 // import { useSelector } from "react-redux";
-import PageBreakLine from "../../../components/PageBreakLine";
+import PageBreakLine from "../../../components/PageBreakLine/PageBreakLine";
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
-import SortByPanel from "../../SortByPanel";
+import SortByPanel from "../../SortByPanel/SortByPanel";
 import { product, rootStore } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
 

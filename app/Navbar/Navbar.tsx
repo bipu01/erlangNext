@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 // import Search from "../components/Search";
-import Hamburger from "../components/Hamburger";
+import Hamburger from "../components/Hamburger/Hamburger";
 // import Image from "next/image";
 import { LikeBtn } from "../SVG/LikeBtn";
 
