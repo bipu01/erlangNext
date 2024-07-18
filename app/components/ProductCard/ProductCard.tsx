@@ -179,7 +179,6 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
 };
 
 export const DataOfLeftImg = (prop: ProductCardProp) => {
-  // console.log({ "From DataOfLeftImg": "", ProductCardProp: prop });
   return (
     <div
       id={prop._id}

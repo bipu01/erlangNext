@@ -1,7 +1,7 @@
+"use client";
 import axios from "axios";
 import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import Router from "next/router";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -12,12 +12,21 @@ export default function Search() {
 
   const handeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await axios.get(
-      `http://localhost:3000/api/search/searchProduct?q=${searchTerm}`
-    );
+    try {
+      const res = await axios.get(
+        `http://localhost:4000/api/search/searchProduct?q=${searchTerm}`
+      );
 
-    console.log(res);
-    window.location.reload();
+      sessionStorage.setItem("searchedProducts", JSON.stringify(res.data));
+      if (typeof window !== "undefined") {
+        window.location.href = "/searchedProducts";
+      }
+      console.log(res.data);
+    } catch (error) {
+      sessionStorage.setItem("searchedProducts", "");
+      console.log(error);
+      window.location.href = "/searchedProducts";
+    }
   };
 
   return (

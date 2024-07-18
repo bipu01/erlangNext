@@ -11,7 +11,6 @@ export const ProductCluster = ({
   leftRow,
   rightRow,
 }: productClusterProp) => {
-  // console.log({ "leftRow": leftRow, "rightRow": rightRow });
   return (
     <div className="grid grid-cols-5 sm:grid-cols-2 sm:grid-rows-3 sm:gap-x-8 gap-y-16 sm:gap-y-0 sm:space-y-0 overflow-x-clip sm:mb-5vh sm:max-w-full  h-55rem">
       <ProductCardLeftImg

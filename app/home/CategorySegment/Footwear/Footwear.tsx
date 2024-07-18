@@ -78,7 +78,8 @@ const Footwear = () => {
         className={` bg-bgLightBlue px-10vw py-5vh relative ${paddingForProductCard} mb-20vh`}
       >
         <p className=" text-primaryBlue text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-10vh leading-loose ">
-          STYLISH AND STRONG: OUR WOMEN&apos;S BOOT COLLECTION
+          <span className="underline">STYLISH AND STRONG:</span> OUR
+          WOMEN&apos;S BOOT COLLECTION
         </p>
         <div id="container" className="grid space-y-16">
           {printProductCluster()}

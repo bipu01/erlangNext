@@ -1,9 +1,15 @@
 "use client";
 import Link from "next/link";
-import Search from "../components/Search";
+// import Search from "../components/Search";
 import Hamburger from "../components/Hamburger";
-import Image from "next/image";
+// import Image from "next/image";
 import { LikeBtn } from "../SVG/LikeBtn";
+
+import dynamic from "next/dynamic";
+
+const Search = dynamic(() => import("../components/Search/Search"), {
+  ssr: false,
+});
 
 const Navbar = () => {
   return (

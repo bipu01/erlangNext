@@ -31,10 +31,7 @@ const CategorySegment = () => {
 
   useEffect(() => {
     getAllFeaturedProducts();
-    sessionStorage.setItem(
-      "lastVisitedPage",
-      JSON.stringify(window.location.href)
-    );
+    sessionStorage.setItem("lastVisitedPage", "/");
   }, []);
 
   return (
@@ -43,7 +40,6 @@ const CategorySegment = () => {
         <Dresses />
         <Jewellery />
         <Footwear />
-        <div>Hello from category</div>
       </div>
     </>
   );

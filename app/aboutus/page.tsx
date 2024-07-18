@@ -7,18 +7,18 @@ export default function AboutUsPage() {
   return (
     <>
       <div
-        className={`pt-6 xmd:pt-20 px-2 sm:px-10 bg-bodybg h-full flex flex-col gap-4 sm:gap-6 xmd:gap-10 ${paddingForPage}`}
+        className={`pt-6 xmd:pt-20 px-2 sm:px-10 bg-bgLightBlue h-full flex flex-col gap-4 sm:gap-6 xmd:gap-10 ${paddingForPage}`}
       >
         <ScrollToTop />
         <div className=" mt-2">
           <div className="">
-            <p className=" text-sm sm:text-2xl xmd:text-4xl  text-primaryBlue font-bold py-2 ">
+            <p className=" text-sm sm:text-2xl text-primaryBlue font-bold py-2 ">
               About us
             </p>
             <div className=" bg-black opacity-20 w-full h-[1px] sm:h-[2px] "></div>
           </div>
           <div className=" w-full py-4">
-            <p className=" text-xs sm:text-sm  xmd:text-lg text-primaryBlue break-words">
+            <p className=" text-xs sm:text-sm 3xl:text-base text-primaryBlue break-words">
               Erlang Fashion Store is your premier destination for stylish
               clothing that combines quality, sustainability, and exceptional
               customer service. With a diverse selection of on-trend apparel, we
@@ -31,15 +31,15 @@ export default function AboutUsPage() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:gap-6 xmd:gap-10">
-          <div className="bg-white  shadow-md px-2 xmd:px-10 py-2 xmd:py-10 rounded-xl">
+          <div className="bg-primaryBlue  shadow-md px-2 xmd:px-10 py-2 xmd:py-10 rounded-xl">
             <div className="">
-              <p className="  text-sm sm:text-2xl xmd:text-2xl  text-primaryBlue font-bold py-2 ">
+              <p className="  text-sm sm:text-xl text-white font-bold py-2 ">
                 Our Brand Integrity
               </p>
               <div className=" bg-black opacity-20 w-full h-[1px] sm:h-[2px] "></div>
             </div>
-            <div className=" my-2">
-              <p className="text-xs sm:text-sm  xmd:text-base text-primaryBlue break-words">
+            <div className=" my-2 ">
+              <p className="text-xs sm:text-sm  3xl:text-base text-white break-words">
                 Erlang Fashion Store stands out amidst competitors for its
                 unwavering commitment to quality, sustainability, and
                 unparalleled customer service. We meticulously select each
@@ -55,15 +55,15 @@ export default function AboutUsPage() {
               </p>
             </div>
           </div>
-          <div className="bg-white  shadow-md px-2 xmd:px-10 py-2 xmd:py-10 rounded-xl">
+          <div className="bg-primaryBlue  shadow-md px-2 xmd:px-10 py-2 xmd:py-10 rounded-xl">
             <div className="">
-              <p className=" text-sm sm:text-2xl xmd:text-2xl  text-primaryBlue font-bold py-2 ">
+              <p className=" text-sm sm:text-xl  text-white font-bold py-2 ">
                 Community involvement
               </p>
               <div className=" bg-black opacity-20 w-full h-[1px] sm:h-[2px] "></div>
             </div>
             <div className=" my-2">
-              <p className="text-xs sm:text-sm  xmd:text-base text-primaryBlue break-words">
+              <p className="text-xs sm:text-sm  3xl:text-base text-white break-words">
                 At Erlang Fashion Store, we believe in giving back to the
                 community and making a positive impact beyond the world of
                 fashion. That&apos;s why we&apos;re proud to be involved in
@@ -84,25 +84,24 @@ export default function AboutUsPage() {
         {/* Testimonials */}
         <div className="">
           <div className="">
-            <p className="  text-sm sm:text-2xl xmd:text-2xl  text-primaryBlue font-bold py-2 ">
+            <p className="  text-sm sm:text-xl  text-primaryBlue font-bold py-4 ">
               Testimonials
             </p>
-            <div className=" bg-black opacity-20 w-full h-[1px] sm:h-[2px] "></div>
           </div>
-          <div className=" pt-2 sm:pt-4">
+          <div className=" pt-4">
             <Testimonials />
           </div>
         </div>
         {/* Our Journey */}
         <div className=" pb-10">
           <div className="">
-            <p className="  text-sm sm:text-2xl xmd:text-2xl  text-primaryBlue font-bold py-2 ">
+            <p className="  text-sm sm:text-xl text-primaryBlue font-bold py-2 ">
               Our Journey
             </p>
             <div className=" bg-black opacity-20 w-full h-[1px] sm:h-[2px] "></div>
           </div>
           <div className=" pt-2 sm:pt-4">
-            <p className="text-xs sm:text-sm  xmd:text-lg text-primaryBlue break-words ">
+            <p className="text-xs sm:text-sm  3xl:text-base text-primaryBlue break-words ">
               In the digital landscape, Erlang Fashion Store emerged, founded
               with a vision by fashion enthusiasts. Their mission: to offer
               trendy attire that elevates style effortlessly. Rooted in
