@@ -1,7 +1,7 @@
 "use client";
-import Dresses from "./dresses/Dresses";
-import Footwear from "./footwear/Footwear";
-import Jewellery from "./jewellery/Jewellery";
+import Dresses from "@/app/home/CategorySegment/dresses/Dresses";
+import Footwear from "@/app/home/CategorySegment/footwear/Footwear";
+import Jewellery from "@/app/home/CategorySegment/jewellery/Jewellery";
 import axios from "axios";
 import config from "../../config/config";
 import { useEffect } from "react";

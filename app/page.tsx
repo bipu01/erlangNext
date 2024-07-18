@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 // import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import CategorySegment from "./home/CategorySegment/CategorySegment";
