@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ScrollToTop from "../Functions/ScrollToTop";
+import ScrollToTop from "../Functions/ScrollToTop/ScrollToTop";
 import { paddingForPage } from "../defineSize";
 // import { Link } from "react-router-dom";
 import axios from "axios";

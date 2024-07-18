@@ -1,7 +1,7 @@
-import PageBreakLine from "../../../components/PageBreakLine";
+import PageBreakLine from "../../../components/PageBreakLine/PageBreakLine";
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
-import { product, rootStore } from "../../../store/type";
+import { product } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
 import { useEffect, useState } from "react";
 

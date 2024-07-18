@@ -1,5 +1,5 @@
 import { ReactHTMLElement, useState } from "react";
-import ScrollToTop from "../Functions/ScrollToTop";
+import ScrollToTop from "../Functions/ScrollToTop/ScrollToTop";
 import Star from "../SVG/Star";
 import { cartItems } from "./cartCluster";
 import { BuyNowBtn } from "../components/Buttons/Buttons";
