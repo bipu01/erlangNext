@@ -15,7 +15,7 @@ interface responseFromServer {
 }
 
 export default function HeroSegment() {
-  const [featuredProduct, setFeaturedProduct] = useState<responseFromServer>();
+  // const [featuredProduct, setFeaturedProduct] = useState<responseFromServer>();
 
   const getAllFeaturedProducts = async () => {
     const allFeaturedoProducts = await axios.get(
