@@ -6,17 +6,25 @@ import axios from "axios";
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import { PopupOfFailed, PopupOfSuccess } from "./subComponents/PopupCards";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  makeFailedCardVisible,
+  makeSuccessCardVisible,
+} from "@/redux/features/postPopupSlice";
+import { RootState } from "@/redux/store";
 
 const PostProducts = () => {
-  const [image1, setImage1] = useState<File>();
-  const [image2, setImage2] = useState<File>();
-  const [image3, setImage3] = useState<File>();
+  const [image1, setImage1] = useState<File | null>(null);
+  const [image2, setImage2] = useState<File | null>(null);
+  const [image3, setImage3] = useState<File | null>(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState({ currentPrice: 0, originalPrice: 0 });
   const [isFeatured, setIsFeatured] = useState(false);
   const [category, setCategory] = useState("dress");
-  const [postStatus, setPostStatus] = useState(99);
+  // const [postStatus, setPostStatus] = useState(99);
+  const dispatch = useDispatch();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setName(e.currentTarget.value);
@@ -45,13 +53,13 @@ const PostProducts = () => {
         setImage3(e.currentTarget.files?.[2]);
         // const img3URL = URL.createObjectURL(e.currentTarget.files[2]);
       }
-      if (imgPreview) {
-        imgPreview.style.backgroundImage = `url(${imgURL})`;
+
+      if (typeof window !== "undefined") {
+        const imgPreview = document.getElementById("img-preview");
+        if (imgPreview) {
+          imgPreview.style.backgroundImage = `url(${imgURL})`;
+        }
       }
-      console.log({
-        "currentPrice": price.currentPrice,
-        "originalPrice": price.originalPrice,
-      });
     }
   };
 
@@ -89,8 +97,8 @@ const PostProducts = () => {
 
   const uploadAllData = async () => {
     if (name != "" && description != "" && price != null && image1 != null) {
-      setPostStatus(1); //Uploads the image selected by the user
-      await axios.post(`http://localhost:3000/api/postProduct`, {
+      //Uploads the image selected by the user
+      await axios.post(`http://localhost:4000/api/postProduct`, {
         name: name,
         description: description,
         currentPrice: price.currentPrice,
@@ -103,9 +111,12 @@ const PostProducts = () => {
         category: category,
         isFeatured: isFeatured,
       });
+      // setPostStatus(1);
+      dispatch(makeSuccessCardVisible());
       console.log("upload all data is fired ");
     } else {
-      setPostStatus(0);
+      // setPostStatus(0);
+      dispatch(makeFailedCardVisible());
     }
   };
 
@@ -116,82 +127,56 @@ const PostProducts = () => {
     setPrice({ originalPrice: 0, currentPrice: 0 });
     setName("");
     setDescription("");
-    // setImage1(undefined);
-    // setImage2(undefined);
-    // setImage3(undefined);
   };
+  const postListner = useSelector(
+    (state: RootState) => state.postPopupReducer.status
+  );
+  const postSuccessStatus = useSelector(
+    (state: RootState) => state.postPopupReducer.successCard.isVisible
+  );
+
+  const postFailedCard = document.getElementById("postFailedCardContainer");
+  const postSuccessCard = document.getElementById("postSuccessCardContainer");
 
   useEffect(() => {
-    if (postStatus == 1) {
-      const postSuccessCard = document.getElementById(
-        "postSuccessCardContainer"
-      );
-      if (postSuccessCard) {
-        postSuccessCard.style.display = `block`;
-        //   e.currentTarget.style.visibility = `hidden`;
-      }
-    } else if (postStatus == 0) {
-      const postFailedCard = document.getElementById("postFailedCardContainer");
-      if (postFailedCard) {
-        postFailedCard.style.display = `block`;
-        //   e.currentTarget.style.visibility = `hidden`;
+    if (typeof window !== "undefined") {
+      if (postSuccessStatus == true) {
+        if (postSuccessCard) {
+          postSuccessCard.style.display = `block`;
+        }
+      } else {
+        if (postFailedCard) {
+          postFailedCard.style.display = `block`;
+        }
       }
     }
-  }, [postStatus]);
+  }, [postListner]);
 
   useEffect(() => {
-    makeFailedDialougeBoxInvisible();
-    makeSuccessDialougeBoxInvisible();
-    console.log(postStatus);
-  }, []);
-
-  const makeFailedDialougeBoxInvisible = () => {
-    const postFailedCard = document.getElementById("postFailedCardContainer");
-    if (postFailedCard) {
-      postFailedCard.style.display = `none`;
-      setPostStatus(99);
+    if (typeof window !== "undefined") {
+      if (postFailedCard) {
+        postFailedCard.style.display = `none`;
+    }
     }
   };
 
   const makeSuccessDialougeBoxInvisible = () => {
     const postSuccessCard = document.getElementById("postSuccessCardContainer");
-    if (postSuccessCard) {
-      postSuccessCard.style.display = `none`;
-      setPostStatus(99);
-    }
+      }
   };
+
+  const makeSuccessDialougeBoxInvisible = () => {
+    const postSuccessCard = document.getElementById("postSuccessCardContainer");
+      if (postSuccessCard) {
+        postSuccessCard.style.display = `none`;
+      }
+    }
+  }, []);
 
   return (
     <>
       <div className={` ${paddingForPage} mt-5vh mb-24 `}>
-        {postStatus ? (
-          <div
-            id="postSuccessCardContainer"
-            onClick={makeSuccessDialougeBoxInvisible}
-            className=" absolute w-100vw h-120vh top-0 left-0 bg-[rgba(0,0,0,0.3)]"
-          >
-            <div
-              //   id="postSuccessCard"
-              className=" fixed top-8vh left-25vw rounded-md text-center py-4 text-xl font-medium text-bodybg w-50vw  bg-primaryBlue"
-            >
-              Product Successfully Posted <br />
-              <span className=" text-base font-base">Click anywhere </span>
-            </div>
-          </div>
-        ) : (
-          <div
-            id="postFailedCardContainer"
-            onClick={makeFailedDialougeBoxInvisible}
-            className="  absolute w-100vw h-120vh top-0 left-0 bg-[rgba(0,0,0,0.3)]"
-          >
-            <div className=" fixed top-8vh left-25vw rounded-md text-center py-4 text-xl font-medium text-bodybg w-50vw  bg-red-950">
-              Product post failed <br />
-              <span className=" text-base font-base">
-                Fill the form completely
-              </span>
-            </div>
-          </div>
-        )}
+        {postSuccessStatus ? <PopupOfSuccess /> : <PopupOfFailed />}
 
         <h1 className=" text-2xl font-bold text-primaryBlue ">
           Upload Products

@@ -1,5 +1,6 @@
 "use client";
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import ScrollToTop from "../Functions/ScrollToTop";
 import { LikeBtn } from "../SVG/LikeBtn";
 import Star from "../SVG/Star";
@@ -10,27 +11,35 @@ import BackArrow from "../SVG/BackArrow";
 import Link from "next/link";
 
 const ProductPage = () => {
-  let openedProduct: product | null = null;
-  const openedProductString = sessionStorage.getItem("openedProduct");
+  // let openedProduct: product | null = null;
 
-  if (openedProductString) {
-    try {
-      openedProduct = JSON.parse(sessionStorage.getItem("openedProduct") || "");
-      console.log(openedProduct);
-    } catch (error) {
-      console.log("Coundnot parse openedProduct", error);
-    }
-  }
+  const [openedProduct, setOpenedProduct] = useState<product | null>(null);
+  const [lastVisitedPage, setLastVisitedPage] = useState<string | null>(null);
 
-  let lastVisitedPage: string | null = null;
-  const lastVisitedPageString = sessionStorage.getItem("lastVisitedPage");
-  if (lastVisitedPageString) {
-    try {
-      lastVisitedPage = lastVisitedPageString;
-    } catch (e) {
-      console.error("Failed to parse lastVisitedPage from sessionStorage", e);
+  useEffect(() => {
+    const openedProductString = sessionStorage.getItem("openedProduct");
+    if (openedProductString) {
+      try {
+        const parsedProduct = JSON.parse(
+          sessionStorage.getItem("openedProduct") || ""
+        );
+        setOpenedProduct(parsedProduct);
+        // console.log(openedProduct);
+      } catch (error) {
+        console.log("Coundnot parse openedProduct", error);
+      }
     }
-  }
+
+    // let lastVisitedPage: string | null = null;
+    const lastVisitedPageString = sessionStorage.getItem("lastVisitedPage");
+    if (lastVisitedPageString) {
+      try {
+        setLastVisitedPage(lastVisitedPageString);
+      } catch (e) {
+        console.error("Failed to parse lastVisitedPage from sessionStorage", e);
+      }
+    }
+  }, []);
 
   const printPreviewPage = () => {
     if (openedProduct) {
