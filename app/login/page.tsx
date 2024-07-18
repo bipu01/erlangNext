@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
 import { paddingForPage } from "../defineSize";
 import Link from "next/link";
 import Image from "next/image";
 import weavyArch from "../../public/assets/weavyArch.svg";
 import googleIcon from "../../public/icons/google.svg";
-// "./assets/weavyArch.svg"
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
@@ -24,20 +22,17 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className=" bg-primaryBlue w-full h-screen relative">
+      <div className=" bg-bodybg w-full h-93vh relative">
         <div className="">
           <Image className="rotate-180 " src={weavyArch} alt="wave" />
         </div>
         <div
-          className={`w-full h-full absolute top-0  sm:px-32 xmd:px-44 pt-10 sm:pb-20 ${paddingForPage}`}
+          className={` flex justify-center sm:px-32 xmd:px-44 pt-10 sm:pb-20 ${paddingForPage}`}
         >
-          <div className="backdrop-blur-xl bg-white/30 w-full h-full rounded-lg shadow-xl">
-            {/* <div className=" py-8 px-8">
-              <img src="./icons/back.svg" alt="" />
-            </div> */}
-            <div className=" flex flex-col items-center justify-center gap-8 pt-24">
+          <div className="absolute top-15% backdrop-blur-xl bg-primaryBlue/50 py-32 px-32 rounded-lg shadow-xl">
+            <div className=" flex flex-col items-center justify-center gap-8 ">
               <div className="">
-                <p className=" text-4xl text-primaryBlue font-bold">Login</p>
+                <p className=" text-3xl text-white font-bold">Login</p>
               </div>
               <div className=" flex flex-col gap-3">
                 <form
@@ -45,7 +40,7 @@ export default function LoginPage() {
                   onSubmit={handelSubmit}
                 >
                   <input
-                    className="text-2xl py-2 px-8 sm:px-16 rounded-lg bg-white text-primaryBlue "
+                    className="text-lg py-1 px-2 sm:px-6 w-20rem rounded-lg bg-white text-primaryBlue "
                     type="email"
                     required
                     name=""
@@ -54,7 +49,7 @@ export default function LoginPage() {
                     onChange={handelChange}
                   />
                   <input
-                    className="text-2xl py-2 px-8 sm:px-16  rounded-lg bg-white text-primaryBlue "
+                    className="text-lg py-1 px-2 sm:px-6 w-20rem rounded-lg bg-white text-primaryBlue "
                     type="password"
                     required
                     name=""
@@ -63,39 +58,32 @@ export default function LoginPage() {
                     onChange={handelChange}
                   />
                   <button
-                    className="bg-primaryBlue text-xl rounded-3xl py-2 px-12 mt-4  text-white w-1/2 hover:text-white hover:bg-primaryBlue"
+                    className="bg-primaryBlue text-lg rounded-3xl py-1 px-10 mt-4  text-white w-1/2 hover:text-white hover:bg-primaryBlue"
                     type="submit"
                   >
                     Login
                   </button>
                 </form>
 
-                <div className=" flex flex-col items-center">
+                <div className=" flex flex-col items-center mt-2">
                   <Link
-                    className=" border-b-2 text-bodybg opacity-50 border-bodybg"
+                    className=" text-bodybg opacity-50 border-bodybg text-sm "
                     href=""
                   >
                     Forgot Password?
                   </Link>
                 </div>
-                <div className="flex flex-col items-center py-14">
-                  <div className=" flex flex-row justify-center items-center bg-white rounded-md px-4 py-2 gap-2">
-                    <Image className=" w-8" src={googleIcon} alt="" />
-                    <p className=" text-xl font-semibold">
-                      Continue with Google
-                    </p>
+                <div className="flex flex-col items-center py-2 gap-4">
+                  <div className=" flex flex-row justify-center items-center bg-white rounded-md px-4 py-1 gap-2 cursor-pointer w-15rem">
+                    <Image className=" w-6" src={googleIcon} alt="" />
+                    <p className=" text-md font-medium">Continue with Google</p>
                   </div>
-
-                  <p className="text-center mt-4">
-                    <span className="opacity-70 text-white">
-                      Not a user? <br />
-                    </span>
-                    <Link href={"/signup"}>
-                      <span className="underline text-primaryBlue">
-                        Sign Up
-                      </span>
-                    </Link>
-                  </p>
+                  <Link
+                    href={"/signup"}
+                    className="text-center text-white bg-primaryBlue rounded-md px-4 py-1.5 gap-2 cursor-pointer w-15rem"
+                  >
+                    <span className="text-md font-medium ">Sign Up</span>
+                  </Link>
                 </div>
               </div>
             </div>

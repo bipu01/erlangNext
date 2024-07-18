@@ -13,6 +13,11 @@ export default function Hamburger() {
   const menuItems = [
     { link: "/", icon: "/icons/back.png", text: "" },
     { link: "/product", icon: "/icons/fav.png", text: "Favorites" },
+    {
+      link: "/postProducts",
+      icon: "/icons/postProducts.png",
+      text: "Post products",
+    },
     { link: "/contact", icon: "/icons/email.png", text: "Contact us" },
     { link: "/aboutus", icon: "/icons/about2.png", text: "About us" },
     { link: "/", icon: "/icons/profile.png", text: "Profile" },
