@@ -146,6 +146,7 @@ export interface productProp {
 export type individualProduct = {
   _id: string;
   name: string;
+  desc?: string;
   priceOriginal: number;
   priceCurrent: number;
   description: string;

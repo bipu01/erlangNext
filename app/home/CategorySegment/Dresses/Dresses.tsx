@@ -3,15 +3,20 @@ import PageBreakLine from "../../../components/PageBreakLine/PageBreakLine";
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
 import SortByPanel from "../../SortByPanel/SortByPanel";
-import { product, rootStore } from "../../../store/type";
+import { product } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
 
 import weavyArch from "../../../../public/assets/weavyArch.svg";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const Dresses = () => {
   const [allFeaturedDress, setAllFeaturedDress] = useState<Array<product>>([]);
+  const dataFound = useSelector(
+    (state: RootState) => state.dataFetchReducer.isDataFetched
+  );
 
   useEffect(() => {
     const allFeaturedDressString = sessionStorage.getItem("allFeaturedDress");
@@ -87,7 +92,8 @@ const Dresses = () => {
           WE HAVE SOMETHING FOR EVERYONE
         </h1>
         <div id="container" className="grid space-y-16 ">
-          {printProductCluster()}
+          {/* {printProductCluster()} */}
+          {dataFound ? printProductCluster() : ""}
         </div>
       </section>
       <PageBreakLine />
