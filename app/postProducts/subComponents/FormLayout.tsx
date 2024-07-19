@@ -1,3 +1,4 @@
+import config from "@/app/config/config";
 import { storage } from "@/app/firebase";
 import {
   makeFailedCardVisible,
@@ -97,9 +98,14 @@ const FormLayout = () => {
   };
 
   const uploadAllData = async () => {
-    if (name != "" && description != "" && price != null && image1 != null) {
+    if (
+      name !== "" &&
+      description !== "" &&
+      price !== null &&
+      image1 !== null
+    ) {
       //Uploads the image selected by the user
-      await axios.post(`http://localhost:4000/api/postProduct`, {
+      await axios.post(config.backendDevURL + `/postProduct`, {
         name: name,
         description: description,
         currentPrice: price.currentPrice,

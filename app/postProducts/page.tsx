@@ -16,8 +16,8 @@ const PostProducts = () => {
   const postListner = useSelector(
     (state: RootState) => state.postPopupReducer.status
   );
-  const postSuccessStatus = useSelector(
-    (state: RootState) => state.postPopupReducer.successCard.isVisible
+  const postStatus = useSelector(
+    (state: RootState) => state.postPopupReducer.status
   );
 
   useLayoutEffect(() => {
@@ -26,11 +26,11 @@ const PostProducts = () => {
       const postSuccessCard = document.getElementById(
         "postSuccessCardContainer"
       );
-      if (postSuccessStatus == true) {
+      if (postStatus === 1) {
         if (postSuccessCard) {
           postSuccessCard.style.display = `block`;
         }
-      } else {
+      } else if (postStatus === 2) {
         if (postFailedCard) {
           postFailedCard.style.display = `block`;
         }
@@ -58,7 +58,13 @@ const PostProducts = () => {
       <div
         className={` ${paddingForPage}  bg-bodybg flex flex-col items-center`}
       >
-        {postSuccessStatus ? <PopupOfSuccess /> : <PopupOfFailed />}
+        {postStatus === 1 ? (
+          <PopupOfSuccess />
+        ) : postStatus === 2 ? (
+          <PopupOfFailed />
+        ) : (
+          ""
+        )}
 
         <h1 className=" text-2xl font-bold text-primaryBlue ">
           Upload Products

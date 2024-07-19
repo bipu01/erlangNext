@@ -2,7 +2,9 @@
 
 // import { AppDispatch } from "@/redux/store";
 import {
+  makeFailedCardInvisible,
   makeFailedCardVisible,
+  makeSuccessCardInvisible,
   makeSuccessCardVisible,
 } from "@/redux/features/postPopupSlice";
 import React from "react";
@@ -12,7 +14,7 @@ export const PopupOfSuccess = () => {
   const dispatch = useDispatch();
 
   const setPostStatus = () => {
-    dispatch(makeSuccessCardVisible());
+    dispatch(makeSuccessCardInvisible());
   };
 
   return (
@@ -26,7 +28,7 @@ export const PopupOfSuccess = () => {
         className=" fixed top-8vh left-25vw rounded-md text-center py-4 text-xl font-medium text-bodybg w-50vw  bg-primaryBlue"
       >
         Product Successfully Posted <br />
-        <span className=" text-base font-base">Click anywhere </span>
+        <span className=" text-sm font-medium">Click anywhere </span>
       </div>
     </div>
   );
@@ -36,7 +38,7 @@ export const PopupOfFailed = () => {
   const dispatch = useDispatch();
 
   const setPostStatus = () => {
-    dispatch(makeFailedCardVisible());
+    dispatch(makeFailedCardInvisible());
   };
   return (
     <div

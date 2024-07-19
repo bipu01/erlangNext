@@ -5,16 +5,15 @@ import Jewellery from "@/app/home/CategorySegment/Jewellery/Jewelleryz";
 import axios from "axios";
 import config from "../../config/config";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setIsDataFetchedToTrue } from "@/redux/features/dataFetchSlice";
 
 const CategorySegment = () => {
+  const dispatch = useDispatch();
   const getAllFeaturedProducts = async () => {
     const allFeaturedoProducts = await axios.get(
       config.backendDevURL + "/getEveryFeatured"
     );
-    // console.log({
-    //   allFeaturedoProducts: allFeaturedoProducts.data.featuredDressCluster,
-    // });
-
     sessionStorage.setItem(
       "allFeaturedDress",
       JSON.stringify(allFeaturedoProducts.data.featuredDressCluster)
@@ -32,6 +31,7 @@ const CategorySegment = () => {
   useEffect(() => {
     getAllFeaturedProducts();
     sessionStorage.setItem("lastVisitedPage", "/");
+    dispatch(setIsDataFetchedToTrue());
   }, []);
 
   return (
