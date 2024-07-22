@@ -3,17 +3,16 @@ import Dresses from "@/app/home/CategorySegment/Dresses/Dresses";
 import Footwear from "@/app/home/CategorySegment/Footwear/Footwear";
 import Jewellery from "@/app/home/CategorySegment/Jewellery/Jewelleryz";
 import axios from "axios";
-import config from "../../config/config";
+// import config from "../../config/config";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setIsDataFetchedToTrue } from "@/redux/features/dataFetchSlice";
+import { RootState } from "@/redux/store";
 
 const CategorySegment = () => {
   const dispatch = useDispatch();
   const getAllFeaturedProducts = async () => {
-    const allFeaturedoProducts = await axios.get(
-      config.backendDevURL + "/getEveryFeatured"
-    );
+    const allFeaturedoProducts = await axios.get("api/getEveryFeatured");
     sessionStorage.setItem(
       "allFeaturedDress",
       JSON.stringify(allFeaturedoProducts.data.featuredDressCluster)
@@ -33,6 +32,10 @@ const CategorySegment = () => {
     sessionStorage.setItem("lastVisitedPage", "/");
     dispatch(setIsDataFetchedToTrue());
   }, []);
+
+  // const dataFound = useSelector(
+  //   (state: RootState) => state.dataFetchReducer.isDataFetched
+  // );
 
   return (
     <>

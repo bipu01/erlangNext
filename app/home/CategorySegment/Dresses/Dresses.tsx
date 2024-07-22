@@ -20,7 +20,9 @@ const Dresses = () => {
 
   useEffect(() => {
     const allFeaturedDressString = sessionStorage.getItem("allFeaturedDress");
+    console.log({ allFeaturedDressString: allFeaturedDressString });
     if (allFeaturedDressString) {
+      console.log("AllFeaturedDress found");
       try {
         setAllFeaturedDress(JSON.parse(allFeaturedDressString));
       } catch (e) {
@@ -93,7 +95,7 @@ const Dresses = () => {
         </h1>
         <div id="container" className="grid space-y-16 ">
           {/* {printProductCluster()} */}
-          {dataFound ? printProductCluster() : ""}
+          {dataFound === true ? printProductCluster() : ""}
         </div>
       </section>
       <PageBreakLine />

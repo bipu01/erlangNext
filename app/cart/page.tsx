@@ -5,8 +5,28 @@ import { paddingForPage } from "../defineSize";
 import Cart from "./Cart";
 import BackArrow from "../SVG/BackArrow";
 import Link from "next/link";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function CartPage() {
+  useEffect(() => {
+    triggerBackend();
+  }, []);
+  const triggerBackend = async () => {
+    try {
+      const res = await axios.get("api/user/cart");
+      console.log({ res: res });
+      console.log("Hello world");
+    } catch (error) {
+      // console.log(error.response.status);
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          window.location.href = "/login";
+        }
+      }
+    }
+  };
+
   return (
     <div
       className={`bg-bgLightBlue w-screen h-screen overflow-y-scroll  ${paddingForPage}`}
@@ -19,6 +39,9 @@ export default function CartPage() {
         </div>
         <div className=" ">
           <Cart />
+          <button onClick={triggerBackend}>
+            Click here to trigger backend
+          </button>
         </div>
       </div>
     </div>
