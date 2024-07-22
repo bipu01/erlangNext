@@ -1,3 +1,9 @@
+declare module "next/server" {
+  interface NextRequest {
+    user?: any; // Adjust the type based on your user payload structure
+  }
+}
+
 export type ProductCardProp = {
   _id?: string;
   holeColor?: string;
@@ -10,6 +16,18 @@ export type ProductCardProp = {
   img1?: string;
   img2?: string;
   img3?: string;
+};
+
+export type UserType = {
+  name: string;
+  email: string;
+  password: string;
+  otherInfo: string;
+  settings: Array;
+  likedProducts: Array;
+  itemsInCart: Array;
+  accessToken: string;
+  refreshToken: string;
 };
 
 export type buttonProp = {

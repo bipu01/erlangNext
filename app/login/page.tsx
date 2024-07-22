@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import weavyArch from "../../public/assets/weavyArch.svg";
 import googleIcon from "../../public/icons/google.svg";
+import axios from "axios";
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
@@ -14,10 +15,14 @@ export default function LoginPage() {
     setFormdata({ ...formdata, [e.target.id]: e.target.value });
   };
 
-  const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formdata);
-    alert("submitted");
+    const res = await axios.post("/api/user/login", { formdata });
+    if (res.status == 200) {
+      window.location.href = "/";
+    }
+
+    console.log(res.status);
   };
 
   return (

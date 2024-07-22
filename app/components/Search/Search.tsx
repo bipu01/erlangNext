@@ -14,7 +14,7 @@ export default function Search() {
     e.preventDefault();
     try {
       const res = await axios.get(
-        `http://localhost:4000/api/search/searchProduct?q=${searchTerm}`
+        `api/search/getSearchProduct?q=${searchTerm}`
       );
 
       sessionStorage.setItem("searchedProducts", JSON.stringify(res.data));

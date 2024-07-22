@@ -2,9 +2,16 @@ import { useState } from "react";
 // import { Link } from "react-router-dom";
 import Link from "next/link";
 import Image from "next/image";
+import axios from "axios";
 
 export default function Hamburger() {
   const [show, setShow] = useState<boolean>(false);
+
+  const handleLogout = async () => {
+    // console.log("Logout clicked");
+    const res = await axios.post("/api/user/logout");
+    console.log({ resOfLogout: res });
+  };
 
   const handelHamClick = () => {
     setShow(!show);
@@ -22,7 +29,6 @@ export default function Hamburger() {
     { link: "/aboutus", icon: "/icons/about2.png", text: "About us" },
     { link: "/", icon: "/icons/profile.png", text: "Profile" },
     { link: "/cart", icon: "/icons/tick.png", text: "My orders" },
-    { link: "/login", icon: "/icons/exit.png", text: "Logout" },
   ];
 
   return (
@@ -52,20 +58,28 @@ export default function Hamburger() {
                 <div className=" flex gap-3 pb-2 items-center">
                   {/* <img className=" h-5 w-5" src={item.icon} alt="" /> */}
                   <img className="h-5 w-5" src={item.icon} alt="" />
-                  <p
-                    className={`${
-                      index === menuItems.length - 1 ? "text-red-600" : ""
-                    }`}
-                  >
-                    {item.text}
-                  </p>
+                  <p>{item.text}</p>
                 </div>
               </Link>
+
               {index !== 0 && index !== menuItems.length - 1 && (
                 <div className="bg-lineColor w-90% h-[1.5px] rounded-xl"></div>
               )}
             </div>
           ))}
+          <div
+            className="text-red-600 cursor-pointer flex items-center gap-3 px-1"
+            onClick={handleLogout}
+          >
+            <div className=" h-5, w-5">
+              <img
+                className="object-cover"
+                src="/icons/logout.png"
+                alt="icon"
+              />
+            </div>
+            Logout
+          </div>
         </div>
       </div>
     </>

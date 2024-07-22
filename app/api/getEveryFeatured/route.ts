@@ -1,4 +1,4 @@
-import { individualProduct } from "@/app/declare";
+// import { individualProduct } from "@/app/declare";
 import Product from "../db/productSchema";
 import dbConnect from "../utils/mongodb";
 import { NextRequest, NextResponse } from "next/server";
@@ -7,17 +7,6 @@ export async function GET(req: NextRequest) {
   try {
     await dbConnect();
     try {
-      // const allData = await Product.find({});
-      // console.log("All Data:", allData);
-
-      // if (allData.length === 0) {
-      //   console.log("No data found in the Product collection");
-      // } else {
-      //   console.log("Data found:", allData);
-      // }
-
-      // return NextResponse.json(allData);
-
       const featuredDressList = await Product.find({
         isFeatured: true,
         category: "dress",

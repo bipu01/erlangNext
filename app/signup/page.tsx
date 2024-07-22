@@ -10,6 +10,7 @@ import weavyArch from "../../public/assets/weavyArch.svg";
 import googleIcon from "../../public/icons/google.svg";
 import Link from "next/link";
 import BackArrow from "../SVG/BackArrow";
+import config from "../config/config";
 
 export default function SignUpPage() {
   const [formdata, setFormdata] = useState({});
@@ -20,11 +21,10 @@ export default function SignUpPage() {
 
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await axios.post(
-      `http://localhost:3000/api/user/signUp`,
-      formdata
-    );
-
+    const res = await axios.post(`api/user/signup`, formdata);
+    if (res.status == 200) {
+      window.location.href = "/login";
+    }
     console.log({ "response": res });
   };
 

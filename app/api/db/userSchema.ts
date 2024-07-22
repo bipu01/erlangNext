@@ -26,9 +26,18 @@ const userSchema = new mongoose.Schema(
     itemsInCart: {
       type: Array,
     },
+    accessToken: {
+      type: String,
+      required: true,
+    },
+    refreshToken: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User =
+  mongoose.models.User || mongoose.model("User", userSchema, "users");
 export default User;
