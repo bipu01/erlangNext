@@ -1,4 +1,3 @@
-import Product from "@/app/api/db/productSchema";
 import User from "@/app/api/db/userSchema";
 import dbConnect from "@/app/api/utils/mongodb";
 import { parse } from "cookie";
@@ -9,30 +8,28 @@ const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
 export async function POST(req: NextRequest) {
   try {
     await dbConnect();
-    const body = await req.json();
 
     const allCookies = req.headers.get("cookie");
     const cookie = allCookies ? parse(allCookies) : {};
     const token = cookie["OutSiteJwt"];
 
+    const body = await req.json();
+    // const product = body.product;
+
     const { payload } = await jwtVerify(
       token,
       new TextEncoder().encode(accessTokenSecret)
     );
-    const { id } = payload;
+    const { _id, name, email } = payload;
 
     try {
-      const product = await Product.findOne({ _id: body.productId });
-      console.log({ product: product });
-      const userUpdate = await User.findOneAndUpdate(
-        { _id: id },
-        { $push: { itemsInCart: product } },
+      await User.findOneAndUpdate(
+        { _id: _id },
+        { $push: { itemsInCart: body.product } },
         { new: true }
       );
-      console.log({ userUpdate: userUpdate });
-      return NextResponse.json({
-        message: "Product added to cart",
-      });
+
+      return NextResponse.json("Product added to cart");
     } catch (error) {
       return NextResponse.json("Trouble adding to cart");
     }

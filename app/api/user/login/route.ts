@@ -21,6 +21,15 @@ export async function POST(req: NextRequest) {
         const isMatch = await bcrypt.compare(body.password, user.password);
         if (isMatch) {
           const { name, email, _id } = user;
+          const userDataToSendToClient = {
+            name: user.name,
+            email: user.email,
+            itemsInCart: user.itemsInCart,
+            likedProducts: user.likedProducts,
+            settings: user.settings,
+            otherInfo: user.otherInfo,
+          };
+          // console.log({ userDataToSendToClient: userDataToSendToClient });
           const accessToken = generateAccessToken(name, email, _id);
           const refreshToken = generateRefreshToken(name, email, _id);
           console.log({ refreshSecret: refreshToken });
@@ -44,7 +53,10 @@ export async function POST(req: NextRequest) {
           });
 
           //Set token to httpOnly cookie
-          const response = NextResponse.json({ message: "Authenticated!" });
+          const response = NextResponse.json({
+            message: "Authenticated!",
+            userData: userDataToSendToClient,
+          });
           response.headers.set("Set-Cookie", serialized);
           return response;
         } else {

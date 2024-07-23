@@ -10,6 +10,7 @@ export default function Hamburger() {
   const handleLogout = async () => {
     // console.log("Logout clicked");
     const res = await axios.post("/api/user/logout");
+    localStorage.removeItem("ErlangUserData");
     console.log({ resOfLogout: res });
   };
 

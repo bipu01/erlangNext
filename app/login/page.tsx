@@ -7,9 +7,12 @@ import Image from "next/image";
 import weavyArch from "../../public/assets/weavyArch.svg";
 import googleIcon from "../../public/icons/google.svg";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToCart, setUser } from "@/redux/features/userSlice";
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
+  const dispatch = useDispatch();
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({ ...formdata, [e.target.id]: e.target.value });
@@ -18,11 +21,17 @@ export default function LoginPage() {
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await axios.post("/api/user/login", { formdata });
-    if (res.status == 200) {
-      window.location.href = "/";
-    }
 
-    console.log(res.status);
+    if (res.status == 200) {
+      const pageToRedirect = sessionStorage.getItem("lastVisitedPage");
+      window.location.href = pageToRedirect || "/";
+      const userData = res.data.userData;
+
+      // console.log(userData);
+
+      localStorage.setItem("ErlangUserData", JSON.stringify(userData));
+      dispatch(setUser(userData));
+    }
   };
 
   return (
