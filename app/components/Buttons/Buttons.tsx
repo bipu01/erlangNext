@@ -56,20 +56,19 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
             : "bg-bodybg text-primaryBlue rounded-md py-1 sm:py-3 px-10vw sm:px-4vw w-45vw sm:w-auto"
         } ${sizeOfLessMajorText} ${
           prop.custom
-        } py-1 items-center flex gap-1 sm:gap-2 font-medium tracking-wider justify-center
+        } py-1 sm:py-2 items-center flex gap-1 sm:gap-2 font-medium tracking-wider justify-center
         whitespace-nowrap`}
         onClick={HandleAddToCart}
       >
         {prop.text}
-        {prop.darkBg ? (
-          <CartIcon
-            borderColor="#FFF9EF"
-            custom="h-6 w-6"
-            borderThickness={1.5}
-          />
-        ) : (
-          ""
-        )}
+        {prop.darkBg
+          ? // <CartIcon
+            //   borderColor="#FFF9EF"
+            //   custom="h-6 w-6"
+            //   borderThickness={1.5}
+            // />
+            ""
+          : ""}
       </button>
     </>
   );

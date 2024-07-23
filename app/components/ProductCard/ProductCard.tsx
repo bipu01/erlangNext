@@ -93,7 +93,7 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
   return (
     <div
       id={prop._id}
-      className={`row-span-2 sm:row-span-1 shadow-customLeft relative z-0 bg-bodybg px-7% sm:pr-3% sm:pl-20% py-10% sm:py-4%  hover:cursor-pointer
+      className={`row-span-2 sm:row-span-1 shadow-customLeft relative z-0 bg-bodybg px-7% sm:pr-3% pl-8% sm:pl-20% py-10% sm:py-4%  hover:cursor-pointer
         flex flex-col justify-between rounded-tr-3xl rounded-br-3xl sm:rounded-tl-full sm:rounded-bl-full
       after:content-[''] after:absolute after:-bottom-0 after:shadow-customLeft after:right-100% sm:after:left-100% after:h-100% after:w-180% after:bg-bodybg`}
       // onClick={}
@@ -111,7 +111,7 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
         <div className=" space-y-10% sm:space-y-1">
           <h3
             id="productName"
-            className={`relative font-medium z-20 whitespace-normal  ${sizeOfTitleText}`}
+            className={`relative font-medium z-20 whitespace-normal  ${sizeOfTitleText} `}
           >
             {prop.name}
           </h3>
@@ -126,25 +126,20 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
                 <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                 <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                {/* <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/unfilledStar.svg" alt="" className=" sm:h-4" /> */}
               </div>
               {prop.ratingRate}
             </div>
             <div>
               <h3
                 id="price"
-                className={`hidden sm:block font-semibold ${productCardNumSize}`}
+                className={`hidden sm:block font-normal ${productCardNumSize}`}
               >
                 NPR.{prop.priceCurrent}
               </h3>
             </div>
           </div>
           <div className=" overflow-clip h-20vh sm:h-0">
-            <p className="sm:hidden text-xs line-clamp-[8]">{prop.desc}</p>
+            <p className="sm:hidden text-xs line-clamp-[7]">{prop.desc}</p>
           </div>
         </div>
       </div>
@@ -152,7 +147,7 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
         <div className="flex justify-between mt-2">
           <h3
             id="price"
-            className={`sm:hidden text-lg font-semibold xl:text-2xl ${sizeOfMajorText}`}
+            className={`sm:hidden text-lg font-normal xl:text-2xl ${sizeOfMajorText}`}
           >
             NPR.{prop.priceCurrent}
           </h3>
@@ -183,7 +178,7 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
     <div
       id={prop._id}
       className={`row-span-2 sm:row-span-1  shadow-customRight relative z-0 bg-bodybg px-7% sm:py-4% flex flex-col justify-between hover:cursor-pointer
-      sm:pl-3% sm:pr-20% py-10% rounded-tr-3xl rounded-br-3xl rounded-md sm:rounded-tr-full sm:rounded-br-full 
+     pl-8% sm:pl-3% sm:pr-20% py-10% rounded-tr-3xl rounded-br-3xl rounded-md sm:rounded-tr-full sm:rounded-br-full 
       after:content-[''] after:absolute after:-top-0 after:shadow-customRight after:right-100% after:h-100% after:w-180% after:bg-bodybg`}
       // onClick={openProductMenu}
     >
@@ -227,14 +222,14 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
             <div>
               <h3
                 id="price"
-                className={`hidden sm:block font-semibold ${productCardNumSize}`}
+                className={`hidden sm:block font-normal ${productCardNumSize}`}
               >
                 NPR.{prop.priceCurrent}
               </h3>
             </div>
           </div>
           <div className=" overflow-clip h-20vh sm:h-0">
-            <p className="sm:hidden text-xs line-clamp-[8]">{prop.desc}</p>
+            <p className="sm:hidden text-xs line-clamp-[7]">{prop.desc}</p>
           </div>
         </div>
       </div>
@@ -242,7 +237,7 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
         <div className="flex justify-between mt-2">
           <h3
             id="price"
-            className={`sm:hidden text-lg font-semibold xl:text-2xl ${sizeOfMajorText}`}
+            className={`sm:hidden text-lg font-normal xl:text-2xl ${sizeOfMajorText}`}
           >
             NPR.{prop.priceCurrent}
           </h3>
