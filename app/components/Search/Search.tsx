@@ -37,7 +37,7 @@ export default function Search() {
             type="text"
             id="search"
             placeholder="Search"
-            className="bg-bodybg  xmd:px-4 py-1 outline-none border-[1px] border-black rounded-md"
+            className="bg-bodybg xmd:px-4 py-1 outline-none border-[1px] border-black rounded-md"
             onChange={handleChange}
           />
         </form>

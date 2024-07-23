@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import ScrollToTop from "../Functions/ScrollToTop/ScrollToTop";
 import { LikeBtn } from "../SVG/LikeBtn";
 import Star from "../SVG/Star";
-import { AddToCartButton, BuyNowBtn } from "../components/Buttons/Buttons";
+import {
+  ProductAddToCartButton,
+  ProductBuyNowBtn,
+} from "../components/Buttons/Buttons";
 import { paddingForPage, priceTextSizeInPreviewPage } from "../defineSize";
 import { product } from "../store/type";
 import BackArrow from "../SVG/BackArrow";
@@ -118,8 +121,12 @@ const ProductPage = () => {
                   <div className="items-center gap-2 hidden sm:block h-10 w-10 3xl:h-12 3xl:w-12 hover:cursor-pointer">
                     <LikeBtn fillColor="#D9DFED" borderThickness={1} />
                   </div>
-                  <BuyNowBtn darkBg={true} text="Buy now" primary={true} />
-                  <AddToCartButton
+                  <ProductBuyNowBtn
+                    darkBg={true}
+                    text="Buy now"
+                    primary={true}
+                  />
+                  <ProductAddToCartButton
                     darkBg={false}
                     text="Add to cart"
                     primary={false}

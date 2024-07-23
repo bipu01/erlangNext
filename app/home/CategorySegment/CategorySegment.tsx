@@ -8,11 +8,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDataFetchedToTrue } from "@/redux/features/dataFetchSlice";
 import { RootState } from "@/redux/store";
+import { setUser } from "@/redux/features/userSlice";
 
 const CategorySegment = () => {
   const dispatch = useDispatch();
   const getAllFeaturedProducts = async () => {
     const allFeaturedoProducts = await axios.get("api/getEveryFeatured");
+
     sessionStorage.setItem(
       "allFeaturedDress",
       JSON.stringify(allFeaturedoProducts.data.featuredDressCluster)

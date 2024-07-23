@@ -35,8 +35,8 @@ const Navbar = () => {
           </div>
         </div>
         {/* navlinks */}
-        <div className=" flex gap-5 xmd:gap-6  items-center">
-          <div className="hidden sm:flex gap-4 text-sm font-medium sm:text-base xmd:text-xl xmd:gap-10 sm:font-normal items-center ">
+        <div className=" flex gap-5 2xl:gap-6  items-center">
+          <div className="hidden sm:flex gap-4 text-sm font-medium sm:text-base 2xl:text-xl xmd:gap-10 sm:font-normal items-center ">
             <div className="">
               <Link href="/">Home</Link>
             </div>

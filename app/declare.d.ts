@@ -22,7 +22,7 @@ export type UserType = {
   name: string;
   email: string;
   password: string;
-  otherInfo: string;
+  otherInfo: Array;
   settings: Array;
   likedProducts: Array;
   itemsInCart: Array;
@@ -44,6 +44,7 @@ export interface buttonPropInterface {
   primary?: boolean;
   darkBg: boolean;
   custom?: string;
+  icon?: boolean;
 }
 
 export type productClusterProp = {

@@ -1,48 +1,64 @@
 "use client";
 
-// import { Link } from "react-router-dom";
 import { paddingForPage } from "../defineSize";
 import Cart from "./Cart";
 import BackArrow from "../SVG/BackArrow";
 import Link from "next/link";
-import { useEffect } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser, updateCart } from "@/redux/features/userSlice";
 
 export default function CartPage() {
+  const [showDialouge, setShowDialouge] = useState(false);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    triggerBackend();
+    getUserInfo();
+    sessionStorage.setItem("lastVisitedPage", "/cart");
   }, []);
-  const triggerBackend = async () => {
-    try {
-      const res = await axios.get("api/user/cart");
-      console.log({ res: res });
-      console.log("Hello world");
-    } catch (error) {
-      // console.log(error.response.status);
-      if (axios.isAxiosError(error)) {
-        if (error.response?.status === 401) {
-          window.location.href = "/login";
-        }
+
+  const getUserInfo = async () => {
+    const res = await fetch("/api/user/info");
+    const user = await res.json();
+    dispatch(setUser(user.message));
+
+    if (!res.ok) {
+      if (res.status === 401) {
+        setShowDialouge(true);
       }
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
   };
 
   return (
     <div
-      className={`bg-bgLightBlue w-screen h-screen overflow-y-scroll  ${paddingForPage}`}
+      className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
-      <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
-        <div className=" h-5 w-5 sm:h-8 sm:w-8 py-3 sm:py-8">
-          <Link href="/">
-            <BackArrow borderThickness={4} borderColor="#1C244B" />
+      {showDialouge ? (
+        <div className="absolute top-25vh left-20vw z-40 flex flex-col p-8 pb-16 justify-between items-center h-30vh w-60vw bg-primaryBlue text-white rounded-md ">
+          <p className="font-semibold text-lg text-white">
+            You are not logged in
+          </p>
+          <p>Go to login page to continue 👇👇: </p>
+          <Link href="/login">
+            <button className="bg-white text-primaryBlue p-2 px-4 rounded-md ">
+              Login page
+            </button>
           </Link>
         </div>
-        <div className=" ">
-          <Cart />
-          <button onClick={triggerBackend}>
-            Click here to trigger backend
-          </button>
+      ) : (
+        ""
+      )}
+
+      <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
+        <div className="">
+          <Link href="/">
+            <div className="absolute left-6 top-8 sm:left-8 sm:top-14% z-30 hover:cursor-pointer">
+              <BackArrow height={32} width={32} borderThickness={3} />
+            </div>
+          </Link>
         </div>
+        <Cart />
       </div>
     </div>
   );

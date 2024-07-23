@@ -3,8 +3,8 @@ import { svgProp } from "../declare";
 const CartIcon = (prop: svgProp) => {
   return (
     <svg
-      width="26"
-      height="28"
+      width={prop.width || "26"}
+      height={prop.height || "28"}
       viewBox="0 0 26 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -5,7 +5,7 @@ import image2 from "../../../public/assets/image2.png";
 import image3 from "../../../public/assets/image3.png";
 import axios from "axios";
 import config from "../../config/config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { product } from "@/app/store/type";
 
 interface responseFromServer {
@@ -15,16 +15,16 @@ interface responseFromServer {
 }
 
 export default function HeroSegment() {
-  // const [featuredProduct, setFeaturedProduct] = useState<responseFromServer>();
+  // const getAllFeaturedProducts = async () => {
+  //   const allFeaturedProducts = await axios.get("/api/getEveryFeatured");
+  //   const dressCluster = await allFeaturedProducts.data.featuredDressCluster;
+  // };
 
-  const getAllFeaturedProducts = async () => {
-    const allFeaturedoProducts = await axios.get(
-      config.backendDevURL + "/getEveryFeatured"
-    );
-    const dressCluster = await allFeaturedoProducts.data.featuredDressCluster;
-  };
+  // useEffect(() => {
+  //   getAllFeaturedProducts();
+  // }, []);
 
-  getAllFeaturedProducts();
+  // getAllFeaturedProducts();
 
   // sideWhite Button Style
   const sideWhiteButtonStyle =
