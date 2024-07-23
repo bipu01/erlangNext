@@ -8,24 +8,13 @@ const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
 export async function POST(req: NextRequest) {
   try {
     await dbConnect();
-    const authCookie = req.headers.get("cookie");
-    const cookies = authCookie ? parse(authCookie) : {};
-    const token = cookies["OutSiteJwt"];
 
-    // const user = jwt.decode(token, { complete: true })?.payload;
-    // console.log({ data: token });
-
-    const { payload } = await jwtVerify(
-      token,
-      new TextEncoder().encode(accessTokenSecret)
-    );
-
-    const user = payload;
-    console.log({ user: user.id });
+    const headers = req.headers.get("x-user");
+    const userInfo = JSON.parse(headers || "");
 
     try {
       const user = await User.findOneAndUpdate(
-        { _id: payload.id },
+        { _id: userInfo.id },
         { $set: { accessToken: "filler", refreshToken: "filler" } }
       );
 

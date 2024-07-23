@@ -105,7 +105,7 @@ const FormLayout = () => {
       image1 !== null
     ) {
       //Uploads the image selected by the user
-      await axios.post(`api/postProduct`, {
+      await axios.post(`/api/postProduct`, {
         name: name,
         description: description,
         currentPrice: price.currentPrice,

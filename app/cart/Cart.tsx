@@ -51,49 +51,22 @@ export default function Cart() {
                         id="stars"
                         className="flex  items-baseline mt-2 gap-10vw sm:gap-30vw"
                       >
-                        <div id="stars" className="flex gap-2">
-                          <Star height={20} width={20} />
-                          <Star height={20} width={20} />
-                          <Star height={20} width={20} />
-                          <Star height={20} width={20} />
+                        <div id="stars" className="flex gap-1">
+                          <Star height={16} width={16} />
+                          <Star height={16} width={16} />
+                          <Star height={16} width={16} />
+                          <Star height={16} width={16} />
                           <Star
-                            height={20}
-                            width={20}
+                            height={16}
+                            width={16}
                             fillColor="transparent"
                           />
                         </div>
-                        <div
-                          className={` sm:hidden flex gap-2 sm:gap-6 items-center justify-around`}
-                        >
-                          <button
-                            className=" font-bold sm:text-2xl"
-                            // onClick={() => {
-                            //   if (num >= 0) {
-                            //     setNum(num - 1);
-                            //   }
-                            // }}
-                          >
-                            -
-                          </button>
-                          <p className="text-xs sm:text-base lg:text-xl flex items-center rounded-md border-2   px-2 py-0.5 bg-bgLightBlue">
-                            {num}
-                          </p>
-                          <button
-                            className=" font-semibold sm:text-2xl"
-                            // onClick={() => {
-                            //   if (num <= 20) {
-                            //     setNum(num + 1);
-                            //   }
-                            // }}
-                          >
-                            +
-                          </button>
-                        </div>
                       </div>
 
-                      <div className="absolute bottom-2 grid grid-cols-2 gap-15vw sm:gap-7vw sm:grid-cols-3 items-baseline">
+                      <div className="absolute bottom-2 grid grid-cols-2 gap-8vw sm:gap-20vw items-baseline">
                         {/* item original and discount price */}
-                        <div className=" sm:col-span-1 text-xs sm:text-base  flex text-primaryBlue font-semibold justify-start">
+                        <div className=" sm:col-span-1 text-xs md:text-base  flex text-primaryBlue font-semibold justify-start">
                           <p>NPR.</p>
                           <div className="flex gap-1 sm:gap-2">
                             <p className=" line-through opacity-65">
@@ -102,33 +75,7 @@ export default function Cart() {
                             <p>{item.priceCurrent}</p>
                           </div>
                         </div>
-                        <div
-                          className={`hidden sm:flex gap-4 sm:gap-6 items-center justify-center`}
-                        >
-                          <button
-                            className=" font-bold sm:text-2xl"
-                            // onClick={() => {
-                            //   if (num >= 0) {
-                            //     setNum(num - 1);
-                            //   }
-                            // }}
-                          >
-                            -
-                          </button>
-                          <p className="text-xs sm:text-base flex items-center rounded-md border-2   px-2 py-0.5 bg-bgLightBlue">
-                            {num}
-                          </p>
-                          <button
-                            className=" font-semibold sm:text-2xl"
-                            // onClick={() => {
-                            //   if (num <= 20) {
-                            //     setNum(num + 1);
-                            //   }
-                            // }}
-                          >
-                            +
-                          </button>
-                        </div>
+
                         <div className="">
                           <CartBuyNowBtn
                             text="Buy now"

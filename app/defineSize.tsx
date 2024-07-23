@@ -5,7 +5,7 @@ export const sizeOfPunchHole = `lg:w-10 lg:h-10 w-8 h-8 4xl:w-14 4xl:h-14`;
 export const sizeOfMajorText = `text-sm lg:text-xl 2xl:text-2xl 3xl:text-3xl`;
 export const sizeOfLessMajorText = `text-xs lg:text-base  `;
 
-export const priceTextSizeInPreviewPage = `font-semibold text-lg lg:text-lg xl:text-2xl 3xl:text-2xl`;
+export const priceTextSizeInPreviewPage = `font-semibold text-sm lg:text-lg xl:text-2xl 3xl:text-2xl`;
 
 export const sizeOfTitleText = `text-sm sm:text-xl  line-clamp-[1]`;
 export const productCardNumSize = `text-sm sm:text-lg  line-clamp-[1]`;

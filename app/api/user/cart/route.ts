@@ -1,24 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../utils/mongodb";
-import { parse } from "cookie";
-import { jwtVerify } from "jose";
 import User from "../../db/userSchema";
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET!;
 
 export async function GET(req: NextRequest) {
   try {
-    dbConnect();
-    const authCookie = req.headers.get("cookie");
-    const cookies = authCookie ? parse(authCookie) : {};
-    const token = cookies["OutSiteJwt"];
+    await dbConnect();
+    const headers = req.headers.get("x-user");
+    const userInfo = JSON.parse(headers || "");
 
     try {
-      const decoded = await jwtVerify(
-        token,
-        new TextEncoder().encode(accessTokenSecret)
-      );
       const itemsInCart = await User.findOne({
-        _id: decoded.payload.id,
+        _id: userInfo.id,
       }).select("itemsInCart");
 
       return NextResponse.json({ itemsInCart: itemsInCart });
