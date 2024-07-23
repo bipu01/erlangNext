@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { paddingForPage } from "../defineSize";
 import { PopupOfFailed, PopupOfSuccess } from "./subComponents/PopupCards";
 import { useSelector } from "react-redux";
@@ -52,6 +52,23 @@ const PostProducts = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    verifyIsAdmin();
+  }, []);
+
+  const verifyIsAdmin = async () => {
+    try {
+      const res = await fetch("/api/user/verifyAdmin");
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json();
+      console.log({ data: data });
+    } catch (error) {
+      console.log({ "Error verifying admin": error });
+    }
+  };
 
   return (
     <>

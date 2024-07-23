@@ -48,7 +48,7 @@ const ProductPage = () => {
     if (openedProduct) {
       return (
         <div
-          className={`relative bg-bgLightBlue py-4 sm:py-16 sm:pt-16 ${paddingForPage}`}
+          className={`relative bg-bgLightBlue min-h-95vh py-4 sm:py-16 sm:pt-16 ${paddingForPage}`}
         >
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
@@ -57,7 +57,7 @@ const ProductPage = () => {
             </div>
           </Link>
           <div className=" grid sm:grid-rows-2 sm:grid-cols-5">
-            <div className="relative sm:col-span-2 h-60vh min-w-15rem lg:h-70vh p-1 bg-bodybg rounded-sm shadow-customDown">
+            <div className="relative sm:col-span-2 h-50vh min-w-15rem lg:h-70vh p-1 bg-bodybg rounded-sm shadow-customDown">
               <img
                 src={openedProduct.img1}
                 alt="productImage"

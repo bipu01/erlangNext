@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { parse } from "cookie";
-import jwt from "jsonwebtoken";
-import { verifyAccessToken } from "./app/lib/jwtUtils";
+import { jwtVerify } from "jose";
+// import { headers } from "next/headers";
 
-// const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
-// const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET || "";
-// const MAX_AGE = 60 * 60 * 24 * 30; //30 days
+const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
+const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET || "";
+const MAX_AGE = 60 * 60 * 24 * 30; //30 days
 
 export async function middleware(req: Request) {
   const authCookie = req.headers.get("cookie");
@@ -19,25 +19,27 @@ export async function middleware(req: Request) {
     });
   }
 
-  if (token === undefined || token === "") {
-    console.log("No user found");
-    return new Response(
-      JSON.stringify({
-        message: "Invalid access token",
-      }),
-      { status: 403, headers: { "Content-Type": "application/json" } }
-    );
-  }
-
   try {
-    return NextResponse.next();
-  } catch (error) {
-    return new Response(
-      JSON.stringify({
-        message: "Invalid access token",
-      }),
-      { status: 403, headers: { "Content-Type": "application/json" } }
+    const { payload } = await jwtVerify(
+      token,
+      new TextEncoder().encode(accessTokenSecret)
     );
+
+    if (!payload) {
+      // console.log("No user found");
+      return new Response(
+        JSON.stringify({
+          message: "Invalid access token",
+        }),
+        { status: 403, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const newHeaders = new Headers(req.headers);
+    newHeaders.set("x-user", JSON.stringify(payload));
+    return NextResponse.next({ request: { headers: newHeaders } });
+  } catch (error) {
+    return NextResponse.json({ error: error });
   }
 }
 
@@ -49,5 +51,7 @@ export const config = {
     "/api/user/logout",
     "/api/user/cart/addToCart",
     "/api/user/info",
+    "/api/postProduct",
+    "/api/user/verifyAdmin",
   ],
 };

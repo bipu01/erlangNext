@@ -6,6 +6,7 @@ import Hamburger from "../components/Hamburger/Hamburger";
 import { LikeBtn } from "../SVG/LikeBtn";
 
 import dynamic from "next/dynamic";
+import CartIcon from "../SVG/CartIcon";
 
 const Search = dynamic(() => import("../components/Search/Search"), {
   ssr: false,
@@ -14,7 +15,7 @@ const Search = dynamic(() => import("../components/Search/Search"), {
 const Navbar = () => {
   return (
     <div className=" sticky top-0 z-50 ">
-      <div className="  flex justify-around sm:justify-between items-center pt-1 px-2 sm:px-5 md:px-10 bg-bodybg ">
+      <div className="  flex sm:justify-between items-center pt-1 px-2 sm:px-5 md:px-10 bg-bodybg ">
         <div className=" flex gap-2 xmd:gap-10 items-center">
           <Link href={"/"}>
             <div className=" h-12 sm:h-16 aspect-square">
@@ -35,24 +36,17 @@ const Navbar = () => {
           </div>
         </div>
         {/* navlinks */}
-        <div className=" flex gap-5 2xl:gap-6  items-center">
+        <div className=" flex gap-5 2xl:gap-6  items-center ml-auto">
           <div className="hidden sm:flex gap-4 text-sm font-medium sm:text-base 2xl:text-xl xmd:gap-10 sm:font-normal items-center ">
             <div className="">
               <Link href="/">Home</Link>
             </div>
-            {/* <div className="">
-              <Link href="/contact">Contact us</Link>
-            </div> */}
             <div className="">
               <Link href="/cart">
                 <div className="flex gap-1 items-center">
                   <p>Cart</p>
                   <div className=" relative">
-                    <img
-                      className=" sm:h-4 xmd:h-6"
-                      src="./assets/cart.svg"
-                      alt=""
-                    />
+                    <CartIcon borderThickness={2} width={23} height={20} />
                     <span className="absolute bg-red-500 rounded-full h-3 aspect-square xmd:text-[10px]  flex items-center justify-center -top-2  -right-2 text-xs xmd:text-lg xmd:h-5 sm:-top-3 sm:-right-2 xmd:-right-3 ">
                       2
                     </span>
@@ -65,11 +59,6 @@ const Navbar = () => {
                 <div className="flex gap-1 items-center">
                   <p> Fav</p>
                   <div className=" relative">
-                    {/* <img
-                      className=" sm:h-4 xmd:h-6"
-                      src="./icons/fav.png"
-                      alt=""
-                    /> */}
                     <LikeBtn
                       borderThickness={1.5}
                       width={23}
@@ -110,15 +99,6 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          {/* <div className="block sm:hidden ">
-            <Link href="/postProducts">
-              <img
-                className=" w-7 aspect-auto"
-                src="./assets/userr.svg"
-                alt=""
-              />
-            </Link>
-          </div> */}
           <div className=" ">
             <Hamburger />
           </div>

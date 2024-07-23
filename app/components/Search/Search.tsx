@@ -31,17 +31,15 @@ export default function Search() {
 
   return (
     <div className=" relative pb-1 sm:pb-0">
-      <div className="">
-        <form onSubmit={handeSubmit}>
-          <input
-            type="text"
-            id="search"
-            placeholder="Search"
-            className="bg-bodybg xmd:px-4 py-1 outline-none border-[1px] border-black rounded-md"
-            onChange={handleChange}
-          />
-        </form>
-      </div>
+      <form onSubmit={handeSubmit}>
+        <input
+          type="text"
+          id="search"
+          placeholder="Search"
+          className="bg-bodybg w-24 h-8 text-xs sm:w-auto sm:h-auto sm:text-lg px-1  xmd:px-4 py-1 outline-none border-[1px] border-black rounded-md"
+          onChange={handleChange}
+        />
+      </form>
     </div>
   );
 }
