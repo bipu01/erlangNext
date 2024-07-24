@@ -4,7 +4,7 @@ import { paddingForPage } from "../../defineSize";
 const SortByPanel = () => {
   return (
     <section
-      className={`mb-10vh space-y-4 sm:space-y-9 w-100vw  ${paddingForPage}`}
+      className={`mb-10vh space-y-2 lg:space-y-4 w-100vw  ${paddingForPage}`}
     >
       <div className="py-2 xmd:py-4 px-2 xmd:px-4 rounded-sm bg-bodybg flex justify-between sm:block sm:space-x-4 ">
         <OptionsPanelBtn active={true} text="All" />

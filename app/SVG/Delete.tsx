@@ -1,0 +1,25 @@
+import { svgProp } from "../declare";
+
+const Delete = (prop: svgProp) => {
+  return (
+    <svg
+      width={prop.width || "17"}
+      height={prop.height || "19"}
+      viewBox="0 0 17 19"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${prop.custom} h-100% w-100% object-contain`}
+    >
+      <path
+        d="M1 4H15.5M5 4V3C5 1.89543 5.89543 1 7 1H9.5C10.6046 1 11.5 1.89543 11.5 3V4M10.5 8V13.5M6 8V13.5M2 4H14.5L13.8549 15.6109C13.7961 16.6708 12.9195 17.5 11.858 17.5H4.64197C3.5805 17.5 2.70393 16.6708 2.64505 15.6109L2 4Z"
+        fill={prop.fillColor}
+        stroke={prop.borderColor || "#1C244B"}
+        strokeWidth={prop.borderThickness || "1.5"}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export default Delete;

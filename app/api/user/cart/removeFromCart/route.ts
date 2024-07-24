@@ -1,35 +1,48 @@
 import User from "@/app/api/db/userSchema";
 import dbConnect from "@/app/api/utils/mongodb";
-import { parse } from "cookie";
-import { jwtVerify } from "jose";
+import { product } from "@/app/store/type";
 import { NextRequest, NextResponse } from "next/server";
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
+  const url = new URL(req.url);
+  const productId = url.searchParams.get("productId");
+
+  const header = req.headers.get("x-user");
+  const user = JSON.parse(header || "");
   try {
     await dbConnect();
-
-    const allCookies = req.headers.get("cookie");
-    const cookie = allCookies ? parse(allCookies) : {};
-    const token = cookie["OutSiteJwt"];
-
-    const body = await req.json();
-    // const product = body.product;
-
-    const { payload } = await jwtVerify(
-      token,
-      new TextEncoder().encode(accessTokenSecret)
-    );
-    const { _id, name, email } = payload;
-
+    // console.log("Remove from cart is reached");
     try {
-      await User.findOneAndUpdate(
-        { _id: _id },
-        { $push: { itemsInCart: body.product } },
-        { new: true }
+      const searchedUser = await User.findById(user.id);
+
+      searchedUser.itemsInCart = searchedUser.itemsInCart.filter(
+        (item: product) => item._id?.toString() !== productId
       );
 
-      return NextResponse.json("Product added to cart");
+      // await User.findOneAndUpdate(
+      //   { _id: user.id },
+      //   { $pull: { itemsInCart: { _id: productId } } },
+      //   { new: true }
+      // );
+      const updatedUser = await searchedUser.save();
+
+      const userToSend = {
+        id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        itemsInCart: updatedUser.itemsInCart,
+        likedProducts: updatedUser.likedProducts,
+        settings: updatedUser.settings,
+        otherInfo: updatedUser.otherInfo,
+      };
+
+      console.log("Removed from cart");
+      // console.log({ updatedUser: userToSend });
+
+      return NextResponse.json({
+        message: "Product removed from cart",
+        user: userToSend,
+      });
     } catch (error) {
       return NextResponse.json("Trouble adding to cart");
     }

@@ -10,6 +10,7 @@ export const HandleAddToCart = async (
       },
       body: JSON.stringify({ productId: productId }),
     });
+    alert("Item added to cart");
   } catch (error) {
     console.log({ "Error adding to cart": error });
   }

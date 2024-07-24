@@ -15,25 +15,14 @@ interface responseFromServer {
 }
 
 export default function HeroSegment() {
-  // const getAllFeaturedProducts = async () => {
-  //   const allFeaturedProducts = await axios.get("/api/getEveryFeatured");
-  //   const dressCluster = await allFeaturedProducts.data.featuredDressCluster;
-  // };
-
-  // useEffect(() => {
-  //   getAllFeaturedProducts();
-  // }, []);
-
-  // getAllFeaturedProducts();
-
   // sideWhite Button Style
   const sideWhiteButtonStyle =
-    "bg-bgLightBlue w-8 aspect-square rounded-full border-4 border-white sm:bg-bodybg sm:w-12 sm:h-10 sm:border-none ";
+    "bg-bodybg w-8 aspect-square rounded-full border-4 border-white sm:w-12 sm:h-10 sm:border-none ";
 
   return (
     <div className={`  bg-bodybg  ${paddingForPage} `}>
       {/* main grid */}
-      <div className=" grid sm:grid-cols-5  pt-8 pb-12">
+      <div className=" grid sm:grid-cols-5  pt-8 pb-4 sm:pb-12">
         {/* left image */}
         <div className="col-span-4 sm:col-span-2 mt-5 sm:mt-0  max-h-40vh sm:max-h-95vh relative">
           <Image
