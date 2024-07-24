@@ -26,6 +26,7 @@ const config: Config = {
         "bgLightPink": "#EDDAD9",
         "lineColor": "#EDE6D9",
         "bluebg": "#D0D5E3",
+        "darkRed": "#A60F0F",
       },
       screens: {
         "xmd": "780px", //Window size for tablet

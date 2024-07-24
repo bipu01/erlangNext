@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import CartIcon from "../../SVG/CartIcon";
 import { buttonProp, buttonPropInterface } from "../../declare";
 import { sizeOfLessMajorText } from "../../defineSize";
@@ -11,7 +10,7 @@ export const CartBuyNowBtn = (prop: buttonPropInterface) => {
         prop.primary
           ? "bg-primaryBlue text-bodybg rounded-md"
           : "bg-bodybg text-primaryBlue rounded-md"
-      } px-4 sm:px-5vw ${sizeOfLessMajorText} w-auto  max-w-15rem py-2 sm:py-3
+      } absolute bottom-0 right-0 px-4 sm:px-5vw ${sizeOfLessMajorText} w-auto  max-w-15rem py-2 sm:py-3
   items-center flex gap-1 sm:gap-2 font-normal sm:font-medium tracking-wider justify-center
   whitespace-nowrap`}
     >
@@ -61,14 +60,6 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
         onClick={HandleAddToCart}
       >
         {prop.text}
-        {prop.darkBg
-          ? // <CartIcon
-            //   borderColor="#FFF9EF"
-            //   custom="h-6 w-6"
-            //   borderThickness={1.5}
-            // />
-            ""
-          : ""}
       </button>
     </>
   );

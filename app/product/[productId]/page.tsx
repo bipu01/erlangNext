@@ -1,29 +1,52 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ScrollToTop from "../Functions/ScrollToTop/ScrollToTop";
-import { LikeBtn } from "../SVG/LikeBtn";
-import Star from "../SVG/Star";
+import ScrollToTop from "../../Functions/ScrollToTop/ScrollToTop";
+import { LikeBtn } from "../../SVG/LikeBtn";
+import Star from "../../SVG/Star";
 import {
   ProductAddToCartButton,
   ProductBuyNowBtn,
-} from "../components/Buttons/Buttons";
-import { paddingForPage, priceTextSizeInPreviewPage } from "../defineSize";
-import { product } from "../store/type";
-import BackArrow from "../SVG/BackArrow";
+} from "../../components/Buttons/Buttons";
+import { paddingForPage, priceTextSizeInPreviewPage } from "../../defineSize";
+import { product } from "../../store/type";
+import BackArrow from "../../SVG/BackArrow";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const fetchProductFromDb = async (productId: string) => {
-  const res = await fetch(`/api/product/get`);
-  const body = await res.json();
-  console.log({ resFrombackend: body });
-  return body.json();
+  try {
+    const res = await fetch(`/api/products/get?productId=${productId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const body = await res.json();
+    console.log({ resFrombackend: body });
+    return body;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 const ProductPage = () => {
-  // let openedProduct: product | null = null;
-
   const [openedProduct, setOpenedProduct] = useState<product | null>(null);
+
+  const { productId } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (productId) {
+        const id = Array.isArray(productId) ? productId[0] : productId;
+        const data = await fetchProductFromDb(id);
+        setOpenedProduct(data);
+      }
+    };
+    fetchData();
+  }, []);
+
   const [lastVisitedPage, setLastVisitedPage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -36,6 +59,14 @@ const ProductPage = () => {
       }
     }
   }, []);
+  useEffect(() => {
+    printPreviewPage();
+  }, []);
+
+  if (!productId) {
+    console.log("No product found");
+    return <div>No product found</div>;
+  }
 
   const printPreviewPage = () => {
     if (openedProduct) {
@@ -135,9 +166,6 @@ const ProductPage = () => {
     }
   };
 
-  useEffect(() => {
-    printPreviewPage();
-  }, []);
   return printPreviewPage();
 };
 

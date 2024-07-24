@@ -47,7 +47,7 @@ const Navbar = () => {
                   <p>Cart</p>
                   <div className=" relative">
                     <CartIcon borderThickness={2} width={23} height={20} />
-                    <span className="absolute bg-red-500 rounded-full h-3 aspect-square xmd:text-[10px]  flex items-center justify-center -top-2  -right-2 text-xs xmd:text-lg xmd:h-5 sm:-top-3 sm:-right-2 xmd:-right-3 ">
+                    <span className="absolute bg-darkRed rounded-full h-3 aspect-square xmd:text-[10px] text-white flex items-center justify-center -top-2  -right-2 text-xs xmd:text-md xmd:h-5 sm:-top-3 sm:-right-2 xmd:-right-3 ">
                       2
                     </span>
                   </div>
