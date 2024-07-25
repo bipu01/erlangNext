@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
         name: body.name,
         priceCurrent: body.currentPrice,
         priceOriginal: body.originalPrice,
-        description: body.description,
+        desc: body.description,
         img1: body.img1,
         img2: body.img2,
         img3: body.img3,

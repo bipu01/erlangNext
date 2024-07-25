@@ -12,7 +12,7 @@ import Delete from "../SVG/Delete";
 import { setUser } from "@/redux/features/userSlice";
 
 export default function Cart() {
-  const [num, setNum] = useState(0);
+  // const [num, setNum] = useState(0);
   const [preventNavigation, setPreventNavigation] = useState(false);
   const dispatch = useDispatch();
 

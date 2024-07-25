@@ -19,11 +19,6 @@ export async function GET(req: NextRequest) {
         (item: product) => item._id?.toString() !== productId
       );
 
-      // await User.findOneAndUpdate(
-      //   { _id: user.id },
-      //   { $pull: { itemsInCart: { _id: productId } } },
-      //   { new: true }
-      // );
       const updatedUser = await searchedUser.save();
 
       const userToSend = {

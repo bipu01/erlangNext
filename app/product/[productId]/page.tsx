@@ -162,7 +162,7 @@ const ProductPage = () => {
         </div>
       );
     } else {
-      return <div>Something went wrong</div>;
+      return <div>Loading...</div>;
     }
   };
 
