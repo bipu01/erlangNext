@@ -77,16 +77,16 @@ export default function SearchedProductsPage() {
 
   const PrintSearchedItems = () => {
     return (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  gap-10 ">
+      <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-10 ">
         {searchedProducts.map((product: product) => (
-          <Link href={"/product"} key={product._id}>
+          <Link href={`/product/${product._id}`} key={product._id}>
             <div
               id={product._id}
-              className="bg-bodybg shadow-customSearchProduct rounded-lg  p-2 pb-6 hover:cursor-pointer"
+              className="bg-bodybg shadow-customSearchProduct rounded-lg  p-2 pb-3 sm:pb-6 hover:cursor-pointer"
               onClick={handleClick}
             >
               <div className="rounded-lg w-full ">
-                <div className="h-25rem">
+                <div className="h-10rem sm:h-25rem">
                   <img
                     className=" w-100% h-100% aspect-square object-cover object-top rounded-lg "
                     src={product.img1}
@@ -96,11 +96,11 @@ export default function SearchedProductsPage() {
               </div>
               <div className="">
                 <div className="">
-                  <p className=" text-lg font-semibold pt-4 px-2 text-primaryBlue line-clamp-1">
+                  <p className=" text-xs sm:text-lg font-semibold pt-4 px-2 text-primaryBlue line-clamp-1">
                     {product.name}
                   </p>
                 </div>
-                <div className=" flex justify-between pt-4 px-2">
+                <div className=" flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between pt-4 px-2">
                   <div className=" flex gap-4 opacity-70 items-center ">
                     <div className=" flex gap-1">
                       {renderStarRating({
@@ -108,11 +108,11 @@ export default function SearchedProductsPage() {
                         ratingCount: product.ratingCount,
                       } as Rating)}
                     </div>
-                    <p className=" text-base font-bold opacity-100 text-primaryBlue">
+                    <p className=" text-xs sm:text-base font-bold opacity-100 text-primaryBlue">
                       {product.ratingCount}
                     </p>
                   </div>
-                  <div className="text-base font-medium opacity-70">
+                  <div className="text-xs sm:text-base font-normal opacity-70">
                     <p className=" "> NPR {product.priceCurrent}</p>
                   </div>
                 </div>

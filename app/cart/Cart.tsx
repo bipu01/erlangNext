@@ -10,9 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Delete from "../SVG/Delete";
 import { setUser } from "@/redux/features/userSlice";
+import {
+  popupSetHeading,
+  popupSetMessage,
+  togglePopup,
+} from "@/redux/features/popupSlice";
 
 export default function Cart() {
-  const [num, setNum] = useState(0);
   const [preventNavigation, setPreventNavigation] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,7 +35,9 @@ export default function Cart() {
     const user = data.user;
     dispatch(setUser(user));
 
-    console.log(data.user);
+    dispatch(popupSetHeading("Item removed from Cart"));
+    dispatch(popupSetMessage(""));
+    dispatch(togglePopup());
   };
 
   const handleLinkClick = (

@@ -39,10 +39,11 @@ export type buttonProp = {
 
 export interface buttonPropInterface {
   _id?: string;
-  text: string;
+  text?: string;
+  fillColor?: string;
   active?: boolean;
   primary?: boolean;
-  darkBg: boolean;
+  darkBg?: boolean;
   custom?: string;
   icon?: boolean;
 }

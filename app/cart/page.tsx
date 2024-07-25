@@ -1,12 +1,13 @@
 "use client";
 
-import { paddingForPage } from "../defineSize";
 import Cart from "./Cart";
 import BackArrow from "../SVG/BackArrow";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, updateCart } from "@/redux/features/userSlice";
+import { RootState } from "@/redux/store";
+import Popup from "../components/Popups/Popup";
 
 export default function CartPage() {
   const [showDialouge, setShowDialouge] = useState(false);
@@ -30,10 +31,21 @@ export default function CartPage() {
     }
   };
 
+  const popup = useSelector((state: RootState) => state.popupSlice.popup);
+  const heading = useSelector((state: RootState) => state.popupSlice.heading);
+  const message = useSelector((state: RootState) => state.popupSlice.message);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (popup === true) {
+      setShow(!show);
+    }
+  }, [popup]);
+
   return (
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
+      {show === true ? <Popup heading={heading} message={message} /> : ""}
       {showDialouge ? (
         <div className="absolute top-25vh left-20vw z-40 flex flex-col p-8 pb-16 justify-between items-center h-30vh w-60vw bg-primaryBlue text-white rounded-md ">
           <p className="font-semibold text-lg text-white">

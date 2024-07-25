@@ -9,13 +9,15 @@ export async function GET(req: NextRequest) {
 
   const header = req.headers.get("x-user");
   const user = JSON.parse(header || "");
+  //   console.log({ productId: productId });
+  //   console.log({ user: user });
   try {
     await dbConnect();
     // console.log("Remove from cart is reached");
     try {
       const searchedUser = await User.findById(user.id);
 
-      searchedUser.itemsInCart = searchedUser.itemsInCart.filter(
+      searchedUser.likedProducts = searchedUser.likedProducts.filter(
         (item: product) => item._id?.toString() !== productId
       );
 
@@ -31,15 +33,15 @@ export async function GET(req: NextRequest) {
         otherInfo: updatedUser.otherInfo,
       };
 
-      console.log("Removed from cart");
+      console.log("Removed from Liked");
       // console.log({ updatedUser: userToSend });
 
       return NextResponse.json({
-        message: "Product removed from cart",
+        message: "Product removed from Liked",
         user: userToSend,
       });
     } catch (error) {
-      return NextResponse.json("Trouble adding to cart");
+      return NextResponse.json("Trouble removing rom cart");
     }
   } catch (error) {
     return NextResponse.json("Trouble connecting to db");

@@ -5,6 +5,7 @@ import ScrollToTop from "../../Functions/ScrollToTop/ScrollToTop";
 import { LikeBtn } from "../../SVG/LikeBtn";
 import Star from "../../SVG/Star";
 import {
+  LikeButton,
   ProductAddToCartButton,
   ProductBuyNowBtn,
 } from "../../components/Buttons/Buttons";
@@ -13,6 +14,9 @@ import { product } from "../../store/type";
 import BackArrow from "../../SVG/BackArrow";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import Popup from "@/app/components/Popups/Popup";
 
 const fetchProductFromDb = async (productId: string) => {
   try {
@@ -33,7 +37,10 @@ const fetchProductFromDb = async (productId: string) => {
 
 const ProductPage = () => {
   const [openedProduct, setOpenedProduct] = useState<product | null>(null);
-
+  const popup = useSelector((state: RootState) => state.popupSlice.popup);
+  const heading = useSelector((state: RootState) => state.popupSlice.heading);
+  const message = useSelector((state: RootState) => state.popupSlice.message);
+  const [show, setShow] = useState(false);
   const { productId } = useParams();
 
   useEffect(() => {
@@ -46,6 +53,12 @@ const ProductPage = () => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (popup === true) {
+      setShow(!show);
+    }
+  }, [popup]);
 
   const [lastVisitedPage, setLastVisitedPage] = useState<string | null>(null);
 
@@ -74,6 +87,7 @@ const ProductPage = () => {
         <div
           className={`relative bg-bgLightBlue min-h-95vh py-4 sm:py-16 sm:pt-16 ${paddingForPage}`}
         >
+          {show === true ? <Popup heading={heading} message={message} /> : ""}
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
             <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-30 hover:cursor-pointer">
@@ -90,7 +104,12 @@ const ProductPage = () => {
 
               {/* likeBtn */}
               <div className="h-8 w-8 absolute sm:hidden bottom-5 right-5">
-                <LikeBtn fillColor="#D9DFED" borderThickness={1} />
+                {/* <LikeButton /> */}
+                <LikeButton
+                  _id={openedProduct._id}
+                  fillColor="white"
+                  custom="w-8 h-8 sm:w-6 sm:h-6 "
+                />
               </div>
             </div>
 
@@ -143,7 +162,11 @@ const ProductPage = () => {
                 {/* <div className=" bg-black opacity-20 h-0.5 w-100% mb-2"></div> */}
                 <div className="flex justify-between  items-center">
                   <div className="items-center gap-2 hidden sm:block h-10 w-10 3xl:h-12 3xl:w-12 hover:cursor-pointer">
-                    <LikeBtn fillColor="#D9DFED" borderThickness={1} />
+                    {/* <LikeBtn fillColor="#D9DFED" borderThickness={1} /> */}
+                    <LikeButton
+                      _id={openedProduct._id}
+                      custom="w-5 h-5 sm:w-6 sm:h-6"
+                    />
                   </div>
                   <ProductBuyNowBtn
                     darkBg={true}
@@ -162,7 +185,7 @@ const ProductPage = () => {
         </div>
       );
     } else {
-      return <div>Something went wrong</div>;
+      return <div>Loading...</div>;
     }
   };
 
