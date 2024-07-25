@@ -3,6 +3,7 @@ import authReducer from "./features/authSlice";
 import postPopupReducer from "./features/postPopupSlice";
 import dataFetchReducer from "./features/dataFetchSlice";
 import user from "./features/userSlice";
+import popupSlice from "./features/popupSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     postPopupReducer,
     dataFetchReducer,
     user,
+    popupSlice,
   },
 });
 

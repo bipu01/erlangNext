@@ -7,6 +7,11 @@ import { RootState } from "@/redux/store";
 import Delete from "../SVG/Delete";
 import { useEffect, useState } from "react";
 import { setUser } from "@/redux/features/userSlice";
+import {
+  popupSetHeading,
+  popupSetMessage,
+  togglePopup,
+} from "@/redux/features/popupSlice";
 
 export default function Liked() {
   const [preventNavigation, setPreventNavigation] = useState(false);
@@ -29,8 +34,11 @@ export default function Liked() {
     const data = await res.json();
     const user = data.user;
     dispatch(setUser(user));
+    setShowOptions(false);
 
-    console.log(data.user);
+    dispatch(popupSetHeading("Item removed from Fav"));
+    dispatch(popupSetMessage(""));
+    dispatch(togglePopup());
   };
 
   const handleLinkClick = (
@@ -56,7 +64,11 @@ export default function Liked() {
                   key={index}
                   onClick={handleLinkClick}
                 >
-                  <div className="relative w-95vw sm:w-80vw lg:w-70vw h-full grid grid-cols-4 sm:grid-cols-5 bg-bodybg rounded-lg cursor-pointer">
+                  <div
+                    className={`relative w-95vw sm:w-80vw lg:w-70vw h-full grid grid-cols-4 sm:grid-cols-5 ${
+                      showOptions ? "bg-bodybg/30" : "bg-bodybg "
+                    }  rounded-lg cursor-pointer`}
+                  >
                     <div className="col-span-1 p-1 sm:p-2 ">
                       <div className="  h-16 w-16 sm:h-24  sm:w-24  rounded-md overflow-hidden ">
                         <img

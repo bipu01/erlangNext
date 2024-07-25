@@ -1,9 +1,14 @@
+"use client";
 import { LikeBtn } from "@/app/SVG/LikeBtn";
 import CartIcon from "../../SVG/CartIcon";
 import { buttonProp, buttonPropInterface } from "../../declare";
 import { sizeOfLessMajorText } from "../../defineSize";
-import { HandleAddToCart } from "./ButtonFunctions/handleAddToCart";
-import { handleAddToLiked } from "./ButtonFunctions/handleAddToLiked";
+import { useDispatch } from "react-redux";
+import {
+  popupSetHeading,
+  popupSetMessage,
+  togglePopup,
+} from "@/redux/features/popupSlice";
 
 export const CartBuyNowBtn = (prop: buttonPropInterface) => {
   return (
@@ -37,16 +42,27 @@ export const ProductBuyNowBtn = (prop: buttonPropInterface) => {
   );
 };
 
-export const SecondaryButton = () => {
-  return <div>SecondaryButton</div>;
-};
-
-export const TertiaryButton = () => {
-  return <div>TertiaryButton</div>;
-};
-
 export const AddToCartButton = (prop: buttonPropInterface) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const HandleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const productId = e.currentTarget.id.replace(/\baddToCart\D*/g, "");
+    try {
+      await fetch("/api/user/cart/addToCart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: productId }),
+      });
+      // alert("Item added to cart");
+      dispatch(popupSetHeading("Item successfully added to cart"));
+      dispatch(popupSetMessage("🛒✅"));
+      dispatch(togglePopup());
+    } catch (error) {
+      console.log({ "Error adding to cart": error });
+    }
+  };
   return (
     <>
       <button
@@ -68,7 +84,25 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
 };
 
 export const ProductAddToCartButton = (prop: buttonPropInterface) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const HandleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const productId = e.currentTarget.id.replace(/\baddToCart\D*/g, "");
+    try {
+      await fetch("/api/user/cart/addToCart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: productId }),
+      });
+      dispatch(popupSetHeading("Item successfully added to cart"));
+      dispatch(popupSetMessage("🛒✅"));
+      dispatch(togglePopup());
+    } catch (error) {
+      console.log({ "Error adding to cart": error });
+    }
+  };
   return (
     <>
       <button
@@ -109,6 +143,31 @@ export const OptionsPanelBtn = (prop: buttonProp) => {
 };
 
 export const LikeButton = (prop: buttonPropInterface) => {
+  const dispatch = useDispatch();
+
+  const handleAddToLiked = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const productId = e.currentTarget.id.replace(/\like\D*/g, "");
+    console.log("add to liked clicked");
+    try {
+      const res = await fetch(
+        `/api/user/liked/addToLiked?productId=${productId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await res.json();
+      dispatch(popupSetHeading("Item successfully added to Liked"));
+      dispatch(popupSetMessage("♥️♥️♥️"));
+      dispatch(togglePopup());
+    } catch (error) {
+      console.log({ "Error adding to liked": error });
+    }
+  };
+
   return (
     <>
       <button id={`like` + prop._id} className={` `} onClick={handleAddToLiked}>
