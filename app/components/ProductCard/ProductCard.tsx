@@ -8,7 +8,7 @@ import {
   sizeOfPunchHole,
   sizeOfTitleText,
 } from "../../defineSize";
-import { AddToCartButton } from "../Buttons/Buttons";
+import { AddToCartButton, LikeButton } from "../Buttons/Buttons";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -154,7 +154,7 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
               className="sm:hidden h-6 w-6 3xl:h-8 3xl:w-8"
               onClick={handleButtonClick}
             >
-              <LikeBtn fillColor="#FFF9EF" />
+              <LikeButton _id={prop._id} custom="w-5 h-5 " />
             </div>
           </div>
           <div className="sm:hidden bg-black opacity-20 h-0.5 w-100% mb-2"></div>
@@ -163,7 +163,7 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
             onClick={handleButtonClick}
           >
             <div className="hidden sm:block h-6 w-6 3xl:h-8 3xl:w-8">
-              <LikeBtn custom="h-6 w-6 " fillColor="#FFF9EF" />
+              <LikeButton _id={prop._id} custom="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <AddToCartButton
               _id={prop._id}
@@ -270,7 +270,8 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
               className="sm:hidden h-6 w-6 3xl:h-8 3xl:w-8"
               onClick={handleButtonClick}
             >
-              <LikeBtn fillColor="#FFF9EF" />
+              {/* <LikeBtn fillColor="#FFF9EF" /> */}
+              <LikeButton _id={prop._id} custom="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </div>
           <div className="sm:hidden bg-black opacity-20 h-0.5 w-100% mb-2"></div>
@@ -279,7 +280,8 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
             onClick={handleButtonClick}
           >
             <div className="hidden sm:block h-6 w-6 3xl:h-8 3xl:w-8">
-              <LikeBtn custom="h-6 w-6 " fillColor="#FFF9EF" />
+              {/* <LikeBtn custom="h-6 w-6 " fillColor="#FFF9EF" /> */}
+              <LikeButton _id={prop._id} custom="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <AddToCartButton
               _id={prop._id}

@@ -5,6 +5,7 @@ import ScrollToTop from "../../Functions/ScrollToTop/ScrollToTop";
 import { LikeBtn } from "../../SVG/LikeBtn";
 import Star from "../../SVG/Star";
 import {
+  LikeButton,
   ProductAddToCartButton,
   ProductBuyNowBtn,
 } from "../../components/Buttons/Buttons";
@@ -90,7 +91,11 @@ const ProductPage = () => {
 
               {/* likeBtn */}
               <div className="h-8 w-8 absolute sm:hidden bottom-5 right-5">
-                <LikeBtn fillColor="#D9DFED" borderThickness={1} />
+                {/* <LikeButton /> */}
+                <LikeButton
+                  _id={openedProduct._id}
+                  custom="w-5 h-5 sm:w-6 sm:h-6"
+                />
               </div>
             </div>
 
@@ -143,7 +148,11 @@ const ProductPage = () => {
                 {/* <div className=" bg-black opacity-20 h-0.5 w-100% mb-2"></div> */}
                 <div className="flex justify-between  items-center">
                   <div className="items-center gap-2 hidden sm:block h-10 w-10 3xl:h-12 3xl:w-12 hover:cursor-pointer">
-                    <LikeBtn fillColor="#D9DFED" borderThickness={1} />
+                    {/* <LikeBtn fillColor="#D9DFED" borderThickness={1} /> */}
+                    <LikeButton
+                      _id={openedProduct._id}
+                      custom="w-5 h-5 sm:w-6 sm:h-6"
+                    />
                   </div>
                   <ProductBuyNowBtn
                     darkBg={true}

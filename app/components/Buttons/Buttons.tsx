@@ -1,7 +1,9 @@
+import { LikeBtn } from "@/app/SVG/LikeBtn";
 import CartIcon from "../../SVG/CartIcon";
 import { buttonProp, buttonPropInterface } from "../../declare";
 import { sizeOfLessMajorText } from "../../defineSize";
 import { HandleAddToCart } from "./ButtonFunctions/handleAddToCart";
+import { handleAddToLiked } from "./ButtonFunctions/handleAddToLiked";
 
 export const CartBuyNowBtn = (prop: buttonPropInterface) => {
   return (
@@ -101,6 +103,16 @@ export const OptionsPanelBtn = (prop: buttonProp) => {
     <>
       <button className=" bg-bgLightBlue text-primaryBlue py-1 px-2 xmd:px-8 rounded-sm">
         {prop.text}
+      </button>
+    </>
+  );
+};
+
+export const LikeButton = (prop: buttonPropInterface) => {
+  return (
+    <>
+      <button id={`like` + prop._id} className={` `} onClick={handleAddToLiked}>
+        <LikeBtn fillColor={prop.fillColor} custom={prop.custom} />
       </button>
     </>
   );

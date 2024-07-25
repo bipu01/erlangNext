@@ -1,16 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
 import { paddingForPage } from "../defineSize";
 import axios from "axios";
 import Image from "next/image";
-// import config from "../../config/config";
 import weavyArch from "../../public/assets/weavyArch.svg";
 import googleIcon from "../../public/icons/google.svg";
 import Link from "next/link";
-import BackArrow from "../SVG/BackArrow";
-import config from "../config/config";
 
 export default function SignUpPage() {
   const [formdata, setFormdata] = useState({});
@@ -35,12 +31,14 @@ export default function SignUpPage() {
           <Image className="rotate-180 " src={weavyArch} alt="wave" />
         </div>
         <div
-          className={`flex justify-center   sm:px-32 xmd:px-44 pt-10 sm:pb-20 ${paddingForPage}`}
+          className={`flex justify-center sm:px-32 xmd:px-44 pt-10 sm:pb-20 ${paddingForPage}`}
         >
-          <div className="absolute top-15% backdrop-blur-xl bg-primaryBlue/50 py-32 px-32 rounded-lg shadow-xl">
+          <div className="absolute top-5% sm:top-15% backdrop-blur-xl bg-primaryBlue/50 px-6 py-8 sm:py-24 sm:px-32 rounded-lg shadow-xl">
             <div className=" flex flex-col items-center justify-center gap-8 ">
               <div className="">
-                <p className=" text-3xl text-white font-bold">Sign up</p>
+                <p className="text-xl sm:text-3xl text-white font-bold">
+                  Sign up
+                </p>
               </div>
               <div className=" flex flex-col gap-3">
                 <form
@@ -48,7 +46,7 @@ export default function SignUpPage() {
                   onSubmit={handelSubmit}
                 >
                   <input
-                    className="text-lg py-1 px-2 sm:px-6 w-20rem rounded-lg bg-white text-primaryBlue "
+                    className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
                     type="text"
                     required
                     name=""
@@ -58,7 +56,7 @@ export default function SignUpPage() {
                   />
 
                   <input
-                    className="text-lg py-1 px-2 sm:px-6  w-20rem rounded-lg bg-white text-primaryBlue "
+                    className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
                     type="email"
                     required
                     name=""
@@ -67,7 +65,7 @@ export default function SignUpPage() {
                     onChange={handelChange}
                   />
                   <input
-                    className="text-lg py-1 px-2 sm:px-6  w-20rem rounded-lg bg-white text-primaryBlue "
+                    className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
                     type="password"
                     required
                     name=""
@@ -76,7 +74,7 @@ export default function SignUpPage() {
                     onChange={handelChange}
                   />
                   <button
-                    className="bg-primaryBlue w-auto text-lg rounded-3xl py-1 px-10 mt-4  text-white hover:text-white hover:bg-primaryBlue"
+                    className="bg-primaryBlue text-xs sm:text-lg rounded-3xl py-2 sm:py-1.5 px-10 mt-4  text-white sm:w-1/2 hover:text-white hover:bg-primaryBlue w-15rem"
                     type="submit"
                   >
                     Sign up
@@ -85,15 +83,19 @@ export default function SignUpPage() {
 
                 <div className="flex flex-col items-center py-6 gap-4">
                   <div className=" flex flex-row justify-center items-center bg-white rounded-md px-4 py-1 gap-2 cursor-pointer w-15rem">
-                    <Image className=" w-6" src={googleIcon} alt="" />
-                    <p className=" text-md font-medium">Continue with Google</p>
+                    <Image className="w-3 sm:w-6" src={googleIcon} alt="" />
+                    <p className="text-xs sm:text-md font-normal sm:font-medium">
+                      Continue with Google
+                    </p>
                   </div>
 
                   <Link
                     href={"/login"}
-                    className="text-center text-white bg-primaryBlue rounded-md px-4 py-1.5 gap-2 cursor-pointer w-15rem"
+                    className="text-center text-white bg-primaryBlue/50 hover:bg-primaryBlue rounded-md px-4 py-1 sm:py-1.5 gap-2 cursor-pointer w-15rem sm:w-15rem"
                   >
-                    <span className="text-md font-medium ">Log in</span>
+                    <span className="text-xs sm:text-md font-normal sm:font-medium ">
+                      Log in
+                    </span>
                   </Link>
                 </div>
               </div>

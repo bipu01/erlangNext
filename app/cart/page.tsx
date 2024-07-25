@@ -1,6 +1,5 @@
 "use client";
 
-import { paddingForPage } from "../defineSize";
 import Cart from "./Cart";
 import BackArrow from "../SVG/BackArrow";
 import Link from "next/link";

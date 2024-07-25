@@ -51,6 +51,8 @@ export const config = {
     "/api/user/logout",
     "/api/user/cart/addToCart",
     "/api/user/cart/removeFromCart",
+    "/api/user/liked/addToLiked",
+    "/api/user/liked/removeFromLiked",
     "/api/user/info",
     "/api/postProduct",
     "/api/user/verifyAdmin",
