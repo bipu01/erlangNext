@@ -81,7 +81,7 @@ const Footwear = () => {
           <span className="underline">STYLISH AND STRONG:</span> OUR
           WOMEN&apos;S BOOT COLLECTION
         </p>
-        <div id="container" className="grid space-y-16">
+        <div id="container" className="grid space-y-16 mx-4 sm:mx-0">
           {printProductCluster()}
         </div>
       </section>

@@ -9,7 +9,6 @@ import {
   sizeOfTitleText,
 } from "../../defineSize";
 import { AddToCartButton, LikeButton } from "../Buttons/Buttons";
-import Image from "next/image";
 import { useState } from "react";
 
 export const ProductCardLeftImg = (prop: ProductCardProp) => {
@@ -91,7 +90,7 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
   return (
     <div
       id={prop._id}
-      className={`row-span-2 sm:row-span-1 shadow-customLeft relative z-0 bg-bodybg px-7% sm:pr-3% pl-8% sm:pl-20% py-10% sm:py-4%  hover:cursor-pointer
+      className={`row-span-2 sm:row-span-1 shadow-customLeft relative z-0 bg-bodybg px-7% sm:pr-3% pl-12% sm:pl-20% py-10% sm:py-4%  hover:cursor-pointer
         flex flex-col justify-between rounded-tr-3xl rounded-br-3xl sm:rounded-tl-full sm:rounded-bl-full
       after:content-[''] after:absolute after:-bottom-0 after:shadow-customLeft after:right-100% sm:after:left-100% after:h-100% after:w-180% after:bg-bodybg`}
       // onClick={}
@@ -142,7 +141,7 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="absolute bottom-4 sm:static">
           <div className="flex justify-between mt-2">
             <h3
               id="price"
@@ -201,10 +200,9 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
   return (
     <div
       id={prop._id}
-      className={`row-span-2 sm:row-span-1  shadow-customRight relative z-0 bg-bodybg px-7% sm:py-4% flex flex-col justify-between hover:cursor-pointer
-     pl-8% sm:pl-3% sm:pr-20% py-10% rounded-tr-3xl rounded-br-3xl rounded-md sm:rounded-tr-full sm:rounded-br-full 
+      className={`relative row-span-2 sm:row-span-1  shadow-customRight  z-0 bg-bodybg px-7% sm:py-4% flex flex-col justify-between hover:cursor-pointer
+     pl-10% sm:pl-3% sm:pr-20% py-10% rounded-tr-3xl rounded-br-3xl rounded-md sm:rounded-tr-full sm:rounded-br-full 
       after:content-[''] after:absolute after:-top-0 after:shadow-customRight after:right-100% after:h-100% after:w-180% after:bg-bodybg`}
-      // onClick={openProductMenu}
     >
       <Link href={`/product/${prop._id}`} onClick={handleLinkClick}>
         <div
@@ -236,11 +234,6 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
                   <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                   <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
                   <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                  {/* <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/filledStar.svg" alt="" className=" sm:h-4" />
-                <img src="/icons/unfilledStar.svg" alt="" className=" sm:h-4" /> */}
                 </div>
                 {prop.ratingRate}
               </div>
@@ -258,7 +251,7 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="absolute bottom-4 sm:static">
           <div className="flex justify-between mt-2">
             <h3
               id="price"

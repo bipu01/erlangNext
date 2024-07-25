@@ -18,10 +18,16 @@ const Popup = (prop: popupProp) => {
 
   useEffect(() => {
     if (popup === true) {
+      console.log("Setting timeout"); // Debug log
       const timer = setTimeout(() => {
+        console.log("Timeout triggered"); // Debug log
         dispatch(togglePopup());
       }, 1000);
-      return () => clearTimeout(timer);
+
+      return () => {
+        console.log("Clearing timeout"); // Debug log
+        clearTimeout(timer);
+      };
     }
   }, [popup, dispatch]);
 
