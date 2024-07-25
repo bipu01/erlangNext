@@ -4,6 +4,7 @@ import popupSlice, { togglePopup } from "@/redux/features/popupSlice";
 import { RootState } from "@/redux/store";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// import { clearTimeout } from "timers";
 
 export type popupProp = {
   heading: string;
@@ -17,9 +18,10 @@ const Popup = (prop: popupProp) => {
 
   useEffect(() => {
     if (popup === true) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         dispatch(togglePopup());
       }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [popup, dispatch]);
 
