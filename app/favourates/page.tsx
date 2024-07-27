@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser, updateCart } from "@/redux/features/userSlice";
 import Popup from "../components/Popups/Popup";
 import { RootState } from "@/redux/store";
+import NotLoggedPopup from "../components/Popups/NotLoggedPopup";
 
 export default function CartPage() {
   const [showDialouge, setShowDialouge] = useState(false);
@@ -35,27 +36,15 @@ export default function CartPage() {
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);
 
+  const isAuthorized = useSelector(
+    (state: RootState) => state.user.isAuthorized
+  );
   return (
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
       {popup && <Popup heading={heading} message={message} />}
-      {showDialouge ? (
-        <div className="absolute top-25vh left-20vw z-40 flex flex-col p-8 pb-16 justify-between items-center h-30vh w-60vw bg-primaryBlue text-white rounded-md ">
-          <p className="font-semibold text-lg text-white">
-            You are not logged in
-          </p>
-          <p>Go to login page to continue 👇👇: </p>
-          <Link href="/login">
-            <button className="bg-white text-primaryBlue p-2 px-4 rounded-md ">
-              Login page
-            </button>
-          </Link>
-        </div>
-      ) : (
-        ""
-      )}
-
+      {!isAuthorized && <NotLoggedPopup />}
       <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
         <div className=" h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8">
           <Link href="/" className="">

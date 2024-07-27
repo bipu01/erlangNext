@@ -82,18 +82,18 @@ const Dresses = () => {
     <>
       <div className="relative mt-7vh">
         <Image src={weavyArch} alt="wave" className="w-100vw" />
-        <div className="absolute z-10 top-60% ">
+        {/* <div className="absolute z-10 top-60% ">
           <SortByPanel />
-        </div>
+        </div> */}
       </div>
       <section
         id="dresses"
-        className={` bg-bgLightBlue px-10vw py-5vh relative ${paddingForProductCard} mb-20vh`}
+        className={` bg-bgLightBlue px-10vw pb-5vh relative ${paddingForProductCard} mb-5vh sm:mb-20vh`}
       >
-        <h1 className=" text-primaryBlue text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-10vh">
-          WE HAVE SOMETHING FOR EVERYONE
+        <h1 className="underline text-primaryBlue text-2x sm:text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-5vh sm:mb-10vh">
+          WE HAVE SOMETHING FOR EVERYONE:
         </h1>
-        <div id="container" className="grid space-y-16 mx-4 sm:mx-0 ">
+        <div id="container" className="grid sm:space-y-16 mx-4 sm:mx-0 ">
           {/* {printProductCluster()} */}
           {dataFound === true ? printProductCluster() : ""}
         </div>

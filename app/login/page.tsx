@@ -8,9 +8,8 @@ import weavyArch from "../../public/assets/weavyArch.svg";
 import googleIcon from "../../public/icons/google.svg";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, setUser } from "@/redux/features/userSlice";
+import { setAuthorized, setUser } from "@/redux/features/userSlice";
 import { RootState } from "@/redux/store";
-import Popup from "../components/Popups/Popup";
 import {
   popupSetHeading,
   popupSetMessage,
@@ -39,29 +38,19 @@ export default function LoginPage() {
       dispatch(popupSetMessage(""));
       dispatch(togglePopup());
 
-      // localStorage.setItem("ErlangUserData", JSON.stringify(userData));
       dispatch(setUser(userData));
+      dispatch(setAuthorized());
     }
   };
 
-  const popup = useSelector((state: RootState) => state.popupSlice.popup);
-  const heading = useSelector((state: RootState) => state.popupSlice.heading);
-  const message = useSelector((state: RootState) => state.popupSlice.message);
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    if (popup === true) {
-      setShow(!show);
-    }
-  }, [popup]);
+  // const popup = useSelector((state: RootState) => state.popupSlice.popup);
+  // const heading = useSelector((state: RootState) => state.popupSlice.heading);
+  // const message = useSelector((state: RootState) => state.popupSlice.message);
+  // const [show, setShow] = useState(false);
 
   return (
     <>
       <div className=" bg-bodybg w-full h-93vh relative">
-        {show === true ? (
-          <Popup bgColor="white/50" heading={heading} message={message} />
-        ) : (
-          ""
-        )}
         <div className="">
           <Image className="rotate-180 " src={weavyArch} alt="wave" />
         </div>

@@ -93,13 +93,12 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
       className={`row-span-2 sm:row-span-1 shadow-customLeft relative z-0 bg-bodybg px-7% sm:pr-3% pl-12% sm:pl-20% py-10% sm:py-4%  hover:cursor-pointer
         flex flex-col justify-between rounded-tr-3xl rounded-br-3xl sm:rounded-tl-full sm:rounded-bl-full
       after:content-[''] after:absolute after:-bottom-0 after:shadow-customLeft after:right-100% sm:after:left-100% after:h-100% after:w-180% after:bg-bodybg`}
-      // onClick={}
     >
       <Link href={`/product/${prop._id}`} onClick={handleLinkClick}>
         <div
           className={`space-y-2 xl:space-y-0 after:absolute after:content-[''] after:h-0.5 after:w-90% after:hidden sm:after:block 
         after:bg-black after:opacity-20 after:z-40 before:absolute before:content-[''] before:h-100% before:w-4 
-        before:bg-bodybg before:-left-3% sm:before:left-98% 4xl:before:left-99% before:z-30 before:top-0`}
+        before:bg-bodybg before:-left-7% sm:before:left-98% 4xl:before:left-99% before:z-30 before:top-0`}
         >
           <div
             className={`hidden sm:block absolute ${sizeOfPunchHole} ${
@@ -200,8 +199,8 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
   return (
     <div
       id={prop._id}
-      className={`relative row-span-2 sm:row-span-1  shadow-customRight  z-0 bg-bodybg px-7% sm:py-4% flex flex-col justify-between hover:cursor-pointer
-     pl-10% sm:pl-3% sm:pr-20% py-10% rounded-tr-3xl rounded-br-3xl rounded-md sm:rounded-tr-full sm:rounded-br-full 
+      className={`relative row-span-2 sm:row-span-1  shadow-customRight  z-0 bg-bodybg  sm:py-4% flex flex-col justify-between hover:cursor-pointer
+     px-7%  sm:pl-3% sm:pr-20% py-10% rounded-tr-3xl rounded-br-3xl rounded-md sm:rounded-tr-full sm:rounded-br-full 
       after:content-[''] after:absolute after:-top-0 after:shadow-customRight after:right-100% after:h-100% after:w-180% after:bg-bodybg`}
     >
       <Link href={`/product/${prop._id}`} onClick={handleLinkClick}>

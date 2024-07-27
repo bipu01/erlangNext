@@ -8,6 +8,7 @@ interface User {
   settings: any[];
   likedProducts: product[];
   itemsInCart: product[];
+  isAuthorized: boolean;
 }
 
 const initialState: User = {
@@ -17,6 +18,7 @@ const initialState: User = {
   settings: [],
   likedProducts: [],
   itemsInCart: [],
+  isAuthorized: false,
 };
 
 const userSlice = createSlice({
@@ -50,6 +52,9 @@ const userSlice = createSlice({
         (item) => item._id !== action.payload
       );
     },
+    setAuthorized: (state) => {
+      state.isAuthorized = !state.isAuthorized;
+    },
   },
 });
 
@@ -60,6 +65,7 @@ export const {
   removeFromCart,
   removeFromLiked,
   setUser,
+  setAuthorized,
 } = userSlice.actions;
 
 export default userSlice.reducer;

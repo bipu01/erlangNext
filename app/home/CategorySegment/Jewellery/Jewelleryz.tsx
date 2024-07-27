@@ -71,15 +71,16 @@ const Jewellery = () => {
   };
   return (
     <>
-      <div className="relative mt-15vh">
+      <div className="relative mt-5vh sm:mt-15vh">
         <img src="/assets/weavyArchPink.svg" alt="wave" className="w-100vw" />
       </div>
       <section
         id="dresses"
-        className={` bg-bgLightPink px-10vw py-5vh relative ${paddingForProductCard} mb-20vh`}
+        className={` bg-bgLightPink px-10vw py-5vh relative ${paddingForProductCard} mb-5vh sm:mb-20vh`}
       >
-        <h1 className=" text-primaryBlue text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-10vh">
-          DAZZLING EARRINGS FOR EVERY OCCASION
+        <h1 className=" text-primaryBlue text-2xl sm:text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-5vh sm:mb-10vh">
+          <span className="underline">DAZZLING EARRINGS</span> FOR EVERY
+          OCCASION:
         </h1>
         <div id="container" className="grid space-y-16 mx-4 sm:mx-0">
           {printProductCluster()}

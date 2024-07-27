@@ -70,7 +70,7 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="">
-              <Link href="/login">
+              <Link href="/profile">
                 <img
                   className="h-7 aspect-square sm:h-6 xmd:h-9"
                   src="./assets/userr.svg"
