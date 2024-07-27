@@ -118,7 +118,7 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          <div className=" pl-2">
+          <div className=" pl-2 sm:hidden">
             <Link
               href="/profile"
               className={`p-1.5 ${
