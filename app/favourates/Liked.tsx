@@ -36,7 +36,7 @@ export default function Liked() {
     dispatch(setUser(user));
     setShowOptions(false);
 
-    dispatch(popupSetHeading("Item removed from Fav"));
+    dispatch(popupSetHeading("Item removed from Liked"));
     dispatch(popupSetMessage(""));
     dispatch(togglePopup());
   };
