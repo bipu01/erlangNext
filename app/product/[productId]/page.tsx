@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import ScrollToTop from "../../Functions/ScrollToTop/ScrollToTop";
-import { LikeBtn } from "../../SVG/LikeBtn";
 import Star from "../../SVG/Star";
 import {
   LikeButton,
@@ -40,7 +39,6 @@ const ProductPage = () => {
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);
-  const [show, setShow] = useState(false);
   const { productId } = useParams();
 
   useEffect(() => {
@@ -53,12 +51,6 @@ const ProductPage = () => {
     };
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (popup === true) {
-      setShow(!show);
-    }
-  }, [popup]);
 
   const [lastVisitedPage, setLastVisitedPage] = useState<string | null>(null);
 
@@ -87,7 +79,7 @@ const ProductPage = () => {
         <div
           className={`relative bg-bgLightBlue min-h-95vh py-4 sm:py-16 sm:pt-16 ${paddingForPage}`}
         >
-          {show === true ? <Popup heading={heading} message={message} /> : ""}
+          {popup && <Popup heading={heading} message={message} />}
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
             <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-30 hover:cursor-pointer">

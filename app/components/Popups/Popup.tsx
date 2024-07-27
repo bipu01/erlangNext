@@ -17,16 +17,19 @@ const Popup = (prop: popupProp) => {
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
     if (popup === true) {
       console.log("Setting timeout"); // Debug log
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         console.log("Timeout triggered"); // Debug log
         dispatch(togglePopup());
       }, 1000);
 
       return () => {
-        console.log("Clearing timeout"); // Debug log
-        clearTimeout(timer);
+        if (timer) {
+          console.log("Clearing timeout"); // Debug log
+          clearTimeout(timer);
+        }
       };
     }
   }, [popup, dispatch]);
