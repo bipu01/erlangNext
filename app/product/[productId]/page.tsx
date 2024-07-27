@@ -16,6 +16,7 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Popup from "@/app/components/Popups/Popup";
+import NotLoggedPopup from "@/app/components/Popups/NotLoggedPopup";
 
 const fetchProductFromDb = async (productId: string) => {
   try {
@@ -39,6 +40,10 @@ const ProductPage = () => {
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);
+
+  const isAuthorized = useSelector(
+    (state: RootState) => state.user.isAuthorized
+  );
   const { productId } = useParams();
 
   useEffect(() => {
@@ -79,7 +84,10 @@ const ProductPage = () => {
         <div
           className={`relative bg-bgLightBlue min-h-95vh py-4 sm:py-16 sm:pt-16 ${paddingForPage}`}
         >
-          {popup && <Popup heading={heading} message={message} />}
+          {popup && isAuthorized && (
+            <Popup heading={heading} message={message} />
+          )}
+          {popup && !isAuthorized && <NotLoggedPopup />}
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
             <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-30 hover:cursor-pointer">

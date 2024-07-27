@@ -28,8 +28,8 @@ export default function Hamburger() {
     },
     { link: "/contact", icon: "/icons/email.png", text: "Contact us" },
     { link: "/aboutus", icon: "/icons/about2.png", text: "About us" },
-    { link: "/", icon: "/icons/profile.png", text: "Profile" },
-    { link: "/cart", icon: "/icons/tick.png", text: "My orders" },
+    { link: "/profile", icon: "/icons/profile.png", text: "Profile" },
+    { link: "/orders", icon: "/icons/tick.png", text: "My orders" },
   ];
 
   return (
