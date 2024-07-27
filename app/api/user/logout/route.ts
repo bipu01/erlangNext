@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../utils/mongodb";
 import User from "../../db/userSchema";
-import { parse, serialize } from "cookie";
-import { jwtVerify } from "jose";
+import { serialize } from "cookie";
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
 
 export async function POST(req: NextRequest) {

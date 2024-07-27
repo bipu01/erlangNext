@@ -4,7 +4,6 @@ import { ReactHTMLElement, useEffect, useState } from "react";
 import ScrollToTop from "../Functions/ScrollToTop/ScrollToTop";
 import Star from "../SVG/Star";
 import { CartBuyNowBtn } from "../components/Buttons/Buttons";
-import { product } from "../store/type";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";

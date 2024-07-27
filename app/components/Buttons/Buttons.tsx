@@ -3,12 +3,16 @@ import { LikeBtn } from "@/app/SVG/LikeBtn";
 import CartIcon from "../../SVG/CartIcon";
 import { buttonProp, buttonPropInterface } from "../../declare";
 import { sizeOfLessMajorText } from "../../defineSize";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   popupSetHeading,
   popupSetMessage,
+  toggleNotLoggedPopup,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import { cartItems } from "@/app/cart/cartCluster";
+import { setUser, updateCart } from "@/redux/features/userSlice";
+import { RootState } from "@/redux/store";
 
 export const CartBuyNowBtn = (prop: buttonPropInterface) => {
   return (
@@ -45,10 +49,14 @@ export const ProductBuyNowBtn = (prop: buttonPropInterface) => {
 export const AddToCartButton = (prop: buttonPropInterface) => {
   const dispatch = useDispatch();
 
+  const isAuthorized = useSelector(
+    (state: RootState) => state.user.isAuthorized
+  );
+
   const HandleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const productId = e.currentTarget.id.replace(/\baddToCart\D*/g, "");
     try {
-      await fetch("/api/user/cart/addToCart", {
+      const res = await fetch("/api/user/cart/addToCart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,9 +64,15 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
         body: JSON.stringify({ productId: productId }),
       });
       // alert("Item added to cart");
+      const parsedData = await res.json();
       dispatch(popupSetHeading("Item successfully added to cart"));
       dispatch(popupSetMessage("🛒✅"));
+      dispatch(updateCart(parsedData.itemsInCart));
+
       dispatch(togglePopup());
+      if (!isAuthorized) {
+        dispatch(toggleNotLoggedPopup());
+      }
     } catch (error) {
       console.log({ "Error adding to cart": error });
     }
@@ -88,17 +102,24 @@ export const ProductAddToCartButton = (prop: buttonPropInterface) => {
 
   const HandleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const productId = e.currentTarget.id.replace(/\baddToCart\D*/g, "");
+    console.log({ productId: productId });
     try {
-      await fetch("/api/user/cart/addToCart", {
+      const res = await fetch("/api/user/cart/addToCart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ productId: productId }),
       });
+
+      // alert("Item added to cart");
+      const parsedData = await res.json();
       dispatch(popupSetHeading("Item successfully added to cart"));
       dispatch(popupSetMessage("🛒✅"));
+      dispatch(updateCart(parsedData.itemsInCart));
+
       dispatch(togglePopup());
+      dispatch(toggleNotLoggedPopup());
     } catch (error) {
       console.log({ "Error adding to cart": error });
     }

@@ -13,10 +13,11 @@ import { product } from "../../store/type";
 import BackArrow from "../../SVG/BackArrow";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Popup from "@/app/components/Popups/Popup";
 import NotLoggedPopup from "@/app/components/Popups/NotLoggedPopup";
+import { setUser } from "@/redux/features/userSlice";
 
 const fetchProductFromDb = async (productId: string) => {
   try {
@@ -27,7 +28,7 @@ const fetchProductFromDb = async (productId: string) => {
       },
     });
     const body = await res.json();
-    console.log({ resFrombackend: body });
+    // console.log({ resFrombackend: body });
     return body;
   } catch (error) {
     console.error(error);
@@ -41,10 +42,18 @@ const ProductPage = () => {
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);
 
+  const notLoggedPopup = useSelector(
+    (state: RootState) => state.popupSlice.notLoggedPopup
+  );
+
+  const [lastVisitedPage, setLastVisitedPage] = useState<string | null>(null);
+
   const isAuthorized = useSelector(
     (state: RootState) => state.user.isAuthorized
   );
   const { productId } = useParams();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,11 +64,8 @@ const ProductPage = () => {
       }
     };
     fetchData();
-  }, []);
+    printPreviewPage();
 
-  const [lastVisitedPage, setLastVisitedPage] = useState<string | null>(null);
-
-  useEffect(() => {
     const lastVisitedPageString = sessionStorage.getItem("lastVisitedPage");
     if (lastVisitedPageString) {
       try {
@@ -68,9 +74,14 @@ const ProductPage = () => {
         console.error("Failed to parse lastVisitedPage from sessionStorage", e);
       }
     }
-  }, []);
-  useEffect(() => {
-    printPreviewPage();
+
+    const getUser = async () => {
+      const res = await fetch("/api/user/info");
+      const parsedRes = await res.json();
+      const user = parsedRes.message;
+      dispatch(setUser(user));
+    };
+    getUser();
   }, []);
 
   if (!productId) {
@@ -87,7 +98,7 @@ const ProductPage = () => {
           {popup && isAuthorized && (
             <Popup heading={heading} message={message} />
           )}
-          {popup && !isAuthorized && <NotLoggedPopup />}
+          {notLoggedPopup && !isAuthorized && <NotLoggedPopup />}
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
             <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-30 hover:cursor-pointer">
@@ -174,6 +185,7 @@ const ProductPage = () => {
                     primary={true}
                   />
                   <ProductAddToCartButton
+                    _id={openedProduct._id}
                     darkBg={false}
                     text="Add to cart"
                     primary={false}

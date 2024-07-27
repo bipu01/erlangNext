@@ -35,15 +35,20 @@ export default function CartPage() {
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);
+  const notLoggedPopup = useSelector(
+    (state: RootState) => state.popupSlice.notLoggedPopup
+  );
 
   const isAuthorized = useSelector(
     (state: RootState) => state.user.isAuthorized
   );
+
   return (
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
       {!isAuthorized && <NotLoggedPopup />}
+      {popup && <Popup heading={heading} message={message} />}
 
       <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
         <div className=" h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8">

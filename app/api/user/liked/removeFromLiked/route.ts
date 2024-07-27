@@ -31,6 +31,7 @@ export async function GET(req: NextRequest) {
         likedProducts: updatedUser.likedProducts,
         settings: updatedUser.settings,
         otherInfo: updatedUser.otherInfo,
+        isAuthorized: true,
       };
 
       console.log("Removed from Liked");

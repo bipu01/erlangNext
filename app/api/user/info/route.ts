@@ -1,9 +1,6 @@
-import { parse } from "cookie";
-import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../utils/mongodb";
 import User from "../../db/userSchema";
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
 
 export async function GET(req: NextRequest) {
   const headers = req.headers.get("x-user");

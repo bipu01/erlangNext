@@ -15,12 +15,10 @@ import {
   popupSetMessage,
   togglePopup,
 } from "@/redux/features/popupSlice";
-import { useRouter } from "next/router";
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
   const dispatch = useDispatch();
-  // const router = useRouter();
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({ ...formdata, [e.target.id]: e.target.value });

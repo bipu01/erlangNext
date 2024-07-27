@@ -1,15 +1,15 @@
 import { useState } from "react";
-// import { Link } from "react-router-dom";
 import Link from "next/link";
-import Image from "next/image";
 import axios from "axios";
 
 export default function Hamburger() {
   const [show, setShow] = useState<boolean>(false);
 
   const handleLogout = async () => {
-    window.location.href = "/login";
+    sessionStorage.removeItem("currentUser");
     await axios.post("/api/user/logout");
+    window.location.href = "/login";
+
     // console.log({ resOfLogout: res });
   };
 
