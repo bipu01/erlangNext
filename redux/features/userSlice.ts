@@ -32,6 +32,7 @@ const userSlice = createSlice({
       state.settings = action.payload.settings;
       state.likedProducts = action.payload.likedProducts;
       state.itemsInCart = action.payload.itemsInCart;
+      state.isAuthorized = action.payload.isAuthorized;
     },
     updateCart: (state, action: PayloadAction<product[]>) => {
       state.itemsInCart = action.payload;

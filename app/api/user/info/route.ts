@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
         likedProducts: userFromDb.likedProducts,
         settings: userFromDb.settings,
         otherInfo: userFromDb.otherInfo,
+        isAuthorized: true,
       };
       return NextResponse.json({ message: user });
     } catch (error) {

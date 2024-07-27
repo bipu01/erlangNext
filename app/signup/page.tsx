@@ -18,7 +18,7 @@ export default function SignUpPage() {
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await axios.post(`api/user/signup`, formdata);
-    if (res.status == 200) {
+    if (res.status === 200) {
       window.location.href = "/login";
     }
     console.log({ "response": res });
