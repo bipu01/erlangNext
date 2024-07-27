@@ -15,10 +15,12 @@ import {
   popupSetMessage,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import { useRouter } from "next/router";
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
   const dispatch = useDispatch();
+  // const router = useRouter();
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({ ...formdata, [e.target.id]: e.target.value });
@@ -27,26 +29,25 @@ export default function LoginPage() {
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await axios.post("/api/user/login", { formdata });
+    // console.log({ res: res });
+    // console.log({ resStatus: res.status });
+    // router.push("/");
 
-    if (res.status == 200) {
+    if (res.status === 200) {
       const pageToRedirect = sessionStorage.getItem("lastVisitedPage");
       window.location.href = pageToRedirect || "/";
 
       const userData = res.data.userData;
+      console.log({ userData: userData });
 
       dispatch(popupSetHeading("Successfully logged in"));
       dispatch(popupSetMessage(""));
       dispatch(togglePopup());
 
       dispatch(setUser(userData));
-      dispatch(setAuthorized());
+      // dispatch(setAuthorized());
     }
   };
-
-  // const popup = useSelector((state: RootState) => state.popupSlice.popup);
-  // const heading = useSelector((state: RootState) => state.popupSlice.heading);
-  // const message = useSelector((state: RootState) => state.popupSlice.message);
-  // const [show, setShow] = useState(false);
 
   return (
     <>

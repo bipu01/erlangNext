@@ -8,10 +8,9 @@ export default function Hamburger() {
   const [show, setShow] = useState<boolean>(false);
 
   const handleLogout = async () => {
-    // console.log("Logout clicked");
-    const res = await axios.post("/api/user/logout");
-    localStorage.removeItem("ErlangUserData");
-    console.log({ resOfLogout: res });
+    window.location.href = "/login";
+    await axios.post("/api/user/logout");
+    // console.log({ resOfLogout: res });
   };
 
   const handelHamClick = () => {

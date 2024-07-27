@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
             likedProducts: user.likedProducts,
             settings: user.settings,
             otherInfo: user.otherInfo,
+            isAuthorized: true,
           };
           // console.log({ userDataToSendToClient: userDataToSendToClient });
           const accessToken = generateAccessToken(name, email, _id);
