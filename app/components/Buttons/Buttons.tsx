@@ -100,6 +100,10 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
 export const ProductAddToCartButton = (prop: buttonPropInterface) => {
   const dispatch = useDispatch();
 
+  const isAuthorized = useSelector(
+    (state: RootState) => state.user.isAuthorized
+  );
+
   const HandleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const productId = e.currentTarget.id.replace(/\baddToCart\D*/g, "");
     console.log({ productId: productId });
@@ -119,7 +123,9 @@ export const ProductAddToCartButton = (prop: buttonPropInterface) => {
       dispatch(updateCart(parsedData.itemsInCart));
 
       dispatch(togglePopup());
-      dispatch(toggleNotLoggedPopup());
+      if (!isAuthorized) {
+        dispatch(toggleNotLoggedPopup());
+      }
     } catch (error) {
       console.log({ "Error adding to cart": error });
     }
@@ -166,6 +172,10 @@ export const OptionsPanelBtn = (prop: buttonProp) => {
 export const LikeButton = (prop: buttonPropInterface) => {
   const dispatch = useDispatch();
 
+  const isAuthorized = useSelector(
+    (state: RootState) => state.user.isAuthorized
+  );
+
   const handleAddToLiked = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const productId = e.currentTarget.id.replace(/\like\D*/g, "");
     console.log("add to liked clicked");
@@ -184,6 +194,9 @@ export const LikeButton = (prop: buttonPropInterface) => {
       dispatch(popupSetHeading("Item successfully added to Liked"));
       dispatch(popupSetMessage("♥️♥️♥️"));
       dispatch(togglePopup());
+      if (!isAuthorized) {
+        dispatch(toggleNotLoggedPopup());
+      }
     } catch (error) {
       console.log({ "Error adding to liked": error });
     }
