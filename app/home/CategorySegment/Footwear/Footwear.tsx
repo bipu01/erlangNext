@@ -88,7 +88,7 @@ const Footwear = () => {
         </p>
         <div
           id="container"
-          className="grid sm:space-y-16 justify-center mx-auto max-w-25rem sm:max-w-100% sm:mx-0"
+          className="grid sm:space-y-16 justify-center  max-w-25rem sm:max-w-100%  mx-3vw sm:mx-0"
         >
           {printProductCluster()}
         </div>

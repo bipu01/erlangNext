@@ -1,8 +1,6 @@
 import Product from "@/app/api/db/productSchema";
 import User from "@/app/api/db/userSchema";
 import dbConnect from "@/app/api/utils/mongodb";
-import { parse } from "cookie";
-import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || "";
 
@@ -23,7 +21,7 @@ export async function POST(req: NextRequest) {
         { new: true }
       );
       return NextResponse.json({
-        message: "Product added to cart",
+        itemsInCart: userUpdate.itemsInCart,
       });
     } catch (error) {
       return NextResponse.json("Trouble adding to cart");

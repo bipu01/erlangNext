@@ -14,6 +14,10 @@ export default function CartPage() {
   const [showDialouge, setShowDialouge] = useState(false);
   const dispatch = useDispatch();
 
+  const notLoggedPopup = useSelector(
+    (state: RootState) => state.popupSlice.notLoggedPopup
+  );
+
   useEffect(() => {
     getUserInfo();
     sessionStorage.setItem("lastVisitedPage", "/favourates");
@@ -43,8 +47,12 @@ export default function CartPage() {
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
-      {popup && <Popup heading={heading} message={message} />}
+      {/* {popup && <Popup heading={heading} message={message} />}
+      {!isAuthorized && <NotLoggedPopup />} */}
+
+      {popup && isAuthorized && <Popup heading={heading} message={message} />}
       {!isAuthorized && <NotLoggedPopup />}
+
       <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
         <div className=" h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8">
           <Link href="/" className="">
