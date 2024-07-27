@@ -70,19 +70,26 @@ const Footwear = () => {
   };
   return (
     <>
-      <div className="relative mt-5vh sm:mt-15vh">
-        <img src="/assets/weavyArch.svg" alt="wave" className="w-100vw" />
+      <div className="relative mt-15vh sm:mt-25vh">
+        <img
+          src="/assets/weavyArch.svg"
+          alt="wave"
+          className="w-100vw absolute -bottom-1"
+        />
       </div>
 
       <section
         id="dresses"
-        className={` bg-bgLightBlue px-10vw pb-5vh relative ${paddingForProductCard} mb-5vh sm:mb-20vh`}
+        className={` bg-bgLightBlue px-10vw pt-3vh pb-5vh relative ${paddingForProductCard} mb-5vh `}
       >
-        <p className=" text-primaryBlue text-2xl sm:text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-5vh sm:mb-10vh leading-loose ">
+        <p className="  text-primaryBlue text-2xl sm:text-3xl 3xl:text-5xl font-bold w-100% sm:w-70% xmd:w-70% mb-3vh sm:mb-5vh leading-loose">
           <span className="underline">STYLISH AND STRONG:</span> OUR SHOES
           COLLECTION:
         </p>
-        <div id="container" className="grid space-y-16 mx-4 sm:mx-0">
+        <div
+          id="container"
+          className="grid sm:space-y-16 justify-center mx-auto max-w-25rem sm:max-w-100% sm:mx-0"
+        >
           {printProductCluster()}
         </div>
       </section>
