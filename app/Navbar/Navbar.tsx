@@ -75,9 +75,9 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="">
-              <Link href="/favourates">
+              <Link href="/liked">
                 <div className="flex gap-1 items-center">
-                  <p> Fav</p>
+                  <p> Liked</p>
                   <div className=" relative">
                     <LikeBtn
                       borderThickness={1.5}

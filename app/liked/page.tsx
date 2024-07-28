@@ -20,7 +20,7 @@ export default function CartPage() {
 
   useEffect(() => {
     getUserInfo();
-    sessionStorage.setItem("lastVisitedPage", "/favourates");
+    sessionStorage.setItem("lastVisitedPage", "/liked");
   }, []);
 
   const getUserInfo = async () => {
@@ -47,8 +47,8 @@ export default function CartPage() {
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
-      {/* {popup && <Popup heading={heading} message={message} />}
-      {!isAuthorized && <NotLoggedPopup />} */}
+      {popup && <Popup heading={heading} message={message} />}
+      {!isAuthorized && <NotLoggedPopup />}
 
       {popup && isAuthorized && <Popup heading={heading} message={message} />}
       {!isAuthorized && <NotLoggedPopup />}

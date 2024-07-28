@@ -26,6 +26,8 @@ export async function POST(req: NextRequest) {
           itemsInCart: [],
           accessToken: "filler",
           refreshToken: "filler",
+          address: "none",
+          phone: 98,
         });
         // console.log(body);
 

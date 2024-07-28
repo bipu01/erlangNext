@@ -9,6 +9,8 @@ interface User {
   likedProducts: product[];
   itemsInCart: product[];
   isAuthorized: boolean;
+  phone: number;
+  address: string;
 }
 
 const initialState: User = {
@@ -19,6 +21,8 @@ const initialState: User = {
   likedProducts: [],
   itemsInCart: [],
   isAuthorized: false,
+  phone: 0,
+  address: "",
 };
 
 const userSlice = createSlice({
@@ -33,6 +37,8 @@ const userSlice = createSlice({
       state.likedProducts = action.payload?.likedProducts;
       state.itemsInCart = action.payload?.itemsInCart;
       state.isAuthorized = action.payload?.isAuthorized;
+      state.phone = action.payload?.phone;
+      state.address = action.payload?.address;
     },
     updateCart: (state, action: PayloadAction<product[]>) => {
       state.itemsInCart = action.payload;
@@ -55,6 +61,9 @@ const userSlice = createSlice({
     },
     setAuthorized: (state) => {
       state.isAuthorized = !state.isAuthorized;
+    },
+    logout: (state) => {
+      state = initialState;
     },
   },
 });

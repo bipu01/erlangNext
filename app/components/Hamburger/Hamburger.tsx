@@ -1,15 +1,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/features/authSlice";
 
 export default function Hamburger() {
   const [show, setShow] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const handleLogout = async () => {
     sessionStorage.removeItem("currentUser");
     await axios.post("/api/user/logout");
     window.location.href = "/login";
-
+    dispatch(logout());
     // console.log({ resOfLogout: res });
   };
 
@@ -19,7 +22,7 @@ export default function Hamburger() {
   // Define an array of menu items
   const menuItems = [
     { link: "/", icon: "/icons/back.png", text: "" },
-    { link: "/favourates", icon: "/icons/fav.png", text: "Favorites" },
+    { link: "/liked", icon: "/icons/fav.png", text: "Favorites" },
     {
       link: "/postProducts",
       icon: "/icons/postProducts.png",
