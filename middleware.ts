@@ -56,5 +56,7 @@ export const config = {
     "/api/user/info",
     "/api/postProduct",
     "/api/user/verifyAdmin",
+    "/api/user/update",
+    "/api/user/profile",
   ],
 };

@@ -1,4 +1,5 @@
 "use client";
+
 import ScrollToTop from "../Functions/ScrollToTop/ScrollToTop";
 import { paddingForPage } from "../defineSize";
 import Testimonials from "./Testimonials/Testimonials";

@@ -9,6 +9,8 @@ interface User {
   likedProducts: product[];
   itemsInCart: product[];
   isAuthorized: boolean;
+  phone: number;
+  address: string;
 }
 
 const initialState: User = {
@@ -19,6 +21,8 @@ const initialState: User = {
   likedProducts: [],
   itemsInCart: [],
   isAuthorized: false,
+  phone: 0,
+  address: "",
 };
 
 const userSlice = createSlice({
@@ -26,13 +30,15 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<User>) => {
-      state.name = action.payload.name;
-      state.email = action.payload.email;
-      state.otherInfo = action.payload.otherInfo;
-      state.settings = action.payload.settings;
-      state.likedProducts = action.payload.likedProducts;
-      state.itemsInCart = action.payload.itemsInCart;
-      state.isAuthorized = action.payload.isAuthorized;
+      state.name = action.payload?.name;
+      state.email = action.payload?.email;
+      state.otherInfo = action.payload?.otherInfo;
+      state.settings = action.payload?.settings;
+      state.likedProducts = action.payload?.likedProducts;
+      state.itemsInCart = action.payload?.itemsInCart;
+      state.isAuthorized = action.payload?.isAuthorized;
+      state.phone = action.payload?.phone;
+      state.address = action.payload?.address;
     },
     updateCart: (state, action: PayloadAction<product[]>) => {
       state.itemsInCart = action.payload;
@@ -55,6 +61,9 @@ const userSlice = createSlice({
     },
     setAuthorized: (state) => {
       state.isAuthorized = !state.isAuthorized;
+    },
+    logout: (state) => {
+      state = initialState;
     },
   },
 });

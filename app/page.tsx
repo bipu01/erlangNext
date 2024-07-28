@@ -31,7 +31,11 @@ const Homepage = () => {
       const parsedRes = await res.json();
       const user = parsedRes.message;
       // console.log({ user: user.message });
-      dispatch(setUser(user));
+      console.log({ user: user });
+      if (user !== "undefined") {
+        dispatch(setUser(user));
+      }
+
       // sessionStorage.setItem("currentUser", JSON.stringify(user));
     };
 
