@@ -26,13 +26,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<User>) => {
-      state.name = action.payload.name;
-      state.email = action.payload.email;
-      state.otherInfo = action.payload.otherInfo;
-      state.settings = action.payload.settings;
-      state.likedProducts = action.payload.likedProducts;
-      state.itemsInCart = action.payload.itemsInCart;
-      state.isAuthorized = action.payload.isAuthorized;
+      state.name = action.payload?.name;
+      state.email = action.payload?.email;
+      state.otherInfo = action.payload?.otherInfo;
+      state.settings = action.payload?.settings;
+      state.likedProducts = action.payload?.likedProducts;
+      state.itemsInCart = action.payload?.itemsInCart;
+      state.isAuthorized = action.payload?.isAuthorized;
     },
     updateCart: (state, action: PayloadAction<product[]>) => {
       state.itemsInCart = action.payload;

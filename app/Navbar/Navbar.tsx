@@ -97,7 +97,11 @@ const Navbar = () => {
                 }`}
               >
                 {isAuthorized ? (
-                  name
+                  name ? (
+                    name
+                  ) : (
+                    ""
+                  )
                 ) : (
                   <img
                     className="h-7 aspect-square sm:h-6 xmd:h-9"
