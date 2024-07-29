@@ -72,7 +72,7 @@ export default function LoginPage() {
                     className="ttext-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
                     type="email"
                     required
-                    name=""
+                    name="email"
                     id="email"
                     placeholder="Email"
                     onChange={handelChange}
@@ -81,7 +81,7 @@ export default function LoginPage() {
                     className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
                     type="password"
                     required
-                    name=""
+                    name="password"
                     id="password"
                     placeholder="Password"
                     onChange={handelChange}
