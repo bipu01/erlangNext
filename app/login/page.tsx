@@ -33,7 +33,7 @@ export default function LoginPage() {
 
     if (res.status === 200) {
       const pageToRedirect = sessionStorage.getItem("lastVisitedPage");
-      window.location.href = pageToRedirect || "/";
+      // window.location.href = pageToRedirect || "/";
 
       const userData = res.data.userData;
       console.log({ userData: userData });

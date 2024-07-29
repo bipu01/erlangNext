@@ -47,9 +47,6 @@ export default function CartPage() {
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
-      {!isAuthorized && <NotLoggedPopup />}
-      {popup && <Popup heading={heading} message={message} />}
-
       {popup && isAuthorized && <Popup heading={heading} message={message} />}
       {!isAuthorized && <NotLoggedPopup />}
 
