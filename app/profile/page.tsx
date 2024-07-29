@@ -63,12 +63,12 @@ const ProfilePage = () => {
       const parsedRes = await res.json();
       const user = parsedRes.message;
 
-      setName(user.name);
-      setAddress(user.address);
-      setPhone(user.phone);
+      setName(user?.name);
+      setAddress(user?.address);
+      setPhone(user?.phone);
 
+      console.log({ userInProfile: user });
       dispatch(setUser(user));
-      console.log(user);
     };
     getUser();
   }, []);
