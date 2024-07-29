@@ -4,7 +4,9 @@ import User from "../../db/userSchema";
 
 export async function GET(req: NextRequest) {
   const headers = req.headers.get("x-user");
-  const userInfo = JSON.parse(headers || "");
+  const userInfo = await JSON.parse(headers || "");
+
+  console.log({ xUser: userInfo });
 
   try {
     dbConnect();
