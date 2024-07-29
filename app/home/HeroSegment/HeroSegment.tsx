@@ -40,7 +40,7 @@ export default function HeroSegment() {
         <div className=" col-span-3 grid sm:grid-rows-5 lg:grid-rows-2 sm:ml-5">
           <div className="sm:row-span-3 lg:row-span-1  grid grid-flow-col  sm:grid-rows-2 order-last sm:order-none">
             <div className="">
-              <p className="text-3xl absolute top-10% sm:relative sm:top-0 sm:text-4xl text-primaryBlue font-bold  leading-normal  tracking-wider ">
+              <p className="text-3xl absolute top-6% sm:relative sm:top-0 sm:text-4xl text-primaryBlue font-bold  leading-normal  tracking-wider ">
                 CRAFTED FOR THE <br />
                 <span className=" text-bodybg sm:text-primaryBlue">
                   DISCERNING INDIVIDUAL

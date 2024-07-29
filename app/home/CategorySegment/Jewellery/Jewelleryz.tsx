@@ -88,7 +88,7 @@ const Jewellery = () => {
         </h1>
         <div
           id="container"
-          className="grid space-y-16 justify-center items-center max-w-25rem sm:max-w-100% mx-3vw sm:mx-0"
+          className="grid space-y-16 justify-center items-center max-w-25rem sm:max-w-100% mx-1 sm:mx-0"
         >
           {printProductCluster()}
         </div>

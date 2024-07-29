@@ -5,15 +5,16 @@ import Star from "../SVG/Star";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+export type Rating = {
+  ratingRate: number;
+  ratingCount: number;
+};
 export default function SearchedProductsPage() {
   const [searchedProducts, setSearchedProducts] = useState([]);
   const [itemFound, setItemFound] = useState(false);
 
   // showing rating based on the rate
-  type Rating = {
-    ratingRate: number;
-    ratingCount: number;
-  };
+
   const renderStarRating = (prop: Rating) => {
     const stars = [];
     for (let i = 0; i < Math.ceil(prop.ratingRate); i++) {
