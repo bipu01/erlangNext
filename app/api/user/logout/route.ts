@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
       const serialized = serialize("OutSiteJwt", "", {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        // secure: process.env.NODE_ENV === "production",
         path: "/",
       });
 

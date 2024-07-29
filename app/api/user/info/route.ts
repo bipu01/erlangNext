@@ -21,6 +21,8 @@ export async function GET(req: NextRequest) {
         likedProducts: userFromDb.likedProducts,
         settings: userFromDb.settings,
         otherInfo: userFromDb.otherInfo,
+        address: "",
+        phone: 0,
         isAuthorized: true,
       };
       return NextResponse.json({ message: user });
