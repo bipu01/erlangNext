@@ -21,7 +21,7 @@ const Popup = (prop: popupProp) => {
     if (popup === true) {
       timer = setTimeout(() => {
         dispatch(togglePopup());
-      }, 1000);
+      }, 1500);
 
       return () => {
         if (timer) {

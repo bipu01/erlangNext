@@ -101,7 +101,7 @@ const ProductPage = () => {
           {notLoggedPopup && !isAuthorized && <NotLoggedPopup />}
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
-            <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-30 hover:cursor-pointer">
+            <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-40 hover:cursor-pointer before:content-[''] before:absolute before:h-12 before:w-12 before:rounded-full before:bg-white before:blur-xl before:-z-10 before:-left-2 before:-top-2 ">
               <BackArrow height={32} width={32} borderThickness={3} />
             </div>
           </Link>
@@ -171,12 +171,12 @@ const ProductPage = () => {
                 </div>
 
                 {/* <div className=" bg-black opacity-20 h-0.5 w-100% mb-2"></div> */}
-                <div className="flex justify-between  items-center">
+                <div className="flex justify-between  items-center ">
                   <div className="items-center gap-2 hidden sm:block h-10 w-10 3xl:h-12 3xl:w-12 hover:cursor-pointer">
                     {/* <LikeBtn fillColor="#D9DFED" borderThickness={1} /> */}
                     <LikeButton
                       _id={openedProduct._id}
-                      custom="w-5 h-5 sm:w-6 sm:h-6"
+                      custom="w-5 h-5 sm:w-8 sm:h-8"
                     />
                   </div>
                   <ProductBuyNowBtn

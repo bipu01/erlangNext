@@ -190,7 +190,7 @@ export const LikeButton = (prop: buttonPropInterface) => {
         }
       );
 
-      const data = await res.json();
+      // const data = await res.json();
       dispatch(popupSetHeading("Item successfully added to Liked"));
       dispatch(popupSetMessage("♥️♥️♥️"));
       dispatch(togglePopup());

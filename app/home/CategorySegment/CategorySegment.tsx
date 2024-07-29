@@ -41,7 +41,7 @@ const CategorySegment = () => {
 
   return (
     <>
-      <div id="categoryContainer">
+      <div id="categoryContainer flex flex-col">
         <Dresses />
         <Jewellery />
         <Footwear />

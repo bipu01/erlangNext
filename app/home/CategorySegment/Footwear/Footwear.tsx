@@ -3,6 +3,7 @@ import { paddingForProductCard } from "../../../defineSize";
 import { productClusterProp } from "../../../declare";
 import { product } from "@/app/store/type";
 import { useEffect, useState } from "react";
+import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
 
 const Footwear = () => {
   const [allFeaturedFootwear, setAllFeaturedFootwear] = useState<
@@ -69,7 +70,7 @@ const Footwear = () => {
     }
   };
   return (
-    <>
+    <div>
       <div className="relative mt-15vh sm:mt-25vh">
         <img
           src="/assets/weavyArch.svg"
@@ -88,12 +89,18 @@ const Footwear = () => {
         </p>
         <div
           id="container"
-          className="grid sm:space-y-16 justify-center  max-w-25rem sm:max-w-100%  mx-3vw sm:mx-0"
+          className="grid sm:space-y-16 justify-center  max-w-25rem sm:max-w-100%  mx-1 mb-12 sm:mx-0"
         >
           {printProductCluster()}
         </div>
+        <h1 className="text-lg mb-4 font-semibold">More of the Footwears:</h1>
+        <div>
+          {allFeaturedFootwear && (
+            <SmallProductGrid products={allFeaturedFootwear.slice(2)} />
+          )}
+        </div>
       </section>
-    </>
+    </div>
   );
 };
 

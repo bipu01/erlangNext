@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
 
 const Dresses = () => {
   const [allFeaturedDress, setAllFeaturedDress] = useState<Array<product>>([]);
@@ -79,16 +80,13 @@ const Dresses = () => {
   };
 
   return (
-    <>
+    <div>
       <div className="relative mt-15vh sm:mt-25vh">
         <Image
           src={weavyArch}
           alt="wave"
           className="w-100vw absolute -bottom-1"
         />
-        {/* <div className="absolute z-10 top-60% ">
-          <SortByPanel />
-        </div> */}
       </div>
       <section
         id="dresses"
@@ -99,14 +97,19 @@ const Dresses = () => {
         </h1>
         <div
           id="container"
-          className="grid sm:space-y-16 justify-center  max-w-25rem sm:max-w-100% mx-3vw sm:mx-0 "
+          className="grid sm:space-y-16 justify-center  max-w-25rem sm:max-w-100% mb-12 mx-1 sm:mx-0 "
         >
-          {/* {printProductCluster()} */}
           {dataFound === true ? printProductCluster() : ""}
+        </div>
+        <h1 className="text-lg mb-4 font-semibold">More of the dresses:</h1>
+        <div>
+          {allFeaturedDress && (
+            <SmallProductGrid products={allFeaturedDress.slice(2)} />
+          )}
         </div>
       </section>
       <PageBreakLine />
-    </>
+    </div>
   );
 };
 
