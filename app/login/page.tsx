@@ -56,7 +56,7 @@ export default function LoginPage() {
         <div
           className={` flex justify-center sm:px-32 xmd:px-44 pt-10 sm:pb-20 ${paddingForPage}`}
         >
-          <div className="absolute top-5% sm:top-15% backdrop-blur-xl bg-primaryBlue/50 px-6 py-8 sm:py-32 sm:px-32 rounded-lg shadow-xl">
+          <div className="absolute top-5% sm:top-15% backdrop-blur-xl bg-bgLightBlue px-6 py-8 sm:py-32 sm:px-32 rounded-lg shadow-xl">
             <div className=" flex flex-col items-center justify-center gap-8 ">
               <div className="">
                 <p className="text-xl sm:text-3xl text-white font-bold">
@@ -96,7 +96,7 @@ export default function LoginPage() {
 
                 <div className=" flex flex-col items-center mt-2">
                   <Link
-                    className=" text-bodybg opacity-50 border-bodybg text-xs sm:text-sm "
+                    className=" text-black opacity-50 border-bodybg text-xs sm:text-sm "
                     href=""
                   >
                     Forgot Password?
