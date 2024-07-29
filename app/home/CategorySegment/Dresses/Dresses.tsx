@@ -87,9 +87,6 @@ const Dresses = () => {
           alt="wave"
           className="w-100vw absolute -bottom-1"
         />
-        {/* <div className="absolute z-10 top-60% ">
-          <SortByPanel />
-        </div> */}
       </div>
       <section
         id="dresses"
@@ -106,7 +103,9 @@ const Dresses = () => {
         </div>
         <h1 className="text-lg mb-4 font-semibold">More of the dresses:</h1>
         <div>
-          {allFeaturedDress && <SmallProductGrid products={allFeaturedDress} />}
+          {allFeaturedDress && (
+            <SmallProductGrid products={allFeaturedDress.slice(2)} />
+          )}
         </div>
       </section>
       <PageBreakLine />

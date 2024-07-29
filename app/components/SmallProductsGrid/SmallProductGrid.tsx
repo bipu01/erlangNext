@@ -4,7 +4,7 @@ import Star from "@/app/SVG/Star";
 import { Rating } from "@/app/searchedProducts/page";
 import { product } from "@/app/store/type";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { LikeButton } from "../Buttons/Buttons";
 
 interface smallProductGridProp {
@@ -12,6 +12,26 @@ interface smallProductGridProp {
 }
 
 const SmallProductGrid: React.FC<smallProductGridProp> = ({ products }) => {
+  const [preventNavigation, setPreventNavigation] = useState(false);
+  //   const dispatch = useDispatch();
+
+  const handleButtonClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setPreventNavigation(true);
+  };
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (preventNavigation) {
+      e.preventDefault();
+      setPreventNavigation(false);
+    }
+  };
+
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     console.log("clicked onto new small conponent");
   };
@@ -27,11 +47,16 @@ const SmallProductGrid: React.FC<smallProductGridProp> = ({ products }) => {
     }
     return stars;
   };
+
   return (
     <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-10 ">
       {products &&
         products.map((product: product) => (
-          <Link href={`/product/${product._id}`} key={product._id}>
+          <Link
+            href={`/product/${product._id}`}
+            key={product._id}
+            onClick={handleLinkClick}
+          >
             <div
               id={product._id}
               className="bg-bodybg shadow-customSearchProduct rounded-lg  p-2 pb-3 sm:pb-6 hover:cursor-pointer"
@@ -66,7 +91,7 @@ const SmallProductGrid: React.FC<smallProductGridProp> = ({ products }) => {
                   </div>
                   <div className="text-xs sm:text-base font-normal opacity-70 flex justify-between  ">
                     <p className=" "> NPR {product.priceCurrent}</p>
-                    <div className="sm:hidden">
+                    <div className="sm:hidden" onClick={handleButtonClick}>
                       <LikeButton _id={product._id} />
                     </div>
                   </div>

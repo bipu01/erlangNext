@@ -4,6 +4,7 @@ import { paddingForProductCard } from "../../../defineSize";
 import { product } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
 import { useEffect, useState } from "react";
+import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
 
 const Jewellery = () => {
   const [allFeaturedJewellery, setAllFeaturedJewellery] = useState<
@@ -91,6 +92,12 @@ const Jewellery = () => {
           className="grid space-y-16 justify-center items-center max-w-25rem sm:max-w-100% mx-1 mb-12 sm:mx-0"
         >
           {printProductCluster()}
+        </div>
+        <h1 className="text-lg mb-4 font-semibold">More of the Footwears:</h1>
+        <div>
+          {allFeaturedJewellery && (
+            <SmallProductGrid products={allFeaturedJewellery.slice(2)} />
+          )}
         </div>
       </section>
       <PageBreakLine />

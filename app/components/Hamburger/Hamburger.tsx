@@ -22,7 +22,7 @@ export default function Hamburger() {
   // Define an array of menu items
   const menuItems = [
     { link: "/", icon: "/icons/back.png", text: "" },
-    { link: "/liked", icon: "/icons/fav.png", text: "Favorites" },
+    { link: "/liked", icon: "/icons/fav.png", text: "Liked" },
     {
       link: "/postProducts",
       icon: "/icons/postProducts.png",

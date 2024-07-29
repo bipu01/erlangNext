@@ -171,12 +171,12 @@ const ProductPage = () => {
                 </div>
 
                 {/* <div className=" bg-black opacity-20 h-0.5 w-100% mb-2"></div> */}
-                <div className="flex justify-between  items-center">
+                <div className="flex justify-between  items-center ">
                   <div className="items-center gap-2 hidden sm:block h-10 w-10 3xl:h-12 3xl:w-12 hover:cursor-pointer">
                     {/* <LikeBtn fillColor="#D9DFED" borderThickness={1} /> */}
                     <LikeButton
                       _id={openedProduct._id}
-                      custom="w-5 h-5 sm:w-6 sm:h-6"
+                      custom="w-5 h-5 sm:w-8 sm:h-8"
                     />
                   </div>
                   <ProductBuyNowBtn
