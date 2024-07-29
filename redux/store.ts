@@ -7,7 +7,17 @@ import popupSlice from "./features/popupSlice";
 
 // import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+// import storage from "redux-persist/lib/storage";
+
+let storage;
+
+if (typeof window !== "undefined") {
+  storage = require("redux-persist/lib/storage").default;
+} else {
+  storage = require("redux-persist/lib/storage/createWebStorage").default(
+    "local"
+  );
+}
 
 const persistConfig = {
   key: "root",
