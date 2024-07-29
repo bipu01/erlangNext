@@ -70,7 +70,7 @@ const Jewellery = () => {
     }
   };
   return (
-    <>
+    <div>
       <div className="relative mt-10vh sm:mt-25vh">
         <img
           src="/assets/weavyArchPink.svg"
@@ -94,7 +94,7 @@ const Jewellery = () => {
         </div>
       </section>
       <PageBreakLine />
-    </>
+    </div>
   );
 };
 

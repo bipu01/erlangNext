@@ -69,7 +69,7 @@ const Footwear = () => {
     }
   };
   return (
-    <>
+    <div>
       <div className="relative mt-15vh sm:mt-25vh">
         <img
           src="/assets/weavyArch.svg"
@@ -93,7 +93,7 @@ const Footwear = () => {
           {printProductCluster()}
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

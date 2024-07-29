@@ -79,7 +79,7 @@ const Dresses = () => {
   };
 
   return (
-    <>
+    <div>
       <div className="relative mt-15vh sm:mt-25vh">
         <Image
           src={weavyArch}
@@ -106,7 +106,7 @@ const Dresses = () => {
         </div>
       </section>
       <PageBreakLine />
-    </>
+    </div>
   );
 };
 
