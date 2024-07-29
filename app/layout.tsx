@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../app/Navbar/Navbar";
 import { ReduxProvider } from "@/redux/features/Provider";
-// import ClientPersist from "./ClientPersist";
+import ClientPersist from "./ClientPersist";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          {/* <ClientPersist> */}
-          <Navbar />
-          {children}
-          {/* </ClientPersist> */}
+          <ClientPersist>
+            <Navbar />
+            {children}
+          </ClientPersist>
         </ReduxProvider>
       </body>
     </html>

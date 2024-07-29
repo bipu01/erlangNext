@@ -23,10 +23,9 @@ export async function POST(req: NextRequest) {
         path: "/",
       });
 
-      const response = NextResponse.json(
-        { message: "successfully logged out" },
-        {}
-      );
+      const response = NextResponse.json({
+        message: "successfully logged out",
+      });
       response.headers.set("Set-Cookie", serialized);
       return response;
     } catch (error) {
