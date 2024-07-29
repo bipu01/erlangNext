@@ -14,6 +14,7 @@ import { RootState } from "@/redux/store";
 import Link from "next/link";
 import { Rating } from "@/app/searchedProducts/page";
 import Star from "@/app/SVG/Star";
+import { LikeButton } from "@/app/components/Buttons/Buttons";
 
 const Dresses = () => {
   const [allFeaturedDress, setAllFeaturedDress] = useState<Array<product>>([]);
@@ -122,11 +123,8 @@ const Dresses = () => {
         >
           {dataFound === true ? printProductCluster() : ""}
         </div>
+        <h1 className="text-lg mb-4 font-semibold">More of the dresses:</h1>
         <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-10 ">
-          {/* {allFeaturedDress &&
-            allFeaturedDress.map((item) => (
-              <div key={item._id}>{item.name}</div>
-            ))} */}
           {allFeaturedDress &&
             allFeaturedDress.map((product: product) => (
               <Link href={`/product/${product._id}`} key={product._id}>
@@ -162,8 +160,11 @@ const Dresses = () => {
                           {product.ratingCount}
                         </p>
                       </div>
-                      <div className="text-xs sm:text-base font-normal opacity-70">
+                      <div className="text-xs sm:text-base font-normal opacity-70 flex justify-between  ">
                         <p className=" "> NPR {product.priceCurrent}</p>
+                        <div className="sm:hidden">
+                          <LikeButton _id={product._id} />
+                        </div>
                       </div>
                     </div>
                   </div>

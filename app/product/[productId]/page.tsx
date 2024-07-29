@@ -101,7 +101,7 @@ const ProductPage = () => {
           {notLoggedPopup && !isAuthorized && <NotLoggedPopup />}
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
-            <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-30 hover:cursor-pointer">
+            <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-40 hover:cursor-pointer before:content-[''] before:absolute before:h-12 before:w-12 before:rounded-full before:bg-white before:blur-xl before:-z-10 before:-left-2 before:-top-2 ">
               <BackArrow height={32} width={32} borderThickness={3} />
             </div>
           </Link>
