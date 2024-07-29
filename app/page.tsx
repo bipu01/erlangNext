@@ -30,7 +30,7 @@ const Homepage = () => {
       const res = await fetch("/api/user/info");
       const parsedRes = await res.json();
       const user = parsedRes.message;
-      // console.log({ user: user.message });
+      console.log(user);
       console.log({ user: user });
       if (user !== "undefined") {
         dispatch(setUser(user));
