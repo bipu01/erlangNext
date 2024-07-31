@@ -15,6 +15,7 @@ import {
   popupSetMessage,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import Popup from "../components/Popups/Popup";
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
@@ -47,9 +48,14 @@ export default function LoginPage() {
     }
   };
 
+  const popup = useSelector((state: RootState) => state.popupSlice.popup);
+  const heading = useSelector((state: RootState) => state.popupSlice.heading);
+  const message = useSelector((state: RootState) => state.popupSlice.message);
+
   return (
     <>
       <div className=" bg-bodybg w-full h-93vh relative">
+        {popup && <Popup heading={heading} message={message} />}
         <div className="">
           <Image className="rotate-180 " src={weavyArch} alt="wave" />
         </div>
@@ -59,7 +65,7 @@ export default function LoginPage() {
           <div className="absolute top-5% sm:top-15% backdrop-blur-xl bg-bgLightBlue px-6 py-8 sm:py-32 sm:px-32 rounded-lg shadow-xl">
             <div className=" flex flex-col items-center justify-center gap-8 ">
               <div className="">
-                <p className="text-xl sm:text-3xl text-white font-bold">
+                <p className="text-xl sm:text-3xl text-primaryBlue font-bold">
                   Login
                 </p>
               </div>

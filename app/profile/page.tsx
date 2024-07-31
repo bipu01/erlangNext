@@ -81,7 +81,7 @@ const ProfilePage = () => {
         <div className="text-base sm:text-lg sm:font-xl font-semibold text-center pt-0 sm:pt-8 ">
           Profile
         </div>
-        <div className=" rounded-full bg-black/10 p-12  bg-pink-300">
+        <div className=" rounded-full w-24 h-24  bg-black/10 p-10  bg-pink-300 text-lg">
           {user?.email?.slice(0, 2)}
         </div>
         <div className="">
@@ -94,7 +94,7 @@ const ProfilePage = () => {
               <input
                 name="name"
                 id="name"
-                defaultValue={user && user.name}
+                defaultValue={user.name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setName(e.currentTarget.value)
                 }
@@ -116,16 +116,15 @@ const ProfilePage = () => {
             </div>
             <div className=" items-start flex flex-col gap-1 sm:gap-3">
               <div>Phone {" :  "} </div>
-              <input
-                type="number"
+              <textarea
                 name="phone"
                 id="phone"
                 defaultValue={user.phone}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                   setPhone(e.currentTarget.value)
                 }
                 className="h-8 w-15rem sm:w-15rem border-2 border-black/30 resize-none rounded-md px-2 py-0.5"
-              ></input>
+              ></textarea>
             </div>
             <button
               type="submit"

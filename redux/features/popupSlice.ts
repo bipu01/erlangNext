@@ -7,6 +7,7 @@ const popupSlice = createSlice({
     notLoggedPopup: false,
     heading: "",
     message: "",
+    time: 1500,
   },
   reducers: {
     togglePopup: (state) => {
@@ -21,6 +22,9 @@ const popupSlice = createSlice({
     popupSetMessage: (state, action) => {
       state.message = action.payload;
     },
+    setTime: (state, action) => {
+      state.time = action.payload;
+    },
   },
 });
 
@@ -29,5 +33,6 @@ export const {
   popupSetHeading,
   popupSetMessage,
   toggleNotLoggedPopup,
+  setTime,
 } = popupSlice.actions;
 export default popupSlice.reducer;

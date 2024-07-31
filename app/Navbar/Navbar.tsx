@@ -89,16 +89,19 @@ const Navbar = () => {
                 </div>
               </Link>
             </div>
-            <div className="">
+            <div className="relative">
               <Link
                 href="/profile"
-                className={`p-3 ${
-                  isAuthorized ? " bg-blue-300 rounded-full" : ""
-                }`}
+                className={`${
+                  isAuthorized
+                    ? "p-3 before:content-[''] before:absolute before:-left-3 before:-top-2 before:bg-blue-300 before:h-10 before:w-10 before:rounded-full before:z-0 "
+                    : ""
+                }
+           `}
               >
                 {isAuthorized ? (
                   name ? (
-                    name
+                    <div className="absolute z-20">{name}</div>
                   ) : (
                     ""
                   )
@@ -122,15 +125,22 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          <div className=" pl-2 sm:hidden">
+          <div className=" pl-2 sm:hidden relative">
             <Link
               href="/profile"
-              className={`p-1.5 ${
-                isAuthorized ? " bg-blue-300 rounded-full" : ""
-              }`}
+              className={`${
+                isAuthorized
+                  ? "p-3 before:content-[''] before:absolute before:-left-0.5 before:-top-1.5 before:bg-blue-300 before:h-8 before:w-8 before:rounded-full before:z-0 "
+                  : ""
+              }
+           `}
             >
               {isAuthorized ? (
-                name
+                name ? (
+                  <div className="absolute z-20 text-sm">{name}</div>
+                ) : (
+                  ""
+                )
               ) : (
                 <img
                   className="h-7 aspect-square sm:h-6 xmd:h-9"
