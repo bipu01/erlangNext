@@ -131,11 +131,11 @@ const SignUpUI = () => {
 
                 <Link
                   href={"/login"}
-                  className={`text-center text-white bg-primaryBlue/50 hover:bg-primaryBlue rounded-md px-4 py-1.5 sm:py-1.5 gap-2 
+                  className={`text-center text-white bg-primaryBlue hover:bg-primaryBlue rounded-md px-4 py-1.5 sm:py-1.5 gap-2 
                     cursor-pointer w-15rem ${buttonTransition} shadow-md`}
                 >
                   <span className="text-xs sm:text-md font-normal sm:font-medium ">
-                    Login
+                    Go to Login page
                   </span>
                 </Link>
               </div>

@@ -64,8 +64,8 @@ const Navbar = () => {
             </div>
             <div className="">
               <Link href="/cart">
-                <div className="flex gap-1 items-center group transition-all duration-200">
-                  <div className="absolute bottom-0 h-0.5 w-12 bg-black z-20 rounded-lg"></div>
+                <div className="flex gap-1 items-center group transition-all delay-100 duration-200">
+                  {/* <div className="opacity-0 transition-all  duration-300 group-hover:opacity-100 absolute bottom-0 h-0.5 w-16 bg-black z-20 rounded-lg"></div> */}
                   <p>Cart</p>
                   <div className={` relative ${NavLikedIconTransition}`}>
                     <CartIcon borderThickness={2.7} width={23} height={20} />

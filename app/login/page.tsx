@@ -173,13 +173,13 @@ export default function LoginPage() {
                   </div>
                   <Link
                     href={"/signup"}
-                    className={`text-center  text-white bg-primaryBlue/50 hover:bg-primaryBlue rounded-md px-4 
+                    className={`text-center  text-white bg-primaryBlue hover:bg-primaryBlue rounded-md px-4 
                       py-1 sm:py-1.5 gap-2 cursor-pointer w-15rem sm:w-15rem ${buttonTransition} shadow-md`}
                   >
                     <span
                       className={`text-xs sm:text-md font-normal sm:font-medium `}
                     >
-                      Sign Up
+                      Go to Sign Up page
                     </span>
                   </Link>
                 </div>
