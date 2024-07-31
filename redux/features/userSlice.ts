@@ -9,7 +9,7 @@ interface User {
   likedProducts: product[];
   itemsInCart: product[];
   isAuthorized: boolean;
-  phone: number;
+  phone: string;
   address: string;
 }
 
@@ -21,7 +21,7 @@ const initialState: User = {
   likedProducts: [],
   itemsInCart: [],
   isAuthorized: false,
-  phone: 0,
+  phone: "",
   address: "",
 };
 

@@ -15,13 +15,14 @@ export type popupProp = {
 const Popup = (prop: popupProp) => {
   const dispatch = useDispatch();
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
+  const time = useSelector((state: RootState) => state.popupSlice.time);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     if (popup === true) {
       timer = setTimeout(() => {
         dispatch(togglePopup());
-      }, 1500);
+      }, time);
 
       return () => {
         if (timer) {

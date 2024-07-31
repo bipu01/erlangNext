@@ -4,6 +4,7 @@ import postPopupReducer from "./features/postPopupSlice";
 import dataFetchReducer from "./features/dataFetchSlice";
 import user from "./features/userSlice";
 import popupSlice from "./features/popupSlice";
+import signUpSlice from "./features/signUpSlice";
 
 import { persistStore, persistReducer } from "redux-persist";
 
@@ -35,6 +36,7 @@ export const store = configureStore({
     dataFetchReducer,
     user: persistedUserReducer,
     popupSlice,
+    signUpSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

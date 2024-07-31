@@ -9,6 +9,7 @@ export async function POST(req: NextRequest) {
     try {
       const body = await req.json();
       const password = await encryptPassword(body.password);
+      console.log({ bodyInSignUP: body });
 
       const user = await User.findOne({ email: body.email });
       if (user) {
