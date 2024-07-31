@@ -3,17 +3,19 @@ import Link from "next/link";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/features/authSlice";
+import { useRouter } from "next/navigation";
 
 export default function Hamburger() {
   const [show, setShow] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleLogout = async () => {
     sessionStorage.removeItem("currentUser");
     await axios.post("/api/user/logout");
-    window.location.href = "/login";
+
     dispatch(logout());
-    // console.log({ resOfLogout: res });
+    router.push("/login");
   };
 
   const handelHamClick = () => {
@@ -38,12 +40,12 @@ export default function Hamburger() {
     <>
       {/* Hamburger */}
       <div
-        className="flex flex-col gap-1 cursor-pointer relative"
+        className="flex flex-col gap-1 cursor-pointer relative  transition-all duration-200  hover:-translate-y-1 "
         onClick={handelHamClick}
       >
-        <div className="bg-black w-8 h-1 rounded-xl"></div>
-        <div className="bg-black w-8 h-1 rounded-xl"></div>
-        <div className="bg-black w-8 h-1 rounded-xl"></div>
+        <div className="bg-black w-7 h-1 rounded-xl  "></div>
+        <div className="bg-black w-6 h-1 rounded-xl"></div>
+        <div className="bg-black w-6 h-1 rounded-xl"></div>
       </div>
 
       {/* lists */}

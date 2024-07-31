@@ -47,7 +47,7 @@ export default function CartPage() {
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
-      {popup && isAuthorized && <Popup heading={heading} message={message} />}
+      <Popup heading={heading} message={message} />
       {!isAuthorized && <NotLoggedPopup />}
 
       <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">

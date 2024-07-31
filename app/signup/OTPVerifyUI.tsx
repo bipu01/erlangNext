@@ -11,6 +11,7 @@ import {
   setTime,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import { LoginAndSignupButtonTransition } from "../transitionsAndAnimations/transitions";
 
 const OTPVerifyUI = () => {
   const [formdata, setFormdata] = useState({
@@ -51,8 +52,7 @@ const OTPVerifyUI = () => {
         dispatch(setTime(5000));
         dispatch(togglePopup());
         window.location.href = "/login";
-
-      case 404:
+      case 400:
         dispatch(popupSetHeading("Something went wrong"));
         dispatch(popupSetMessage("Please retry from signup page"));
         dispatch(setTime(5000));
@@ -60,6 +60,26 @@ const OTPVerifyUI = () => {
       case 401:
         dispatch(popupSetHeading("OTP is expired"));
         dispatch(popupSetMessage("Please retry from signup page"));
+        dispatch(setTime(5000));
+        dispatch(togglePopup());
+      case 404:
+        dispatch(popupSetHeading("No user found to verify"));
+        dispatch(popupSetMessage(""));
+        dispatch(setTime(5000));
+        dispatch(togglePopup());
+      case 500:
+        dispatch(popupSetHeading(" Trouble connecting to DB "));
+        dispatch(popupSetMessage(""));
+        dispatch(setTime(5000));
+        dispatch(togglePopup());
+      case 501:
+        dispatch(popupSetHeading(" Situation is not handled in the backend"));
+        dispatch(popupSetMessage(""));
+        dispatch(setTime(5000));
+        dispatch(togglePopup());
+      default:
+        dispatch(popupSetHeading("No expected response from backend"));
+        dispatch(popupSetMessage(""));
         dispatch(setTime(5000));
         dispatch(togglePopup());
     }
@@ -73,9 +93,12 @@ const OTPVerifyUI = () => {
       >
         <div className="absolute top-8% sm:top-15% backdrop-blur-xl bg-bgLightBlue w-95vw sm:w-auto  py-12 sm:py-24 sm:px-32 rounded-lg shadow-xl">
           <div className=" flex flex-col items-center justify-center gap-8 ">
-            <div className="">
+            <div className="text-center space-y-2">
               <p className="text-xl sm:text-3xl text-primaryBlue font-bold ">
                 Enter your OTP
+              </p>
+              <p className="opacity-40 text-xs sm:text-sm">
+                Check your email for 6-DIGIT code
               </p>
             </div>
             <div className=" flex flex-col gap-3">
@@ -84,7 +107,7 @@ const OTPVerifyUI = () => {
                 onSubmit={handelSubmit}
               >
                 <input
-                  className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
+                  className="text-xs sm:text-sm py-2 px-2 sm:px-6 w-20rem rounded-lg bg-white text-primaryBlue shadow-sm"
                   type="number"
                   required
                   name="OTP"
@@ -93,8 +116,8 @@ const OTPVerifyUI = () => {
                   onChange={handelChange}
                 />
                 <button
-                  className="bg-primaryBlue text-xs sm:text-lg rounded-3xl py-2 sm:py-1.5 px-10 mt-4  text-white sm:w-1/2 hover:text-white hover:bg-primaryBlue w-15rem"
-                  // onClick={handleVerify}
+                  className={`bg-primaryBlue text-xs sm:text-sm rounded-md py-2 sm:py-2 px-10 mt-4  text-white w-20rem
+                    ${LoginAndSignupButtonTransition} shadow-md`}
                   type="submit"
                 >
                   Sign up

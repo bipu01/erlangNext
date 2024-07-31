@@ -58,12 +58,15 @@ export const POST = async (req: NextRequest) => {
         }
       }
 
-      return NextResponse.json(
-        { message: "this situation is not handled " },
-        { status: 501 }
-      );
+      // return NextResponse.json(
+      //   { message: "this situation is not handled " },
+      //   { status: 501 }
+      // );
     } catch (error) {
-      return NextResponse.json({ message: "User not found" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Something went wrong" },
+        { status: 400 }
+      );
     }
   } catch (error) {
     return NextResponse.json(
