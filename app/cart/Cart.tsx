@@ -12,8 +12,10 @@ import { setUser } from "@/redux/features/userSlice";
 import {
   popupSetHeading,
   popupSetMessage,
+  setTime,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import { CartDeleteButtonTranslation } from "../transitionsAndAnimations/transitions";
 
 export default function Cart() {
   const [preventNavigation, setPreventNavigation] = useState(false);
@@ -36,6 +38,7 @@ export default function Cart() {
 
     dispatch(popupSetHeading("Item removed from Cart"));
     dispatch(popupSetMessage(""));
+    dispatch(setTime(1700));
     dispatch(togglePopup());
   };
 
@@ -76,16 +79,16 @@ export default function Cart() {
                         <p className="w-75%  text-xs sm:text-lg  text-primaryBlue font-semibold line-clamp-1">
                           {item.name}
                         </p>
-                        <div className="">
+                        <div className="absolute top-4 right-6%">
                           <button
                             id={`removeFromCart=${item._id}`}
-                            className=" p-2 rounded-md ml-4 "
+                            className={` p-3 ml-4 rounded-md px-5 sm:px-10 ${CartDeleteButtonTranslation}`}
                             onClick={handleRomoveFromCart}
                           >
                             <Delete
                               borderThickness={2}
                               borderColor="#A60F0F"
-                              custom="h-4 w-4 sm:h-6 sm:w-6 absolute top-4 right-10%"
+                              custom="h-4  w-4 sm:h-6 sm:w-6 "
                             />
                           </button>
                         </div>

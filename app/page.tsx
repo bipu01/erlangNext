@@ -35,17 +35,16 @@ const Homepage = () => {
       if (user !== "undefined") {
         dispatch(setUser(user));
       }
-
-      // sessionStorage.setItem("currentUser", JSON.stringify(user));
     };
 
     getUser();
   }, []);
 
   return (
-    <section className=" text-primaryBlue overflow-x-hidden bg-bodybg">
-      {popup && isAuthorized && <Popup heading={heading} message={message} />}
-      {notLoggedPopup && !isAuthorized && <NotLoggedPopup />}
+    <section className=" text-primaryBlue overflow-x-hidden bg-bodybg ">
+      <Popup heading={heading} message={message} />
+
+      {notLoggedPopup && <NotLoggedPopup />}
       <HeroSegment />
       <CategorySegment />
     </section>

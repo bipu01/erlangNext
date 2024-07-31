@@ -9,6 +9,7 @@ import { setUser, updateCart } from "@/redux/features/userSlice";
 import { RootState } from "@/redux/store";
 import Popup from "../components/Popups/Popup";
 import NotLoggedPopup from "../components/Popups/NotLoggedPopup";
+import { BackArrowTransitation } from "../transitionsAndAnimations/transitions";
 
 export default function CartPage() {
   const [showDialouge, setShowDialouge] = useState(false);
@@ -47,12 +48,15 @@ export default function CartPage() {
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
-      {popup && isAuthorized && <Popup heading={heading} message={message} />}
+      {/* Notification popup */}
+      <Popup heading={heading} message={message} />
       {!isAuthorized && <NotLoggedPopup />}
 
       <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
-        <div className=" h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8">
-          <Link href="/" className="">
+        <div
+          className={` h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8 ${BackArrowTransitation}`}
+        >
+          <Link href="/" className={``}>
             <BackArrow borderThickness={4} borderColor="#1C244B" />
           </Link>
         </div>

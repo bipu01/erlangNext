@@ -10,6 +10,7 @@ import { setUser } from "@/redux/features/userSlice";
 import {
   popupSetHeading,
   popupSetMessage,
+  setTime,
   togglePopup,
 } from "@/redux/features/popupSlice";
 
@@ -38,6 +39,7 @@ export default function Liked() {
 
     dispatch(popupSetHeading("Item removed from Liked"));
     dispatch(popupSetMessage(""));
+    dispatch(setTime(1700));
     dispatch(togglePopup());
   };
 

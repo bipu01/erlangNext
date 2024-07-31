@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import Search from "../components/Search/Search";
 import { individualProduct } from "../declare";
 import { product } from "../store/type";
+import { NavLikedIconTransition } from "../transitionsAndAnimations/transitions";
 
 // const Search = dynamic(() => import("../components/Search/Search"), {
 //   ssr: false,
@@ -63,10 +64,11 @@ const Navbar = () => {
             </div>
             <div className="">
               <Link href="/cart">
-                <div className="flex gap-1 items-center">
+                <div className="flex gap-1 items-center group transition-all duration-200">
+                  <div className="absolute bottom-0 h-0.5 w-12 bg-black z-20 rounded-lg"></div>
                   <p>Cart</p>
-                  <div className=" relative">
-                    <CartIcon borderThickness={2.5} width={23} height={20} />
+                  <div className={` relative ${NavLikedIconTransition}`}>
+                    <CartIcon borderThickness={2.7} width={23} height={20} />
                     <span className="absolute bg-darkRed rounded-full h-3 aspect-square xmd:text-[10px] text-white flex items-center justify-center -top-2  -right-2 text-xs xmd:text-md xmd:h-5 sm:-top-3 sm:-right-2 xmd:-right-3 ">
                       {cartNum && cartNum}
                     </span>
@@ -76,9 +78,11 @@ const Navbar = () => {
             </div>
             <div className="">
               <Link href="/liked">
-                <div className="flex gap-1 items-center">
-                  <p> Liked</p>
-                  <div className=" relative">
+                <div
+                  className={`flex gap-1 items-center group transition-all duration-200  `}
+                >
+                  <p className=" "> Liked</p>
+                  <div className={`relative ${NavLikedIconTransition} `}>
                     <LikeBtn
                       borderThickness={1.5}
                       width={23}
@@ -89,7 +93,7 @@ const Navbar = () => {
                 </div>
               </Link>
             </div>
-            <div className="relative">
+            <div className={`relative  `}>
               <Link
                 href="/profile"
                 className={`${

@@ -18,6 +18,7 @@ import { RootState } from "@/redux/store";
 import Popup from "@/app/components/Popups/Popup";
 import NotLoggedPopup from "@/app/components/Popups/NotLoggedPopup";
 import { setUser } from "@/redux/features/userSlice";
+import { BackArrowTransitation } from "@/app/transitionsAndAnimations/transitions";
 
 const fetchProductFromDb = async (productId: string) => {
   try {
@@ -95,13 +96,19 @@ const ProductPage = () => {
         <div
           className={`relative bg-bgLightBlue min-h-95vh py-4 sm:py-16 sm:pt-16 ${paddingForPage}`}
         >
-          {popup && isAuthorized && (
-            <Popup heading={heading} message={message} />
-          )}
-          {notLoggedPopup && !isAuthorized && <NotLoggedPopup />}
+          {/* Notification popup */}
+          <Popup heading={heading} message={message} />
+
+          {notLoggedPopup && <NotLoggedPopup />}
+
           <ScrollToTop />
           <Link href={`${lastVisitedPage}`}>
-            <div className="absolute left-6 top-8 sm:left-8 sm:top-4 z-40 hover:cursor-pointer before:content-[''] before:absolute before:h-12 before:w-12 before:rounded-full before:bg-white before:blur-xl before:-z-10 before:-left-2 before:-top-2 ">
+            <div
+              className={`absolute left-6 top-8 sm:left-8 sm:top-4 z-40 hover:cursor-pointer before:content-[''] before:absolute before:h-12 before:w-12 
+                before:rounded-full before:bg-white before:blur-xl before:-z-10 before:-left-2 before:-top-2 
+                ${BackArrowTransitation}
+                `}
+            >
               <BackArrow height={32} width={32} borderThickness={3} />
             </div>
           </Link>

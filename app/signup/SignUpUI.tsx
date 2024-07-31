@@ -13,6 +13,10 @@ import {
   setTime,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import {
+  LoginAndSignupButtonTransition,
+  buttonTransition,
+} from "../transitionsAndAnimations/transitions";
 
 const SignUpUI = () => {
   const [formdata, setFormdata] = useState({
@@ -38,16 +42,21 @@ const SignUpUI = () => {
       body: JSON.stringify(formdata),
     });
 
-    if (res.status === 200) {
-      dispatch(makeOTPUIActive());
-      dispatch(setEmail(formdata.email));
-    } else if (res.status === 409) {
-      dispatch(popupSetHeading("User already exists on this account"));
-      dispatch(popupSetMessage("Go to login page to continue"));
-      dispatch(setTime(5000));
-      dispatch(togglePopup());
+    switch (res.status) {
+      case 200:
+        dispatch(makeOTPUIActive());
+        dispatch(setEmail(formdata.email));
+      case 409:
+        dispatch(popupSetHeading("User already exists on this account"));
+        dispatch(popupSetMessage("Go to login page to continue"));
+        dispatch(setTime(5000));
+        dispatch(togglePopup());
+      default:
+        dispatch(popupSetHeading("No expected response from backend"));
+        dispatch(popupSetMessage(""));
+        dispatch(setTime(5000));
+        dispatch(togglePopup());
     }
-    // console.log({ "response": res });
   };
   return (
     <>
@@ -55,7 +64,7 @@ const SignUpUI = () => {
       <div
         className={`flex justify-center sm:px-32 xmd:px-44 pt-10 sm:pb-20 ${paddingForPage}`}
       >
-        <div className="absolute top-5% sm:top-15% backdrop-blur-xl bg-bgLightBlue px-6 py-8 sm:py-24 sm:px-32 rounded-lg shadow-xl">
+        <div className="absolute top-8% sm:top-15% backdrop-blur-xl bg-bgLightBlue w-95vw sm:w-auto  py-12 sm:py-24 sm:px-32 rounded-lg shadow-xl">
           <div className=" flex flex-col items-center justify-center gap-8 ">
             <div className="">
               <p className="text-xl sm:text-3xl text-primaryBlue font-bold">
@@ -68,7 +77,7 @@ const SignUpUI = () => {
                 onSubmit={handelSubmit}
               >
                 <input
-                  className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
+                  className="text-xs sm:text-sm py-2 sm:py-1.5 px-2 sm:px-6 w-20rem sm:w-20rem rounded-lg bg-white text-primaryBlue shadow-sm"
                   type="text"
                   required
                   name=""
@@ -78,7 +87,7 @@ const SignUpUI = () => {
                 />
 
                 <input
-                  className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
+                  className="text-xs sm:text-sm py-2 sm:py-1.5 px-2 sm:px-6 w-20rem sm:w-20rem rounded-lg bg-white text-primaryBlue shadow-sm "
                   type="email"
                   required
                   name=""
@@ -87,7 +96,7 @@ const SignUpUI = () => {
                   onChange={handelChange}
                 />
                 <input
-                  className="text-xs sm:text-sm py-1 sm:py-1.5 px-2 sm:px-6 w-15rem sm:w-20rem rounded-lg bg-white text-primaryBlue "
+                  className="text-xs sm:text-sm py-2 sm:py-1.5 px-2 sm:px-6 w-20rem sm:w-20rem rounded-lg bg-white text-primaryBlue shadow-sm "
                   type="password"
                   required
                   name=""
@@ -96,16 +105,24 @@ const SignUpUI = () => {
                   onChange={handelChange}
                 />
                 <button
-                  className="bg-primaryBlue text-xs sm:text-lg rounded-3xl py-2 sm:py-1.5 px-10 mt-4  text-white sm:w-1/2 hover:text-white hover:bg-primaryBlue w-15rem"
-                  // onClick={handleVerify}
+                  className={`bg-primaryBlue text-xs sm:text-sm rounded-md py-2 px-10 mt-4  text-white w-20rem 
+                    ${LoginAndSignupButtonTransition} shadow-md`}
                   type="submit"
                 >
                   Verify
                 </button>
               </form>
-
+              <div className="flex items-center gap-2 opacity-20 mt-4">
+                <div className="h-0.5 w-45% bg-black"></div>
+                <p>Or</p>
+                <div className="h-0.5 w-45% bg-black"></div>
+                <div></div>
+              </div>
               <div className="flex flex-col items-center py-6 gap-4">
-                <div className=" flex flex-row justify-center items-center bg-white rounded-md px-4 py-1 gap-2 cursor-pointer w-15rem">
+                <div
+                  className={` flex flex-row justify-center items-center bg-white rounded-md px-4 py-2 gap-2 cursor-pointer 
+                   w-15rem ${buttonTransition} shadow-md`}
+                >
                   <Image className="w-3 sm:w-6" src={googleIcon} alt="" />
                   <p className="text-xs sm:text-md font-normal sm:font-medium">
                     Continue with Google
@@ -114,10 +131,11 @@ const SignUpUI = () => {
 
                 <Link
                   href={"/login"}
-                  className="text-center text-white bg-primaryBlue/50 hover:bg-primaryBlue rounded-md px-4 py-1 sm:py-1.5 gap-2 cursor-pointer w-15rem sm:w-15rem"
+                  className={`text-center text-white bg-primaryBlue/50 hover:bg-primaryBlue rounded-md px-4 py-1.5 sm:py-1.5 gap-2 
+                    cursor-pointer w-15rem ${buttonTransition} shadow-md`}
                 >
                   <span className="text-xs sm:text-md font-normal sm:font-medium ">
-                    Log in
+                    Login
                   </span>
                 </Link>
               </div>

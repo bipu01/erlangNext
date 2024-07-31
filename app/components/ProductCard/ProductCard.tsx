@@ -10,12 +10,18 @@ import {
 } from "../../defineSize";
 import { AddToCartButton, LikeButton } from "../Buttons/Buttons";
 import { useState } from "react";
+import {
+  ProductLeftImageTransition,
+  ProductRightImageTransition,
+} from "@/app/transitionsAndAnimations/transitions";
 
 export const ProductCardLeftImg = (prop: ProductCardProp) => {
   return (
     <div
       id={"img" + prop._id}
-      className=" row-span-2 sm:row-span-2 col-span-3 sm:col-span-1 bg-slate-500 mt-6 relative sm:shadow-customRight hover:cursor-pointer "
+      className={` row-span-2 sm:row-span-2 col-span-3 sm:col-span-1 bg-slate-500 mt-6 relative sm:shadow-customRight hover:cursor-pointer 
+        ${ProductLeftImageTransition}
+        `}
     >
       <div className="absolute z-30 -top-3% 4xl:-top-2% flex w-100% gap-30% left-25%">
         <div
@@ -43,7 +49,8 @@ export const ProductCardRightImg = (prop: ProductCardProp) => {
   return (
     <div
       id={"img" + prop._id}
-      className="row-span-2  sm:row-span-2 col-span-3 sm:col-span-1 bg-slate-500 relative mb-6 hover:cursor-pointer"
+      className={`row-span-2  sm:row-span-2 col-span-3 sm:col-span-1 bg-bodybg relative mb-6 hover:cursor-pointer
+        ${ProductRightImageTransition}`}
     >
       <div className="absolute z-30 -bottom-3% sm:bottom-1% flex w-100% gap-30% left-25%">
         <div
@@ -90,9 +97,10 @@ export const DataOfRightImg = (prop: ProductCardProp) => {
   return (
     <div
       id={prop._id}
-      className={`row-span-2 sm:row-span-1 shadow-customLeft relative z-0 bg-bodybg px-7% sm:pr-3% pl-12% sm:pl-20% py-10% sm:py-4%  hover:cursor-pointer
+      className={`row-span-2 sm:row-span-1 shadow-customLeft relative  bg-bodybg px-7% sm:pr-3% pl-12% sm:pl-20% py-10% sm:py-4%  hover:cursor-pointer
         flex flex-col justify-between rounded-tr-3xl rounded-br-3xl sm:rounded-tl-full sm:rounded-bl-full
-      after:content-[''] after:absolute after:-bottom-0 after:shadow-customLeft after:right-100% sm:after:left-100% after:h-100% after:w-180% after:bg-bodybg`}
+      after:content-[''] after:absolute after:-bottom-0 after:shadow-customLeft after:right-100% sm:after:left-100% after:h-100% after:w-180% after:bg-bodybg
+      z-0 hover:z-0  `}
     >
       <Link href={`/product/${prop._id}`} onClick={handleLinkClick}>
         <div
@@ -201,7 +209,9 @@ export const DataOfLeftImg = (prop: ProductCardProp) => {
       id={prop._id}
       className={`relative row-span-2 sm:row-span-1  shadow-customRight  z-0 bg-bodybg  sm:py-4% flex flex-col justify-between hover:cursor-pointer
      px-7%  sm:pl-3% sm:pr-20% py-10% rounded-tr-3xl rounded-br-3xl rounded-md sm:rounded-tr-full sm:rounded-br-full 
-      after:content-[''] after:absolute after:-top-0 after:shadow-customRight after:right-100% after:h-100% after:w-180% after:bg-bodybg`}
+      after:content-[''] after:absolute after:-top-0 after:shadow-customRight after:right-100% after:h-100% after:w-180% after:bg-bodybg
+      transition-all duration-300  hover:z-0  
+      `}
     >
       <Link href={`/product/${prop._id}`} onClick={handleLinkClick}>
         <div

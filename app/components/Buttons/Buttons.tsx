@@ -7,12 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   popupSetHeading,
   popupSetMessage,
+  setTime,
   toggleNotLoggedPopup,
   togglePopup,
 } from "@/redux/features/popupSlice";
-import { cartItems } from "@/app/cart/cartCluster";
 import { setUser, updateCart } from "@/redux/features/userSlice";
 import { RootState } from "@/redux/store";
+import {
+  BuyButtonTransition,
+  CartButtonTransition,
+  CartBuyButtonTransition,
+  LikeButtonTransition,
+} from "@/app/transitionsAndAnimations/transitions";
 
 export const CartBuyNowBtn = (prop: buttonPropInterface) => {
   return (
@@ -23,7 +29,7 @@ export const CartBuyNowBtn = (prop: buttonPropInterface) => {
           : "bg-bodybg text-primaryBlue rounded-md"
       } absolute bottom-0 right-0 px-4 sm:px-5vw ${sizeOfLessMajorText} w-auto  max-w-15rem py-2 sm:py-3
   items-center flex gap-1 sm:gap-2 font-normal sm:font-medium tracking-wider justify-center
-  whitespace-nowrap`}
+  whitespace-nowrap ${CartBuyButtonTransition}`}
     >
       {prop.text}
     </button>
@@ -39,7 +45,7 @@ export const ProductBuyNowBtn = (prop: buttonPropInterface) => {
           : "bg-bodybg text-primaryBlue rounded-md"
       } px-4 sm:px-5vw ${sizeOfLessMajorText}  max-w-15rem py-2 sm:py-3 w-45% sm:w-40%
   items-center flex gap-1 sm:gap-2 font-normal sm:font-medium tracking-wider justify-center
-  whitespace-nowrap`}
+  whitespace-nowrap ${BuyButtonTransition}`}
     >
       {prop.text}
     </button>
@@ -68,10 +74,11 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
       dispatch(popupSetHeading("Item successfully added to cart"));
       dispatch(popupSetMessage("🛒✅"));
       dispatch(updateCart(parsedData.itemsInCart));
-
-      dispatch(togglePopup());
+      dispatch(setTime(1700));
       if (!isAuthorized) {
         dispatch(toggleNotLoggedPopup());
+      } else {
+        dispatch(togglePopup());
       }
     } catch (error) {
       console.log({ "Error adding to cart": error });
@@ -88,7 +95,8 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
         } ${sizeOfLessMajorText} ${
           prop.custom
         } py-1 sm:py-2 items-center flex gap-1 sm:gap-2 font-medium tracking-wider justify-center
-        whitespace-nowrap`}
+        ${CartButtonTransition}
+        whitespace-nowrap shadow-md`}
         onClick={HandleAddToCart}
       >
         {prop.text}
@@ -121,10 +129,11 @@ export const ProductAddToCartButton = (prop: buttonPropInterface) => {
       dispatch(popupSetHeading("Item successfully added to cart"));
       dispatch(popupSetMessage("🛒✅"));
       dispatch(updateCart(parsedData.itemsInCart));
-
-      dispatch(togglePopup());
+      dispatch(setTime(1700));
       if (!isAuthorized) {
         dispatch(toggleNotLoggedPopup());
+      } else {
+        dispatch(togglePopup());
       }
     } catch (error) {
       console.log({ "Error adding to cart": error });
@@ -141,6 +150,7 @@ export const ProductAddToCartButton = (prop: buttonPropInterface) => {
         } ${sizeOfLessMajorText} ${
           prop.custom
         }  py-2 sm:py-3 w-45% sm:w-40% items-center flex gap-1 sm:gap-2 font-medium tracking-wider justify-center
+        ${CartButtonTransition}
         whitespace-nowrap`}
         onClick={HandleAddToCart}
       >
@@ -193,9 +203,11 @@ export const LikeButton = (prop: buttonPropInterface) => {
       // const data = await res.json();
       dispatch(popupSetHeading("Item successfully added to Liked"));
       dispatch(popupSetMessage("♥️♥️♥️"));
-      dispatch(togglePopup());
+      dispatch(setTime(1700));
       if (!isAuthorized) {
         dispatch(toggleNotLoggedPopup());
+      } else {
+        dispatch(togglePopup());
       }
     } catch (error) {
       console.log({ "Error adding to liked": error });
@@ -204,7 +216,11 @@ export const LikeButton = (prop: buttonPropInterface) => {
 
   return (
     <>
-      <button id={`like` + prop._id} className={` `} onClick={handleAddToLiked}>
+      <button
+        id={`like` + prop._id}
+        className={`${LikeButtonTransition}`}
+        onClick={handleAddToLiked}
+      >
         <LikeBtn fillColor={prop.fillColor} custom={prop.custom} />
       </button>
     </>
