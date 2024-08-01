@@ -22,7 +22,7 @@ import {
   textSpreadTransition,
 } from "../transitionsAndAnimations/transitions";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
@@ -31,13 +31,6 @@ export default function LoginPage() {
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({ ...formdata, [e.target.id]: e.target.value });
-  };
-
-  const makePopupAppear = () => {
-    dispatch(popupSetHeading("Popup setup for testing"));
-    dispatch(popupSetMessage(""));
-    dispatch(setTime(3000));
-    dispatch(togglePopup());
   };
 
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -203,13 +196,12 @@ export default function LoginPage() {
                   <div className="h-0.5 w-45% bg-black"></div>
                   <p>Or</p>
                   <div className="h-0.5 w-45% bg-black"></div>
-                  <div></div>
                 </div>
                 <div className="flex flex-col items-center py-2 gap-4">
                   <div
                     className={` flex flex-row justify-center items-center bg-white rounded-md px-2 sm:px-4 py-2 gap-2 
                       cursor-pointer w-15rem sm:w-15rem ${buttonTransition} shadow-md`}
-                    onClick={makePopupAppear}
+                    onClick={() => signIn("google")}
                   >
                     <Image className="w-3 sm:w-6" src={googleIcon} alt="" />
                     <p className="text-xs sm:text-md font-normal sm:font-medium">

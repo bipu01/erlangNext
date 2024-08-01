@@ -8,7 +8,7 @@ const BackArrow = (prop: svgProp) => {
       viewBox="0 0 45 45"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-auto object-cover"
+      className=" "
     >
       <path
         d="M31.9636 22.4997H13.0405"

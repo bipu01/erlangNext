@@ -11,16 +11,14 @@ export const POST = async (req: NextRequest) => {
   // const data = await req.json();
   const headers = req.headers.get("x-user");
   const user = await JSON.parse(headers || "");
-  const userId = user.id;
-  console.log({ userId: userId });
-  console.log({ productId: productId });
+  // console.log({ productId: productId });
   try {
     await dbConnect();
 
     try {
       const product = await Product.findOne({ _id: productId });
-      const userUpdate = await User.findOneAndUpdate(
-        { _id: userId },
+      await User.findOneAndUpdate(
+        { email: user.email },
         { $push: { likedProducts: product } },
         { new: true }
       );

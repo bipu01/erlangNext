@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       const product = await Product.findOne({ _id: body.productId });
       console.log({ product: product });
       const userUpdate = await User.findOneAndUpdate(
-        { _id: userInfo.id },
+        { email: userInfo.email },
         { $push: { itemsInCart: product } },
         { new: true }
       );

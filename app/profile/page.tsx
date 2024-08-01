@@ -77,62 +77,64 @@ const ProfilePage = () => {
     <section className="">
       {!isAuthorized && <NotLoggedPopup />}
       {popup && isAuthorized && <Popup heading={heading} message={message} />}
-      <div className="flex flex-col   justify-center items-center gap-10 bg-bgLightBlue p-6 py-8 sm:py-16 rounded-md w-100vw sm:mt-5vh sm:w-60vw max-w-40rem ml-auto mr-auto">
-        <div className="text-base sm:text-lg sm:font-xl font-semibold text-center pt-0 sm:pt-8 ">
-          Profile
-        </div>
-        <div className=" rounded-full w-24 h-24  bg-black/10 p-10  bg-pink-300 text-lg">
-          {user?.email?.slice(0, 2)}
-        </div>
-        <div className="">
-          <form
-            onSubmit={handleProfileEdit}
-            className="flex flex-col gap-4 items-start sm:items-center"
-          >
-            <div className=" items-start flex flex-col gap-1 sm:gap-3">
-              <div>Name {" :"} </div>
-              <input
-                name="name"
-                id="name"
-                defaultValue={user.name}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setName(e.currentTarget.value)
-                }
-                // required
-                className="h-8 w-15rem sm:w-15rem border-2 border-black/30 resize-none rounded-md px-2 py-0.5"
-              ></input>
-            </div>
-            <div className=" items-start flex flex-col  gap-1 sm:gap-3">
-              <div>Address {" :  "} </div>
-              <textarea
-                name="address"
-                id="address"
-                defaultValue={user.address}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                  setAddress(e.currentTarget.value)
-                }
-                className="h-8 w-15rem sm:w-15rem border-2 border-black/30 resize-none rounded-md px-2 py-0.5"
-              ></textarea>
-            </div>
-            <div className=" items-start flex flex-col gap-1 sm:gap-3">
-              <div>Phone {" :  "} </div>
-              <textarea
-                name="phone"
-                id="phone"
-                defaultValue={user.phone}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                  setPhone(e.currentTarget.value)
-                }
-                className="h-8 w-15rem sm:w-15rem border-2 border-black/30 resize-none rounded-md px-2 py-0.5"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-15rem h-8 mt-8 rounded-md bg-primaryBlue text-white"
+      <div className="bg-bgLightBlue min-h-95vh">
+        <div className="flex flex-col   justify-center items-center gap-10  p-6 py-8 sm:py-16 rounded-md w-100vw sm:mt-5vh sm:w-60vw max-w-40rem ml-auto mr-auto">
+          <div className="text-base sm:text-lg sm:font-xl font-semibold text-center pt-0 sm:pt-8 ">
+            Profile
+          </div>
+          <div className=" rounded-full w-24 h-24  bg-black/10 p-10  bg-pink-300 text-lg">
+            {user?.name?.slice(0, 2)}
+          </div>
+          <div className="">
+            <form
+              onSubmit={handleProfileEdit}
+              className="flex flex-col gap-4 items-start sm:items-center"
             >
-              Change
-            </button>
-          </form>
+              <div className=" items-start flex flex-col gap-1 sm:gap-3">
+                <div>Name {" :"} </div>
+                <input
+                  name="name"
+                  id="name"
+                  defaultValue={user.name}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setName(e.currentTarget.value)
+                  }
+                  // required
+                  className="h-8 w-15rem sm:w-15rem border-2 border-black/30 resize-none rounded-md px-2 py-0.5"
+                ></input>
+              </div>
+              <div className=" items-start flex flex-col  gap-1 sm:gap-3">
+                <div>Address {" :  "} </div>
+                <textarea
+                  name="address"
+                  id="address"
+                  defaultValue={user.address}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setAddress(e.currentTarget.value)
+                  }
+                  className="h-8 w-15rem sm:w-15rem border-2 border-black/30 resize-none rounded-md px-2 py-0.5"
+                ></textarea>
+              </div>
+              <div className=" items-start flex flex-col gap-1 sm:gap-3">
+                <div>Phone {" :  "} </div>
+                <textarea
+                  name="phone"
+                  id="phone"
+                  defaultValue={user.phone}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setPhone(e.currentTarget.value)
+                  }
+                  className="h-8 w-15rem sm:w-15rem border-2 border-black/30 resize-none rounded-md px-2 py-0.5"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-15rem h-8 mt-8 rounded-md bg-primaryBlue text-white"
+              >
+                Change
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

@@ -111,7 +111,7 @@ export const POST = async (req: NextRequest) => {
             message: "Authenticated!",
             userData: userDataToSendToClient,
           },
-          { status: 201 }
+          { status: 200 }
         );
         response.headers.set("Set-Cookie", serialized);
         return response;

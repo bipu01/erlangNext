@@ -52,8 +52,16 @@ export default function CartPage() {
 
       <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
         <div className=" h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8">
-          <Link href="/" className="">
-            <BackArrow borderThickness={4} borderColor="#1C244B" />
+          <div className="text-xl text-black/60 font-semibold px-6 mb-4  absolute top-[62px] sm:top-[102px] left-15vw 3xl:left-20vw">
+            Liked
+          </div>
+          <Link href="/" className={`absolute z-20 top-[60px]  sm:top-[100px]`}>
+            <BackArrow
+              height={32}
+              width={32}
+              borderThickness={4}
+              borderColor="#1C244B"
+            />
           </Link>
         </div>
         <Liked />

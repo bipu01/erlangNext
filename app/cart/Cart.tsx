@@ -51,7 +51,7 @@ export default function Cart() {
     }
   };
   return (
-    <div className="max-w-65rem">
+    <div className="max-w-65rem mt-3">
       <ScrollToTop />
       <div className="flex flex-col gap-4">
         {itemsInCart && itemsInCart.length > 0
