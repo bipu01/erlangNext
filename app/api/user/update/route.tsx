@@ -10,10 +10,10 @@ export const POST = async (req: NextRequest) => {
       //   console.log({ userData: userData });
       const sentUser = req.headers.get("x-user");
       const parsedUser = JSON.parse(sentUser || "");
-      console.log({ parsedUser: parsedUser });
+      // console.log({ parsedUser: parsedUser });
 
       const user = await User.findOneAndUpdate(
-        { _id: parsedUser.id },
+        { email: parsedUser.email },
         {
           name: userData.name,
           address: userData.address,
@@ -22,11 +22,10 @@ export const POST = async (req: NextRequest) => {
         { new: true }
       );
 
-      const updatedUser = await User.findOne({ _id: parsedUser.id });
+      const updatedUser = await User.findOne({ email: parsedUser.email });
       console.log({ user: user });
 
       const userToSendToClient = {
-        id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
         itemsInCart: updatedUser.itemsInCart,

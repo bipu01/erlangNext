@@ -4,69 +4,51 @@ import { productClusterProp } from "../../../declare";
 import { product } from "@/app/store/type";
 import { useEffect, useState } from "react";
 import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const Footwear = () => {
-  const [allFeaturedFootwear, setAllFeaturedFootwear] = useState<
-    Array<product>
-  >([]);
-
-  useEffect(() => {
-    const allFeaturedFootwearString = sessionStorage.getItem(
-      "allFeaturedFootwear"
-    );
-    if (allFeaturedFootwearString) {
-      try {
-        setAllFeaturedFootwear(JSON.parse(allFeaturedFootwearString));
-      } catch (e) {
-        console.error(
-          "Failed to parse allFeaturedJewellery from sessionStorage",
-          e
-        );
-      }
-    }
-  }, []);
-
+  const featuredFootwear = useSelector(
+    (state: RootState) => state.featuredProductsSlice.featuredJewellery
+  );
   const printProductCluster = () => {
-    if (allFeaturedFootwear) {
-      for (let i = 0; i < allFeaturedFootwear.length; i += 2) {
-        const pairs: productClusterProp = {
-          leftRow: {
-            _id: allFeaturedFootwear[i]._id,
-            name: allFeaturedFootwear[i].name,
-            desc: allFeaturedFootwear[i].desc,
-            ratingRate: allFeaturedFootwear[i].ratingRate,
-            ratingCount: allFeaturedFootwear[i].ratingCount,
-            priceOriginal: allFeaturedFootwear[i].priceOriginal,
-            priceCurrent: allFeaturedFootwear[i].priceCurrent,
-            img1: allFeaturedFootwear[i].img1,
-            img2: allFeaturedFootwear[i].img2,
-            img3: allFeaturedFootwear[i].img3,
-          },
-          rightRow: {
-            _id: allFeaturedFootwear[i + 1]._id,
-            name: allFeaturedFootwear[i + 1].name,
-            desc: allFeaturedFootwear[i + 1].desc,
-            ratingRate: allFeaturedFootwear[i + 1].ratingRate,
-            ratingCount: allFeaturedFootwear[i + 1].ratingCount,
-            priceOriginal: allFeaturedFootwear[i + 1].priceOriginal,
-            priceCurrent: allFeaturedFootwear[i + 1].priceCurrent,
-            img1: allFeaturedFootwear[i + 1].img1,
-            img2: allFeaturedFootwear[i + 1].img2,
-            img3: allFeaturedFootwear[i + 1].img3,
-          },
-        };
+    for (let i = 0; i < featuredFootwear.length; i += 2) {
+      const pairs: productClusterProp = {
+        leftRow: {
+          _id: featuredFootwear[i]._id,
+          name: featuredFootwear[i].name,
+          desc: featuredFootwear[i].desc,
+          ratingRate: featuredFootwear[i].ratingRate,
+          ratingCount: featuredFootwear[i].ratingCount,
+          priceOriginal: featuredFootwear[i].priceOriginal,
+          priceCurrent: featuredFootwear[i].priceCurrent,
+          img1: featuredFootwear[i].img1,
+          img2: featuredFootwear[i].img2,
+          img3: featuredFootwear[i].img3,
+        },
+        rightRow: {
+          _id: featuredFootwear[i + 1]._id,
+          name: featuredFootwear[i + 1].name,
+          desc: featuredFootwear[i + 1].desc,
+          ratingRate: featuredFootwear[i + 1].ratingRate,
+          ratingCount: featuredFootwear[i + 1].ratingCount,
+          priceOriginal: featuredFootwear[i + 1].priceOriginal,
+          priceCurrent: featuredFootwear[i + 1].priceCurrent,
+          img1: featuredFootwear[i + 1].img1,
+          img2: featuredFootwear[i + 1].img2,
+          img3: featuredFootwear[i + 1].img3,
+        },
+      };
 
-        // console.log({ "pairs": pairs });
-        return (
-          <ProductCluster
-            key={pairs.leftRow._id}
-            color="blue"
-            leftRow={pairs.leftRow}
-            rightRow={pairs.rightRow}
-          />
-        );
-      }
-      return <div>Something went wrong</div>;
+      // console.log({ "pairs": pairs });
+      return (
+        <ProductCluster
+          key={pairs.leftRow._id}
+          color="blue"
+          leftRow={pairs.leftRow}
+          rightRow={pairs.rightRow}
+        />
+      );
     }
   };
   return (
@@ -91,12 +73,12 @@ const Footwear = () => {
           id="container"
           className="grid sm:space-y-16 justify-center  max-w-25rem sm:max-w-100%  mx-1 mb-12 sm:mx-0"
         >
-          {printProductCluster()}
+          {featuredFootwear && printProductCluster()}
         </div>
         <h1 className="text-lg mb-4 font-semibold">More of the Footwears:</h1>
         <div>
-          {allFeaturedFootwear && (
-            <SmallProductGrid products={allFeaturedFootwear.slice(2)} />
+          {featuredFootwear && (
+            <SmallProductGrid products={featuredFootwear.slice(2)} />
           )}
         </div>
       </section>

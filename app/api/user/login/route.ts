@@ -18,6 +18,14 @@ export async function POST(req: NextRequest) {
     try {
       const user = await User.findOne({ email: body.email });
       if (user) {
+        if (user.createdWithGoogle) {
+          return NextResponse.json(
+            {
+              message: "Login with google for this account",
+            },
+            { status: 400 }
+          );
+        }
         const isMatch = await bcrypt.compare(body.password, user.password);
         if (isMatch) {
           const { name, email, _id } = user;
@@ -59,7 +67,10 @@ export async function POST(req: NextRequest) {
           response.headers.set("Set-Cookie", serialized);
           return response;
         } else {
-          return NextResponse.json({ message: "Invalid credentials" });
+          return NextResponse.json(
+            { message: "Invalid credentials" },
+            { status: 401 }
+          );
         }
       } else {
         return NextResponse.json(

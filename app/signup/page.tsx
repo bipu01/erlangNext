@@ -11,6 +11,9 @@ export default function SignUpPage() {
   const OTPUIStatus = useSelector(
     (state: RootState) => state.signUpSlice.OTPUIStatus
   );
+  const googleSignupUIStatus = useSelector(
+    (state: RootState) => state.signUpSlice.SignupWithGoogleUIStatus
+  );
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);

@@ -1,12 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { paddingForPage } from "../defineSize";
 import axios from "axios";
 import Image from "next/image";
 import googleIcon from "../../public/icons/google.svg";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { makeOTPUIActive, setEmail } from "@/redux/features/signUpSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  makeOTPUIActive,
+  setEmail,
+  toggleSignupWithGoogleUIStatus,
+} from "@/redux/features/signUpSlice";
 import {
   popupSetHeading,
   popupSetMessage,
@@ -17,6 +21,8 @@ import {
   LoginAndSignupButtonTransition,
   buttonTransition,
 } from "../transitionsAndAnimations/transitions";
+import { signIn, useSession } from "next-auth/react";
+import { setUser } from "@/redux/features/userSlice";
 
 const SignUpUI = () => {
   const [formdata, setFormdata] = useState({
@@ -29,6 +35,38 @@ const SignUpUI = () => {
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({ ...formdata, [e.target.id]: e.target.value });
   };
+
+  const { data: session, status } = useSession();
+  // console.log({ session: session, status: status });
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      // Automatically send user data to the signup route
+      const sendUserData = async () => {
+        try {
+          const res = await fetch("/api/user/googlesignin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(session.user),
+          });
+
+          if (!res.ok) {
+            throw new Error("Failed to send user data");
+          }
+
+          const response = await res.json();
+          dispatch(setUser(response.userData));
+          console.log({ response: response.userData });
+        } catch (error) {
+          console.error("Error sending user data:", error);
+        }
+      };
+
+      sendUserData();
+    }
+  }, [session, status]);
 
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,19 +82,31 @@ const SignUpUI = () => {
 
     switch (res.status) {
       case 200:
+        dispatch(popupSetHeading("Signup Success"));
+        dispatch(popupSetMessage("Go to login page to continue"));
+        dispatch(setTime(3000));
+        dispatch(togglePopup());
         dispatch(makeOTPUIActive());
         dispatch(setEmail(formdata.email));
+        return;
       case 409:
         dispatch(popupSetHeading("User already exists on this account"));
         dispatch(popupSetMessage("Go to login page to continue"));
         dispatch(setTime(5000));
         dispatch(togglePopup());
+        return;
       default:
         dispatch(popupSetHeading("No expected response from backend"));
         dispatch(popupSetMessage(""));
         dispatch(setTime(5000));
         dispatch(togglePopup());
+        return;
     }
+  };
+
+  const handleSignupWithGoogle = () => {
+    dispatch(toggleSignupWithGoogleUIStatus());
+    // dispatch();
   };
   return (
     <>
@@ -122,12 +172,14 @@ const SignUpUI = () => {
                 <div
                   className={` flex flex-row justify-center items-center bg-white rounded-md px-4 py-2 gap-2 cursor-pointer 
                    w-15rem ${buttonTransition} shadow-md`}
+                  onClick={() => signIn("google")}
                 >
                   <Image className="w-3 sm:w-6" src={googleIcon} alt="" />
-                  <p className="text-xs sm:text-md font-normal sm:font-medium">
+                  <p className="text-xs sm:text-md font-normal sm:font-medium ">
                     Continue with Google
                   </p>
                 </div>
+                {/* <GoogleSignIn /> */}
 
                 <Link
                   href={"/login"}

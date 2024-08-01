@@ -3,9 +3,6 @@ import { paddingForPage } from "../../defineSize";
 import image1 from "../../../public/assets/Dress/Co Fall 2019 Fashion Show.jpeg";
 import image2 from "../../../public/assets/image2.png";
 import image3 from "../../../public/assets/image3.png";
-import axios from "axios";
-import config from "../../config/config";
-import { useEffect, useState } from "react";
 import { product } from "@/app/store/type";
 
 interface responseFromServer {
