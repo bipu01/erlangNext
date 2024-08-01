@@ -18,6 +18,7 @@ import {
   CartButtonTransition,
   CartBuyButtonTransition,
   LikeButtonTransition,
+  ProductCartButtonTransition,
 } from "@/app/transitionsAndAnimations/transitions";
 
 export const CartBuyNowBtn = (prop: buttonPropInterface) => {
@@ -43,7 +44,7 @@ export const ProductBuyNowBtn = (prop: buttonPropInterface) => {
         prop.primary
           ? "bg-primaryBlue text-bodybg rounded-md"
           : "bg-bodybg text-primaryBlue rounded-md"
-      } px-4 sm:px-5vw ${sizeOfLessMajorText}  max-w-15rem py-2 sm:py-3 w-45% sm:w-40%
+      } px-4 sm:px-5vw ${sizeOfLessMajorText}  max-w-15rem py-2 sm:py-3 w-50% sm:w-40%
   items-center flex gap-1 sm:gap-2 font-normal sm:font-medium tracking-wider justify-center
   whitespace-nowrap ${BuyButtonTransition}`}
     >
@@ -146,11 +147,11 @@ export const ProductAddToCartButton = (prop: buttonPropInterface) => {
         className={`${
           prop.primary
             ? "bg-primaryBlue text-bodybg rounded-md px-5vw sm:px-4 lg:px-5  "
-            : "bg-bodybg text-primaryBlue rounded-md py-1 sm:py-3 px-10vw sm:px-4vw "
+            : "bg-bodybg text-primaryBlue rounded-md py-1 sm:py-3 px-10vw sm:px-4vw  "
         } ${sizeOfLessMajorText} ${
           prop.custom
-        }  py-2 sm:py-3 w-45% sm:w-40% items-center flex gap-1 sm:gap-2 font-medium tracking-wider justify-center
-        ${CartButtonTransition}
+        }  py-2 sm:py-3 w-50% sm:w-40% items-center flex gap-1 sm:gap-2 font-medium tracking-wider justify-center
+        ${ProductCartButtonTransition}
         whitespace-nowrap`}
         onClick={HandleAddToCart}
       >

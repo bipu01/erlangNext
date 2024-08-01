@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { paddingForPage } from "../defineSize";
 import Link from "next/link";
 import Image from "next/image";
@@ -22,6 +22,7 @@ import {
   textSpreadTransition,
 } from "../transitionsAndAnimations/transitions";
 import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 
 export default function LoginPage() {
   const [formdata, setFormdata] = useState({});
@@ -30,13 +31,6 @@ export default function LoginPage() {
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({ ...formdata, [e.target.id]: e.target.value });
-  };
-
-  const makePopupAppear = () => {
-    dispatch(popupSetHeading("Popup setup for testing"));
-    dispatch(popupSetMessage(""));
-    dispatch(setTime(3000));
-    dispatch(togglePopup());
   };
 
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,36 +58,80 @@ export default function LoginPage() {
         dispatch(setTime(3000));
         dispatch(togglePopup());
         dispatch(setUser(userData));
+        return;
+
+      case 401:
+        dispatch(popupSetHeading("Login with Google for this email"));
+        dispatch(popupSetMessage(""));
+        dispatch(setTime(5000));
+        dispatch(togglePopup());
+        return;
 
       case 404:
         dispatch(popupSetHeading("User not found"));
         dispatch(popupSetMessage(""));
         dispatch(setTime(5000));
         dispatch(togglePopup());
+        return;
 
       case 501:
         dispatch(popupSetHeading(" An error occurred "));
         dispatch(popupSetMessage("Error 501 accurrec in /api/user/login"));
         dispatch(setTime(5000));
         dispatch(togglePopup());
+        return;
 
       case 500:
         dispatch(popupSetHeading(" Trouble connecting to DB "));
         dispatch(popupSetMessage(""));
         dispatch(setTime(5000));
         dispatch(togglePopup());
+        return;
 
       default:
         dispatch(popupSetHeading("No expected response from backend"));
         dispatch(popupSetMessage(""));
         dispatch(setTime(5000));
         dispatch(togglePopup());
+        return;
     }
   };
 
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);
+
+  const { data: session, status } = useSession();
+  // console.log({ session: session, status: status });
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      // Automatically send user data to the signup route
+      const sendUserData = async () => {
+        try {
+          const res = await fetch("/api/user/googlesignin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(session.user),
+          });
+
+          if (!res.ok) {
+            throw new Error("Failed to send user data");
+          }
+
+          const response = await res.json();
+          dispatch(setUser(response.userData));
+          console.log({ response: response.userData });
+        } catch (error) {
+          console.error("Error sending user data:", error);
+        }
+      };
+
+      sendUserData();
+    }
+  }, [session, status]);
 
   return (
     <>
@@ -158,13 +196,12 @@ export default function LoginPage() {
                   <div className="h-0.5 w-45% bg-black"></div>
                   <p>Or</p>
                   <div className="h-0.5 w-45% bg-black"></div>
-                  <div></div>
                 </div>
                 <div className="flex flex-col items-center py-2 gap-4">
                   <div
                     className={` flex flex-row justify-center items-center bg-white rounded-md px-2 sm:px-4 py-2 gap-2 
                       cursor-pointer w-15rem sm:w-15rem ${buttonTransition} shadow-md`}
-                    onClick={makePopupAppear}
+                    onClick={() => signIn("google")}
                   >
                     <Image className="w-3 sm:w-6" src={googleIcon} alt="" />
                     <p className="text-xs sm:text-md font-normal sm:font-medium">

@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     otherInfo: {
       type: Array,
@@ -39,6 +38,9 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
+    },
+    createdWithGoogle: {
+      type: Boolean,
     },
   },
   { timestamps: true }

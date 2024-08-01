@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/authSlice";
 import postPopupReducer from "./features/postPopupSlice";
-import dataFetchReducer from "./features/dataFetchSlice";
+
 import user from "./features/userSlice";
 import popupSlice from "./features/popupSlice";
 import signUpSlice from "./features/signUpSlice";
 
 import { persistStore, persistReducer } from "redux-persist";
+import featuredProductsSlice from "./features/featuredProductsSlice";
 
 let storage;
 
@@ -28,12 +29,16 @@ const persistConfig = {
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const persistedUserReducer = persistReducer(persistConfig, user);
+const persistedFeaturedProductsSlice = persistReducer(
+  persistConfig,
+  featuredProductsSlice
+);
 
 export const store = configureStore({
   reducer: {
     authReducer: persistedAuthReducer,
+    featuredProductsSlice: persistedFeaturedProductsSlice,
     postPopupReducer,
-    dataFetchReducer,
     user: persistedUserReducer,
     popupSlice,
     signUpSlice,

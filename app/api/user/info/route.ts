@@ -1,22 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../utils/mongodb";
 import User from "../../db/userSchema";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
   const headers = req.headers.get("x-user");
   const userInfo = await JSON.parse(headers || "");
 
-  console.log({ xUser: userInfo });
+  // console.log({ xUser: userInfo });
 
   try {
     dbConnect();
+    // const session = await getServerSession(authOptions);
+    // if (session) {
+    //   console.log({ session: session });
+    // }
     try {
       const userFromDb = await User.findOne({
-        _id: userInfo.id,
+        email: userInfo.email,
       });
       // console.log({ user: userFromDb });
       const user = {
-        id: userFromDb._id,
         name: userFromDb.name,
         email: userFromDb.email,
         itemsInCart: userFromDb.itemsInCart,

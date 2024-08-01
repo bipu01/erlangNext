@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../app/Navbar/Navbar";
 import { ReduxProvider } from "@/redux/features/Provider";
 import ClientPersist from "./ClientPersist";
+// import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 

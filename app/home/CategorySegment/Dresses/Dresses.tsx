@@ -2,80 +2,57 @@
 import PageBreakLine from "../../../components/PageBreakLine/PageBreakLine";
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
-import SortByPanel from "../../SortByPanel/SortByPanel";
-import { product } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
 
 import weavyArch from "../../../../public/assets/weavyArch.svg";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
 
 const Dresses = () => {
-  const [allFeaturedDress, setAllFeaturedDress] = useState<Array<product>>([]);
-  const dataFound = useSelector(
-    (state: RootState) => state.dataFetchReducer.isDataFetched
+  const featuredDress = useSelector(
+    (state: RootState) => state.featuredProductsSlice.featuredDress
   );
 
-  useEffect(() => {
-    const allFeaturedDressString = sessionStorage.getItem("allFeaturedDress");
-    // console.log({ allFeaturedDressString: allFeaturedDressString });
-    if (allFeaturedDressString) {
-      // console.log("AllFeaturedDress found");
-      try {
-        setAllFeaturedDress(JSON.parse(allFeaturedDressString));
-      } catch (e) {
-        console.error(
-          "Failed to parse allFeaturedDress from sessionStorage",
-          e
-        );
-      }
-    }
-  }, []);
-
   const printProductCluster = () => {
-    if (allFeaturedDress) {
-      for (let i = 0; i < allFeaturedDress.length; i += 2) {
-        const pairs: productClusterProp = {
-          leftRow: {
-            _id: allFeaturedDress[i]._id,
-            name: allFeaturedDress[i].name,
-            desc: allFeaturedDress[i].desc,
-            ratingRate: allFeaturedDress[i].ratingRate,
-            ratingCount: allFeaturedDress[i].ratingCount,
-            priceOriginal: allFeaturedDress[i].priceOriginal,
-            priceCurrent: allFeaturedDress[i].priceCurrent,
-            img1: allFeaturedDress[i].img1,
-            img2: allFeaturedDress[i].img2,
-            img3: allFeaturedDress[i].img3,
-          },
-          rightRow: {
-            _id: allFeaturedDress[i + 1]._id,
-            name: allFeaturedDress[i + 1].name,
-            desc: allFeaturedDress[i + 1].desc,
-            ratingRate: allFeaturedDress[i + 1].ratingRate,
-            ratingCount: allFeaturedDress[i + 1].ratingCount,
-            priceOriginal: allFeaturedDress[i + 1].priceOriginal,
-            priceCurrent: allFeaturedDress[i + 1].priceCurrent,
-            img1: allFeaturedDress[i + 1].img1,
-            img2: allFeaturedDress[i + 1].img2,
-            img3: allFeaturedDress[i + 1].img3,
-          },
-        };
+    for (let i = 0; i < featuredDress.length; i += 2) {
+      const pairs: productClusterProp = {
+        leftRow: {
+          _id: featuredDress[i]._id,
+          name: featuredDress[i].name,
+          desc: featuredDress[i].desc,
+          ratingRate: featuredDress[i].ratingRate,
+          ratingCount: featuredDress[i].ratingCount,
+          priceOriginal: featuredDress[i].priceOriginal,
+          priceCurrent: featuredDress[i].priceCurrent,
+          img1: featuredDress[i].img1,
+          img2: featuredDress[i].img2,
+          img3: featuredDress[i].img3,
+        },
+        rightRow: {
+          _id: featuredDress[i + 1]._id,
+          name: featuredDress[i + 1].name,
+          desc: featuredDress[i + 1].desc,
+          ratingRate: featuredDress[i + 1].ratingRate,
+          ratingCount: featuredDress[i + 1].ratingCount,
+          priceOriginal: featuredDress[i + 1].priceOriginal,
+          priceCurrent: featuredDress[i + 1].priceCurrent,
+          img1: featuredDress[i + 1].img1,
+          img2: featuredDress[i + 1].img2,
+          img3: featuredDress[i + 1].img3,
+        },
+      };
 
-        // console.log({ "pairs": pairs });
-        return (
-          <ProductCluster
-            key={pairs.leftRow._id}
-            color="blue"
-            leftRow={pairs.leftRow}
-            rightRow={pairs.rightRow}
-          />
-        );
-      }
-      return <div>Something went wrong</div>;
+      // console.log({ "pairs": pairs });
+      return (
+        <ProductCluster
+          key={pairs.leftRow._id}
+          color="blue"
+          leftRow={pairs.leftRow}
+          rightRow={pairs.rightRow}
+        />
+      );
     }
   };
 
@@ -99,12 +76,12 @@ const Dresses = () => {
           id="container"
           className="grid sm:space-y-16 justify-center  max-w-25rem sm:max-w-100% mb-12 mx-1 sm:mx-0 "
         >
-          {dataFound === true ? printProductCluster() : ""}
+          {featuredDress && printProductCluster()}
         </div>
         <h1 className="text-lg mb-4 font-semibold">More of the dresses:</h1>
         <div>
-          {allFeaturedDress && (
-            <SmallProductGrid products={allFeaturedDress.slice(2)} />
+          {featuredDress && (
+            <SmallProductGrid products={featuredDress.slice(2)} />
           )}
         </div>
       </section>

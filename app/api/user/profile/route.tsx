@@ -10,11 +10,10 @@ export async function GET(req: NextRequest) {
     dbConnect();
     try {
       const userFromDb = await User.findOne({
-        _id: userInfo.id,
+        email: userInfo.email,
       });
       // console.log({ user: userFromDb });
       const user = {
-        id: userFromDb._id,
         name: userFromDb.name,
         email: userFromDb.email,
         itemsInCart: userFromDb.itemsInCart,

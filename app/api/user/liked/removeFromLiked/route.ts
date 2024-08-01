@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     await dbConnect();
     // console.log("Remove from cart is reached");
     try {
-      const searchedUser = await User.findById(user.id);
+      const searchedUser = await User.findOne({ email: user.email });
 
       searchedUser.likedProducts = searchedUser.likedProducts.filter(
         (item: product) => item._id?.toString() !== productId
@@ -24,7 +24,6 @@ export async function GET(req: NextRequest) {
       const updatedUser = await searchedUser.save();
 
       const userToSend = {
-        id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
         itemsInCart: updatedUser.itemsInCart,

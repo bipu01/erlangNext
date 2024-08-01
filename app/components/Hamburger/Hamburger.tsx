@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/features/authSlice";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export default function Hamburger() {
   const [show, setShow] = useState<boolean>(false);
@@ -11,6 +12,7 @@ export default function Hamburger() {
   const router = useRouter();
 
   const handleLogout = async () => {
+    signOut();
     sessionStorage.removeItem("currentUser");
     await axios.post("/api/user/logout");
 
