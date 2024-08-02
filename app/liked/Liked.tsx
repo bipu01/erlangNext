@@ -13,6 +13,7 @@ import {
   setTime,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import { toggleLoading } from "@/redux/features/postPopupSlice";
 
 export default function Liked() {
   const [preventNavigation, setPreventNavigation] = useState(false);
@@ -26,6 +27,7 @@ export default function Liked() {
   const handleRomoveFromLiked = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    dispatch(toggleLoading());
     e.preventDefault();
     e.stopPropagation();
     setPreventNavigation(true);
@@ -39,7 +41,8 @@ export default function Liked() {
 
     dispatch(popupSetHeading("Item removed from Liked"));
     dispatch(popupSetMessage(""));
-    dispatch(setTime(1700));
+    dispatch(setTime(1000));
+    dispatch(toggleLoading());
     dispatch(togglePopup());
   };
 

@@ -11,6 +11,7 @@ interface User {
   isAuthorized: boolean;
   phone: string;
   address: string;
+  isAdmin: boolean;
 }
 
 const initialState: User = {
@@ -23,6 +24,7 @@ const initialState: User = {
   isAuthorized: false,
   phone: "",
   address: "",
+  isAdmin: false,
 };
 
 const userSlice = createSlice({
@@ -39,6 +41,7 @@ const userSlice = createSlice({
       state.isAuthorized = action.payload?.isAuthorized;
       state.phone = action.payload?.phone;
       state.address = action.payload?.address;
+      state.isAdmin = action.payload?.isAdmin;
     },
     updateCart: (state, action: PayloadAction<product[]>) => {
       state.itemsInCart = action.payload;

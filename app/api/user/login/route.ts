@@ -14,7 +14,6 @@ export async function POST(req: NextRequest) {
     dbConnect();
     const body = await req.json();
     // const body = data.formdata;
-    console.log({ body: body });
     try {
       const user = await User.findOne({ email: body.email });
       if (user) {
@@ -28,7 +27,7 @@ export async function POST(req: NextRequest) {
         }
         const isMatch = await bcrypt.compare(body.password, user.password);
         if (isMatch) {
-          const { name, email, _id } = user;
+          const { name, email, _id, isAdmin } = user;
           const userDataToSendToClient = {
             name: user.name,
             email: user.email,
@@ -39,8 +38,8 @@ export async function POST(req: NextRequest) {
             isAuthorized: true,
           };
           // console.log({ userDataToSendToClient: userDataToSendToClient });
-          const accessToken = generateAccessToken(name, email, _id);
-          const refreshToken = generateRefreshToken(name, email, _id);
+          const accessToken = generateAccessToken(name, email, _id, isAdmin);
+          const refreshToken = generateRefreshToken(name, email, _id, isAdmin);
 
           //Set token to db
 
@@ -92,14 +91,32 @@ export async function POST(req: NextRequest) {
   }
 }
 
-const generateAccessToken = (name: string, email: string, _id: string) => {
-  return sign({ id: _id, name: name, email: email }, accessTokenSecret, {
-    expiresIn: MAX_AGE,
-  });
+const generateAccessToken = (
+  name: string,
+  email: string,
+  _id: string,
+  isAdmin: boolean
+) => {
+  return sign(
+    { id: _id, name: name, email: email, isAdmin: isAdmin },
+    accessTokenSecret,
+    {
+      expiresIn: MAX_AGE,
+    }
+  );
 };
 
-const generateRefreshToken = (name: string, email: string, _id: string) => {
-  return sign({ id: _id, name: name, email: email }, refreshTokenSecret, {
-    expiresIn: MAX_AGE,
-  });
+const generateRefreshToken = (
+  name: string,
+  email: string,
+  _id: string,
+  isAdmin: boolean
+) => {
+  return sign(
+    { id: _id, name: name, email: email, isAdmin: isAdmin },
+    refreshTokenSecret,
+    {
+      expiresIn: MAX_AGE,
+    }
+  );
 };

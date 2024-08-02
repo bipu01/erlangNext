@@ -8,9 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import NotLoggedPopup from "./components/Popups/NotLoggedPopup";
 import { setUser } from "@/redux/features/userSlice";
+import SpinningCircle from "./components/LoadingComponents/SpinningCircle";
 
 const Homepage = () => {
-  const popup = useSelector((state: RootState) => state.popupSlice.popup);
+  // const popup = useSelector((state: RootState) => state.popupSlice.popup);
   const notLoggedPopup = useSelector(
     (state: RootState) => state.popupSlice.notLoggedPopup
   );
@@ -18,9 +19,13 @@ const Homepage = () => {
   const message = useSelector((state: RootState) => state.popupSlice.message);
   const dispatch = useDispatch();
 
-  const isAuthorized = useSelector(
-    (state: RootState) => state.user.isAuthorized
+  const isLoading = useSelector(
+    (state: RootState) => state.postPopupReducer.loading
   );
+
+  // const isAuthorized = useSelector(
+  //   (state: RootState) => state.user.isAuthorized
+  // );
 
   useEffect(() => {
     const lastScrollPosition = sessionStorage.getItem("homeLastScrollPosition");
@@ -42,6 +47,7 @@ const Homepage = () => {
 
   return (
     <section className=" text-primaryBlue overflow-x-hidden bg-bodybg ">
+      {isLoading && <SpinningCircle />}
       <Popup heading={heading} message={message} />
 
       {notLoggedPopup && <NotLoggedPopup />}

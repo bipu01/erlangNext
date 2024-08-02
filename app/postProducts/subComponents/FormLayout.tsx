@@ -1,10 +1,16 @@
 // import config from "@/app/config/config";
 import { storage } from "@/app/firebase";
 import {
+  popupSetHeading,
+  popupSetMessage,
+  setTime,
+  togglePopup,
+} from "@/redux/features/popupSlice";
+import {
   makeFailedCardVisible,
-  makeSuccessCardVisible,
+  toggleLoading,
 } from "@/redux/features/postPopupSlice";
-import axios from "axios";
+
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -90,6 +96,7 @@ const FormLayout = () => {
 
   // It checks if the form is filled and help to throw dialouge box
   const handleSubmit = async () => {
+    dispatch(toggleLoading());
     await Promise.all([uploadAndGetImgURL()]);
     await uploadAllData();
     setPrice({ originalPrice: 0, currentPrice: 0 });
@@ -105,24 +112,57 @@ const FormLayout = () => {
       image1 !== null
     ) {
       //Uploads the image selected by the user
-      await axios.post(`/api/postProduct`, {
-        name: name,
-        description: description,
-        currentPrice: price.currentPrice,
-        originalPrice: price.originalPrice,
-        img1: imgURL1 ?? "img1",
-        img2: imgURL2 ?? "img2",
-        img3: imgURL3 ?? "img3",
-        ratingRate: 0,
-        ratingCount: 0,
-        category: category,
-        isFeatured: isFeatured,
+      const res = await fetch(`/api/postProduct`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          description: description,
+          currentPrice: price.currentPrice,
+          originalPrice: price.originalPrice,
+          img1: imgURL1 ?? "img1",
+          img2: imgURL2 ?? "img2",
+          img3: imgURL3 ?? "img3",
+          ratingRate: 0,
+          ratingCount: 0,
+          category: category,
+          isFeatured: isFeatured,
+        }),
       });
-      // setPostStatus(1);
-      dispatch(makeSuccessCardVisible());
-      console.log("upload all data is fired ");
+      // const response = await res.json();
+      switch (res.status) {
+        case 200:
+          dispatch(toggleLoading());
+          dispatch(popupSetHeading("Product successfully saved"));
+          dispatch(popupSetMessage(""));
+          dispatch(setTime(1700));
+          dispatch(togglePopup());
+          return;
+        case 402:
+          dispatch(toggleLoading());
+          dispatch(popupSetHeading("You are not allowed to post"));
+          dispatch(popupSetMessage(""));
+          dispatch(setTime(3000));
+          dispatch(togglePopup());
+          return;
+        case 501:
+          dispatch(toggleLoading());
+          dispatch(popupSetHeading("Error saving product"));
+          dispatch(popupSetMessage(""));
+          dispatch(setTime(3000));
+          dispatch(togglePopup());
+          return;
+        case 500:
+          dispatch(toggleLoading());
+          dispatch(popupSetHeading("Trouble connecting to db"));
+          dispatch(popupSetMessage(""));
+          dispatch(setTime(3000));
+          dispatch(togglePopup());
+          return;
+      }
     } else {
-      // setPostStatus(0);
       dispatch(makeFailedCardVisible());
     }
   };

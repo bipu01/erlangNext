@@ -14,7 +14,7 @@ export const POST = async (req: NextRequest) => {
 
     try {
       const body = await req.json();
-      console.log({ userFromGoogleSignin: body });
+      // console.log({ userFromGoogleSignin: body });
       const user = await User.findOne({ email: body.email });
 
       if (user) {
@@ -131,13 +131,21 @@ export const POST = async (req: NextRequest) => {
 };
 
 const generateAccessToken = (name: string, email: string, _id: string) => {
-  return sign({ id: _id, name: name, email: email }, accessTokenSecret, {
-    expiresIn: MAX_AGE,
-  });
+  return sign(
+    { id: _id, name: name, email: email, isAdmin: false },
+    accessTokenSecret,
+    {
+      expiresIn: MAX_AGE,
+    }
+  );
 };
 
 const generateRefreshToken = (name: string, email: string, _id: string) => {
-  return sign({ id: _id, name: name, email: email }, refreshTokenSecret, {
-    expiresIn: MAX_AGE,
-  });
+  return sign(
+    { id: _id, name: name, email: email, isAdmin: false },
+    refreshTokenSecret,
+    {
+      expiresIn: MAX_AGE,
+    }
+  );
 };

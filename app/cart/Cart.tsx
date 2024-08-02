@@ -16,6 +16,7 @@ import {
   togglePopup,
 } from "@/redux/features/popupSlice";
 import { CartDeleteButtonTranslation } from "../transitionsAndAnimations/transitions";
+import { toggleLoading } from "@/redux/features/postPopupSlice";
 
 export default function Cart() {
   const [preventNavigation, setPreventNavigation] = useState(false);
@@ -26,6 +27,7 @@ export default function Cart() {
   const handleRomoveFromCart = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    dispatch(toggleLoading());
     e.preventDefault();
     e.stopPropagation();
     setPreventNavigation(true);
@@ -38,7 +40,8 @@ export default function Cart() {
 
     dispatch(popupSetHeading("Item removed from Cart"));
     dispatch(popupSetMessage(""));
-    dispatch(setTime(1700));
+    dispatch(setTime(1200));
+    dispatch(toggleLoading());
     dispatch(togglePopup());
   };
 

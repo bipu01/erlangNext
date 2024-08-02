@@ -3,6 +3,16 @@ import dbConnect from "../utils/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  const headers = req.headers.get("x-user");
+  const user = await JSON.parse(headers || "");
+
+  if (!user.isAdmin) {
+    return NextResponse.json(
+      { message: "You are not authorized to post" },
+      { status: 402 }
+    );
+  }
+
   try {
     await dbConnect();
     try {
@@ -22,14 +32,20 @@ export async function POST(req: NextRequest) {
       });
       product.save();
 
-      return NextResponse.json({ message: "Data recieved successfully" });
+      return NextResponse.json({ message: "Product saved" }, { status: 200 });
     } catch (error) {
-      return NextResponse.json({
-        message: "Error saving data",
-        error: error,
-      });
+      return NextResponse.json(
+        {
+          message: "Error saving data",
+          error: error,
+        },
+        { status: 501 }
+      );
     }
   } catch (error) {
-    return NextResponse.json({ message: "Problem connectiong to db" });
+    return NextResponse.json(
+      { message: "Problem connectiong to db" },
+      { status: 500 }
+    );
   }
 }
