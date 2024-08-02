@@ -55,7 +55,7 @@ export default function LoginPage() {
         const userData = response.userData;
         dispatch(popupSetHeading("Successfully logged in"));
         dispatch(popupSetMessage(""));
-        dispatch(setTime(3000));
+        dispatch(setTime(1000));
         dispatch(togglePopup());
         dispatch(setUser(userData));
         return;

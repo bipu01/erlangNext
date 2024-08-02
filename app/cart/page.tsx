@@ -57,13 +57,14 @@ export default function CartPage() {
       <Popup heading={heading} message={message} />
       {!isAuthorized && <NotLoggedPopup />}
       <div className="flex flex-col gap-4 sm:gap-6 xmd:gap-8 ">
-        <div
-          className={` h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8 ${BackArrowTransitation}`}
-        >
+        <div className={` h-6 w-6 sm:h-8 sm:w-8 py-3 sm:py-8`}>
           <div className="text-xl text-black/60 font-semibold px-6 mb-4  absolute top-[62px] sm:top-[102px] left-15vw 3xl:left-20vw">
             Cart
           </div>
-          <Link href="/" className={`absolute z-20 top-[60px]  sm:top-[100px]`}>
+          <Link
+            href="/"
+            className={`absolute z-20 top-[60px]  sm:top-[100px]  ${BackArrowTransitation}`}
+          >
             <BackArrow
               height={32}
               width={32}

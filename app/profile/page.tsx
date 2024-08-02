@@ -10,6 +10,15 @@ import {
   popupSetMessage,
   togglePopup,
 } from "@/redux/features/popupSlice";
+import { signOut } from "next-auth/react";
+import axios from "axios";
+import { logout } from "@/redux/features/authSlice";
+import { useRouter } from "next/navigation";
+import {
+  LoginAndSignupButtonTransition,
+  ProductCartButtonTransition,
+  buttonTransition,
+} from "../transitionsAndAnimations/transitions";
 
 const ProfilePage = () => {
   // const [formData, setFormData] = useState({ name: "", email: "" });
@@ -73,12 +82,34 @@ const ProfilePage = () => {
     getUser();
   }, []);
 
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    signOut();
+    sessionStorage.removeItem("currentUser");
+    await axios.post("/api/user/logout");
+
+    dispatch(logout());
+    router.push("/login");
+  };
+
   return (
     <section className="">
       {!isAuthorized && <NotLoggedPopup />}
       {popup && isAuthorized && <Popup heading={heading} message={message} />}
-      <div className="bg-bgLightBlue min-h-95vh">
-        <div className="flex flex-col   justify-center items-center gap-10  p-6 py-8 sm:py-16 rounded-md w-100vw sm:mt-5vh sm:w-60vw max-w-40rem ml-auto mr-auto">
+      <div className="bg-bgLightBlue min-h-95vh  w-100vw sm:mt-5vh sm:w-60vw max-w-40rem ml-auto mr-auto rounded-md relative">
+        <div
+          className={`text-black text-xs sm:text-sm bg-white cursor-pointer flex items-center gap-3 absolute right-4 top-4 shadow-md p-2
+             px-3 rounded-md ${ProductCartButtonTransition} `}
+          onClick={handleLogout}
+        >
+          <div className=" h-4 w-4">
+            <img className="object-cover" src="/icons/logout.png" alt="icon" />
+          </div>
+          <div>Logout</div>
+        </div>
+
+        <div className="flex flex-col   justify-center items-center gap-10  p-6 py-8 sm:py-16 rounded-md">
           <div className="text-base sm:text-lg sm:font-xl font-semibold text-center pt-0 sm:pt-8 ">
             Profile
           </div>
@@ -129,7 +160,7 @@ const ProfilePage = () => {
               </div>
               <button
                 type="submit"
-                className="w-15rem h-8 mt-8 rounded-md bg-primaryBlue text-white"
+                className={`w-15rem h-8 mt-8 rounded-md bg-primaryBlue text-white ${ProductCartButtonTransition}`}
               >
                 Change
               </button>

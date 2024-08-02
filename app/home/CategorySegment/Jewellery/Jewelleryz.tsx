@@ -1,12 +1,10 @@
 import PageBreakLine from "../../../components/PageBreakLine/PageBreakLine";
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
-import { product } from "../../../store/type";
 import { productClusterProp } from "../../../declare";
-import { useEffect, useState } from "react";
-import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import SmallProductHomeGrid from "@/app/components/SmallProductGridHomePage/SmallProductHomePageGrid";
 
 const Jewellery = () => {
   const featuredJewellery = useSelector(
@@ -79,7 +77,7 @@ const Jewellery = () => {
         <h1 className="text-lg mb-4 font-semibold">More of the Footwears:</h1>
         <div>
           {featuredJewellery && (
-            <SmallProductGrid products={featuredJewellery.slice(2)} />
+            <SmallProductHomeGrid products={featuredJewellery.slice(2)} />
           )}
         </div>
       </section>

@@ -111,7 +111,8 @@ export const BackArrowTransitation = `
 `;
 
 export const CartDeleteButtonTranslation = `
-  transition-all duration-400 sm:duration-300 delay-100 ease-in-out
+  transition-all duration-400 
+  sm:duration-300 ease-in-out
   sm:hover:bg-gray-300
   active:bg-gray-300
   touch-active:bg-gray-300

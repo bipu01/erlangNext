@@ -1,15 +1,13 @@
 import { ProductCluster } from "../../../components/ProductCard/ProductCluster";
 import { paddingForProductCard } from "../../../defineSize";
 import { productClusterProp } from "../../../declare";
-import { product } from "@/app/store/type";
-import { useEffect, useState } from "react";
-import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import SmallProductHomeGrid from "@/app/components/SmallProductGridHomePage/SmallProductHomePageGrid";
 
 const Footwear = () => {
   const featuredFootwear = useSelector(
-    (state: RootState) => state.featuredProductsSlice.featuredJewellery
+    (state: RootState) => state.featuredProductsSlice.featuredFootwear
   );
   const printProductCluster = () => {
     for (let i = 0; i < featuredFootwear.length; i += 2) {
@@ -78,7 +76,7 @@ const Footwear = () => {
         <h1 className="text-lg mb-4 font-semibold">More of the Footwears:</h1>
         <div>
           {featuredFootwear && (
-            <SmallProductGrid products={featuredFootwear.slice(2)} />
+            <SmallProductHomeGrid products={featuredFootwear.slice(2)} />
           )}
         </div>
       </section>
