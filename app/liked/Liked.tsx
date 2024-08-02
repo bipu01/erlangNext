@@ -14,6 +14,7 @@ import {
   togglePopup,
 } from "@/redux/features/popupSlice";
 import { toggleLoading } from "@/redux/features/postPopupSlice";
+import { CartDeleteButtonTranslation } from "../transitionsAndAnimations/transitions";
 
 export default function Liked() {
   const [preventNavigation, setPreventNavigation] = useState(false);
@@ -25,7 +26,7 @@ export default function Liked() {
   );
 
   const handleRomoveFromLiked = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     dispatch(toggleLoading());
     e.preventDefault();
@@ -88,38 +89,20 @@ export default function Liked() {
                         <p className="w-75%  text-xs sm:text-sm  text-primaryBlue font-semibold line-clamp-1">
                           {item.name}
                         </p>
-                        <div className="">
-                          <button
-                            className=" p-2 rounded-md ml-4 "
-                            onClick={(
-                              e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                            ) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              setPreventNavigation(true);
-                              setShowOptions(!showOptions);
-                            }}
-                          >
-                            <img
-                              src="/icons/threeDot.svg"
-                              alt="threeDot"
-                              className="absolute right-3 sm:right-5 sm:top-4 "
+
+                        <div
+                          id={`removeFromLiked=${item._id}`}
+                          className={`absolute right-3 top-3 sm:top-8 sm:right-10 rounded-md py-1 px-2 items-start ${CartDeleteButtonTranslation}`}
+                          onClick={handleRomoveFromLiked}
+                        >
+                          <button className="p-1">
+                            <Delete
+                              borderThickness={2}
+                              borderColor="black"
+                              custom="h-4  w-4 sm:h-6 sm:w-6 "
                             />
                           </button>
                         </div>
-                        {showOptions ? (
-                          <div className="absolute right-8 top-3 sm:right-10 bg-white rounded-md py-1 px-1 shadow-md items-start">
-                            <button
-                              id={`removeFromLiked=${item._id}`}
-                              className="bg-darkRed text-white px-3 py-1 text-xs 2xl:text-sm rounded-md"
-                              onClick={handleRomoveFromLiked}
-                            >
-                              Remove
-                            </button>
-                          </div>
-                        ) : (
-                          <div></div>
-                        )}
                       </div>
 
                       <div className="relative flex mt-3 sm:mt-10 mr-1 gap-10vw sm:gap-20vw  items-start ">

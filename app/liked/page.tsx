@@ -10,6 +10,7 @@ import Popup from "../components/Popups/Popup";
 import { RootState } from "@/redux/store";
 import NotLoggedPopup from "../components/Popups/NotLoggedPopup";
 import SpinningCircle from "../components/LoadingComponents/SpinningCircle";
+import { BackArrowTransitation } from "../transitionsAndAnimations/transitions";
 
 export default function CartPage() {
   const [showDialouge, setShowDialouge] = useState(false);
@@ -61,7 +62,10 @@ export default function CartPage() {
           <div className="text-xl text-black/60 font-semibold px-6 mb-4  absolute top-[62px] sm:top-[102px] left-15vw 3xl:left-20vw">
             Liked
           </div>
-          <Link href="/" className={`absolute z-20 top-[60px]  sm:top-[100px]`}>
+          <Link
+            href="/"
+            className={`absolute z-20 top-[60px]  sm:top-[100px] ${BackArrowTransitation}`}
+          >
             <BackArrow
               height={32}
               width={32}
