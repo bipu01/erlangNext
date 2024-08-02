@@ -8,7 +8,7 @@ import weavyArch from "../../../../public/assets/weavyArch.svg";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import SmallProductGrid from "@/app/components/SmallProductsGrid/SmallProductGrid";
+import SmallProductHomeGrid from "@/app/components/SmallProductGridHomePage/SmallProductHomePageGrid";
 
 const Dresses = () => {
   const featuredDress = useSelector(
@@ -81,7 +81,7 @@ const Dresses = () => {
         <h1 className="text-lg mb-4 font-semibold">More of the dresses:</h1>
         <div>
           {featuredDress && (
-            <SmallProductGrid products={featuredDress.slice(2)} />
+            <SmallProductHomeGrid products={featuredDress.slice(2)} />
           )}
         </div>
       </section>
