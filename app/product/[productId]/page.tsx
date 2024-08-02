@@ -44,6 +44,9 @@ const ProductPage = () => {
   const popup = useSelector((state: RootState) => state.popupSlice.popup);
   const heading = useSelector((state: RootState) => state.popupSlice.heading);
   const message = useSelector((state: RootState) => state.popupSlice.message);
+  const isLoading = useSelector(
+    (state: RootState) => state.postPopupReducer.loading
+  );
 
   const notLoggedPopup = useSelector(
     (state: RootState) => state.popupSlice.notLoggedPopup
@@ -98,9 +101,9 @@ const ProductPage = () => {
         <div
           className={`relative bg-bgLightBlue min-h-95vh py-4 sm:py-16 sm:pt-16 ${paddingForPage}`}
         >
+          {isLoading && <SpinningCircle />}
           {/* Notification popup */}
           <Popup heading={heading} message={message} />
-          {/* <SpinningCircle /> */}
 
           {notLoggedPopup && <NotLoggedPopup />}
 
