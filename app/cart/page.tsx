@@ -10,6 +10,7 @@ import { RootState } from "@/redux/store";
 import Popup from "../components/Popups/Popup";
 import NotLoggedPopup from "../components/Popups/NotLoggedPopup";
 import { BackArrowTransitation } from "../transitionsAndAnimations/transitions";
+import SpinningCircle from "../components/LoadingComponents/SpinningCircle";
 
 export default function CartPage() {
   const [showDialouge, setShowDialouge] = useState(false);
@@ -43,11 +44,15 @@ export default function CartPage() {
   const isAuthorized = useSelector(
     (state: RootState) => state.user.isAuthorized
   );
+  const isLoading = useSelector(
+    (state: RootState) => state.postPopupReducer.loading
+  );
 
   return (
     <div
       className={`bg-bgLightBlue w-screen min-h-90vh overflow-y-scroll  px-2% sm:px-5vw xl:px-12vw 2xl:px-18vw pb-24`}
     >
+      {isLoading && <SpinningCircle />}
       {/* Notification popup */}
       <Popup heading={heading} message={message} />
       {!isAuthorized && <NotLoggedPopup />}

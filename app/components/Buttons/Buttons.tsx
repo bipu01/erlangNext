@@ -20,6 +20,7 @@ import {
   LikeButtonTransition,
   ProductCartButtonTransition,
 } from "@/app/transitionsAndAnimations/transitions";
+import { toggleLoading } from "@/redux/features/postPopupSlice";
 
 export const CartBuyNowBtn = (prop: buttonPropInterface) => {
   return (
@@ -63,6 +64,7 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
   const HandleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const productId = e.currentTarget.id.replace(/\baddToCart\D*/g, "");
     try {
+      dispatch(toggleLoading());
       const res = await fetch("/api/user/cart/addToCart", {
         method: "POST",
         headers: {
@@ -72,13 +74,16 @@ export const AddToCartButton = (prop: buttonPropInterface) => {
       });
       // alert("Item added to cart");
       const parsedData = await res.json();
-      dispatch(popupSetHeading("Item successfully added to cart"));
-      dispatch(popupSetMessage("🛒✅"));
+      dispatch(popupSetHeading("Added to cart"));
+      dispatch(popupSetMessage(""));
       dispatch(updateCart(parsedData.itemsInCart));
-      dispatch(setTime(1700));
+      dispatch(setTime(1000));
+
       if (!isAuthorized) {
+        dispatch(toggleLoading());
         dispatch(toggleNotLoggedPopup());
       } else {
+        dispatch(toggleLoading());
         dispatch(togglePopup());
       }
     } catch (error) {
@@ -115,8 +120,9 @@ export const ProductAddToCartButton = (prop: buttonPropInterface) => {
 
   const HandleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const productId = e.currentTarget.id.replace(/\baddToCart\D*/g, "");
-    console.log({ productId: productId });
+
     try {
+      dispatch(toggleLoading());
       const res = await fetch("/api/user/cart/addToCart", {
         method: "POST",
         headers: {
@@ -127,13 +133,16 @@ export const ProductAddToCartButton = (prop: buttonPropInterface) => {
 
       // alert("Item added to cart");
       const parsedData = await res.json();
-      dispatch(popupSetHeading("Item successfully added to cart"));
-      dispatch(popupSetMessage("🛒✅"));
+      dispatch(popupSetHeading("Added to cart"));
+      dispatch(popupSetMessage(""));
       dispatch(updateCart(parsedData.itemsInCart));
-      dispatch(setTime(1700));
+      dispatch(setTime(1000));
+
       if (!isAuthorized) {
+        dispatch(toggleLoading());
         dispatch(toggleNotLoggedPopup());
       } else {
+        dispatch(toggleLoading());
         dispatch(togglePopup());
       }
     } catch (error) {
@@ -189,8 +198,9 @@ export const LikeButton = (prop: buttonPropInterface) => {
 
   const handleAddToLiked = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const productId = e.currentTarget.id.replace(/\like\D*/g, "");
-    console.log("add to liked clicked");
+    // console.log("add to liked clicked");
     try {
+      dispatch(toggleLoading());
       const res = await fetch(
         `/api/user/liked/addToLiked?productId=${productId}`,
         {
@@ -202,12 +212,14 @@ export const LikeButton = (prop: buttonPropInterface) => {
       );
 
       // const data = await res.json();
-      dispatch(popupSetHeading("Item successfully added to Liked"));
-      dispatch(popupSetMessage("♥️♥️♥️"));
-      dispatch(setTime(1700));
+      dispatch(popupSetHeading("Added to Liked"));
+      dispatch(popupSetMessage(""));
+      dispatch(setTime(1000));
       if (!isAuthorized) {
+        dispatch(toggleLoading());
         dispatch(toggleNotLoggedPopup());
       } else {
+        dispatch(toggleLoading());
         dispatch(togglePopup());
       }
     } catch (error) {

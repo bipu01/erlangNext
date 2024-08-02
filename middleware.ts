@@ -58,5 +58,6 @@ export const config = {
     "/api/user/verifyAdmin",
     "/api/user/update",
     "/api/user/profile",
+    "/api/postProduct",
   ],
 };

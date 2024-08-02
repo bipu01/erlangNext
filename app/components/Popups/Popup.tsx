@@ -36,7 +36,7 @@ const Popup = (prop: popupProp) => {
       <div
         className={`fixed flex flex-col justify-center transition-all duration-300 ease-in-out ${
           popup ? " top-3 " : "-top-24"
-        }  left-5vw sm:left-25vw w-90vw sm:w-50vw h-16 text-white  backdrop-blur-xl bg-${
+        }  left-5vw sm:left-25vw w-90vw sm:w-50vw h-16 text-white  backdrop-blur-sm bg-${
           prop.bgColor ? prop.bgColor : "primaryBlue/50"
         } bg-primaryBlue/50  shadow-xl rounded-lg z-50 text-center `}
       >

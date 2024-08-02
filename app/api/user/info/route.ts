@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../utils/mongodb";
 import User from "../../db/userSchema";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
   const headers = req.headers.get("x-user");
@@ -31,6 +29,7 @@ export async function GET(req: NextRequest) {
         address: "",
         phone: 0,
         isAuthorized: true,
+        isAdmin: userFromDb.isAdmin,
       };
       return NextResponse.json({ message: user });
     } catch (error) {

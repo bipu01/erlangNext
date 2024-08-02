@@ -4,6 +4,7 @@ const postPopupSlice = createSlice({
   name: "postPopupSlice",
   initialState: {
     status: 0,
+    loading: false,
   },
   reducers: {
     makeSuccessCardVisible: (state) => {
@@ -18,6 +19,9 @@ const postPopupSlice = createSlice({
     makeFailedCardVisible: (state) => {
       state.status = 2;
     },
+    toggleLoading: (state) => {
+      state.loading = !state.loading;
+    },
   },
 });
 
@@ -26,5 +30,6 @@ export const {
   makeSuccessCardInvisible,
   makeFailedCardInvisible,
   makeFailedCardVisible,
+  toggleLoading,
 } = postPopupSlice.actions;
 export default postPopupSlice.reducer;

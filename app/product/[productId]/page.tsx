@@ -19,6 +19,8 @@ import Popup from "@/app/components/Popups/Popup";
 import NotLoggedPopup from "@/app/components/Popups/NotLoggedPopup";
 import { setUser } from "@/redux/features/userSlice";
 import { BackArrowTransitation } from "@/app/transitionsAndAnimations/transitions";
+import { toggleLoading } from "@/redux/features/postPopupSlice";
+import SpinningCircle from "@/app/components/LoadingComponents/SpinningCircle";
 
 const fetchProductFromDb = async (productId: string) => {
   try {
@@ -98,6 +100,7 @@ const ProductPage = () => {
         >
           {/* Notification popup */}
           <Popup heading={heading} message={message} />
+          {/* <SpinningCircle /> */}
 
           {notLoggedPopup && <NotLoggedPopup />}
 
@@ -204,7 +207,11 @@ const ProductPage = () => {
         </div>
       );
     } else {
-      return <div>Loading...</div>;
+      return (
+        <div className="text-center mt-10 text-xl font-bold opacity-50">
+          Loading...
+        </div>
+      );
     }
   };
 
