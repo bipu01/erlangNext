@@ -12,43 +12,41 @@ import featuredProductsSlice from "./features/featuredProductsSlice";
 let storage;
 
 if (typeof window !== "undefined") {
-  storage = require("redux-persist/lib/storage").default;
+    storage = require("redux-persist/lib/storage").default;
 } else {
-  storage = require("redux-persist/lib/storage/createWebStorage").default(
-    "local"
-  );
+    storage = require("redux-persist/lib/storage/createWebStorage").default("local");
 }
 
 const persistConfig = {
-  key: "root",
-  storage,
-  // Optionally, you can blacklist or whitelist specific reducers
-  // blacklist: ['dataFetchReducer'] // won't be persisted
-  // whitelist: ['authReducer', 'user'] // only these will be persisted
+    key: "root",
+    storage,
+    // Optionally, you can blacklist or whitelist specific reducers
+    // blacklist: ['dataFetchReducer'] // won't be persisted
+    // whitelist: ['authReducer', 'user'] // only these will be persisted
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const persistedUserReducer = persistReducer(persistConfig, user);
-const persistedFeaturedProductsSlice = persistReducer(
-  persistConfig,
-  featuredProductsSlice
-);
+// const persistedFeaturedProductsSlice = persistReducer(
+//   persistConfig,
+//   featuredProductsSlice
+// );
 
 export const store = configureStore({
-  reducer: {
-    authReducer: persistedAuthReducer,
-    featuredProductsSlice: persistedFeaturedProductsSlice,
-    postPopupReducer,
-    user: persistedUserReducer,
-    popupSlice,
-    signUpSlice,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ["persist/PERSIST"],
-      },
-    }),
+    reducer: {
+        authReducer: persistedAuthReducer,
+        featuredProductsSlice,
+        postPopupReducer,
+        user: persistedUserReducer,
+        popupSlice,
+        signUpSlice,
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: ["persist/PERSIST"],
+            },
+        }),
 });
 
 export const persistor = persistStore(store);
