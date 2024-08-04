@@ -175,7 +175,7 @@ const SignUpUI = () => {
                                     onClick={() => signIn("google")}
                                 >
                                     <Image className="w-3 sm:w-6" src={googleIcon} alt="" />
-                                    <p className="text-xs sm:text-md font-normal sm:font-medium ">
+                                    <p className="text-xs sm:text-md font-normal sm:font-medium select-none">
                                         Continue with Google
                                     </p>
                                 </div>
